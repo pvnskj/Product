@@ -522,6 +522,31 @@
       min-height: 240px;
     }
 
+    .project-detail-visual {
+      width: 100%;
+      height: 180px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(22,163,74,0.12));
+      border: 1px solid rgba(148,163,184,0.45);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 0.9rem;
+    }
+
+    .project-detail-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-detail-visual.default img {
+      filter: saturate(0.75);
+    }
+
     .project-detail-label {
       font-size: 0.78rem;
       text-transform: uppercase;
@@ -863,6 +888,9 @@
         <!-- Right: Detail panel -->
         <aside class="project-detail" id="projectDetail">
           <div class="project-detail-label">Selected project</div>
+          <div class="project-detail-visual" id="detailVisual">
+            <img id="detailImage" src="" alt="" loading="lazy" />
+          </div>
           <h3 id="detailTitle">Asset Catalog Management</h3>
           <p id="detailSummary">
             A centralized Asset Catalog lifecycle that replaces spreadsheet-driven part management with a governed,
@@ -964,6 +992,8 @@
     const projectData = {
       'asset-catalog': {
         title: 'Asset Catalog Management',
+        image:
+          'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice"%3E%3Cdefs%3E%3ClinearGradient id="g1" x1="0%25" x2="100%25" y1="0%25" y2="100%25"%3E%3Cstop stop-color="%232563eb" stop-opacity="0.9" offset="0%25"/%3E%3Cstop stop-color="%2316a34a" stop-opacity="0.7" offset="100%25"/%3E%3C/linearGradient%3E%3ClinearGradient id="g2" x1="0%25" x2="0%25" y1="0%25" y2="100%25"%3E%3Cstop stop-color="%23ffffff" stop-opacity="0.12" offset="0%25"/%3E%3Cstop stop-color="%230f172a" stop-opacity="0.08" offset="100%25"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="800" height="480" fill="url(%23g1)"/%3E%3Ccircle cx="640" cy="100" r="140" fill="url(%23g2)"/%3E%3Crect x="70" y="120" width="440" height="60" rx="18" fill="rgba(255,255,255,0.28)"/%3E%3Crect x="70" y="210" width="520" height="48" rx="14" fill="rgba(255,255,255,0.2)"/%3E%3Crect x="70" y="280" width="320" height="42" rx="12" fill="rgba(255,255,255,0.16)"/%3E%3Ccircle cx="540" cy="320" r="46" fill="rgba(255,255,255,0.16)"/%3E%3Ccircle cx="620" cy="340" r="90" fill="rgba(15,23,42,0.16)"/%3E%3C/svg%3E',
         summary:
           'A centralized Asset Catalog lifecycle that replaces spreadsheet-driven part management with a governed, API-integrated system. ' +
           'It standardizes how parts are requested, approved, validated, and synchronized across PCM, Oracle, Agile, and Scale—removing duplicate records and aligning key functions.',
@@ -979,6 +1009,8 @@
       },
       'inspection': {
         title: 'Inspection & Asset Management',
+        image:
+          'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice"%3E%3Cdefs%3E%3ClinearGradient id="insp1" x1="0%25" x2="100%25" y1="0%25" y2="0%25"%3E%3Cstop stop-color="%2306b6d4" stop-opacity="0.95" offset="0%25"/%3E%3Cstop stop-color="%232563eb" stop-opacity="0.85" offset="50%25"/%3E%3Cstop stop-color="%2316a34a" stop-opacity="0.75" offset="100%25"/%3E%3C/linearGradient%3E%3ClinearGradient id="insp2" x1="0%25" x2="0%25" y1="0%25" y2="100%25"%3E%3Cstop stop-color="%23e0f2fe" stop-opacity="0.25" offset="0%25"/%3E%3Cstop stop-color="%2303345a" stop-opacity="0.2" offset="100%25"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="800" height="480" fill="url(%23insp1)"/%3E%3Crect x="80" y="120" width="640" height="260" rx="26" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,0.32)" stroke-width="3"/%3E%3Crect x="120" y="170" width="260" height="50" rx="14" fill="rgba(3,53,90,0.6)"/%3E%3Crect x="420" y="170" width="210" height="50" rx="14" fill="rgba(3,53,90,0.6)"/%3E%3Crect x="160" y="250" width="280" height="22" rx="10" fill="rgba(255,255,255,0.28)"/%3E%3Crect x="160" y="290" width="320" height="22" rx="10" fill="rgba(255,255,255,0.2)"/%3E%3Ccircle cx="600" cy="270" r="48" fill="url(%23insp2)"/%3E%3Ccircle cx="640" cy="320" r="70" fill="rgba(3,52,90,0.16)"/%3E%3C/svg%3E',
         summary:
           'An automated inspection lifecycle that moves organizations from reactive maintenance to proactive and predictive operations. ' +
           'The system merges planned, proactive, and predictive inspections into optimized field workflows tied to real usage and fault data.',
@@ -994,6 +1026,8 @@
       },
       'inventory': {
         title: 'Inventory & Asset Lifecycle',
+        image:
+          'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice"%3E%3Cdefs%3E%3ClinearGradient id="inv1" x1="0%25" x2="100%25" y1="100%25" y2="0%25"%3E%3Cstop stop-color="%2316a34a" stop-opacity="0.92" offset="0%25"/%3E%3Cstop stop-color="%2306b6d4" stop-opacity="0.8" offset="60%25"/%3E%3Cstop stop-color="%232563eb" stop-opacity="0.78" offset="100%25"/%3E%3C/linearGradient%3E%3ClinearGradient id="inv2" x1="0%25" x2="100%25" y1="0%25" y2="0%25"%3E%3Cstop stop-color="%23ffffff" stop-opacity="0.22" offset="0%25"/%3E%3Cstop stop-color="%23172a46" stop-opacity="0.18" offset="100%25"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="800" height="480" fill="url(%23inv1)"/%3E%3Crect x="90" y="110" width="620" height="260" rx="28" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.3)" stroke-width="3"/%3E%3Crect x="140" y="160" width="200" height="44" rx="12" fill="rgba(23,42,70,0.65)"/%3E%3Crect x="140" y="218" width="520" height="38" rx="12" fill="rgba(255,255,255,0.22)"/%3E%3Crect x="140" y="270" width="360" height="34" rx="12" fill="rgba(255,255,255,0.2)"/%3E%3Ccircle cx="620" cy="260" r="44" fill="url(%23inv2)"/%3E%3Ccircle cx="670" cy="320" r="82" fill="rgba(12,74,110,0.18)"/%3E%3C/svg%3E',
         summary:
           'A custody-centric framework that connects ERP, WMS, and Fixed Assets into a single, serial-driven narrative for each physical asset. ' +
           'It tracks assets from order to deployment and through reverse logistics, while keeping financial integrity intact.',
@@ -1014,6 +1048,10 @@
     const detailSummary = document.getElementById('detailSummary');
     const detailBullets = document.getElementById('detailBullets');
     const detailLinks = document.getElementById('detailLinks');
+    const detailImage = document.getElementById('detailImage');
+    const detailVisual = document.getElementById('detailVisual');
+    const defaultImage =
+      'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice"%3E%3Cdefs%3E%3ClinearGradient id="bg" x1="0%25" x2="100%25" y1="0%25" y2="100%25"%3E%3Cstop stop-color="%23e2e8f0" offset="0%25"/%3E%3Cstop stop-color="%23cbd5e1" offset="100%25"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="800" height="480" fill="url(%23bg)"/%3E%3Cpath d="M120 150h560a16 16 0 0 1 16 16v248H104V166a16 16 0 0 1 16-16Z" fill="rgba(255,255,255,0.9)" stroke="%23cbd5e1" stroke-width="3"/%3E%3Crect x="160" y="200" width="220" height="26" rx="9" fill="%232563eb" opacity="0.18"/%3E%3Crect x="160" y="242" width="330" height="22" rx="8" fill="%2333344d" opacity="0.12"/%3E%3Crect x="160" y="276" width="420" height="22" rx="8" fill="%2333344d" opacity="0.12"/%3E%3Ccircle cx="620" cy="240" r="40" fill="%2316a34a" opacity="0.18"/%3E%3Ccircle cx="660" cy="300" r="70" fill="%232563eb" opacity="0.12"/%3E%3C/svg%3E';
 
     function setActiveProject(id) {
       projectCards.forEach(card => {
@@ -1021,6 +1059,7 @@
       });
 
       const data = projectData[id];
+      const imageSrc = data?.image || defaultImage;
       if (!data) {
         detailTitle.textContent = 'Project coming soon';
         detailSummary.textContent =
@@ -1028,11 +1067,17 @@
           'they will be added here with the same level of architectural and societal detail.';
         detailBullets.innerHTML = '';
         detailLinks.innerHTML = '';
+        detailImage.src = imageSrc;
+        detailImage.alt = 'Upcoming project preview';
+        detailVisual.classList.toggle('default', true);
         return;
       }
 
       detailTitle.textContent = data.title;
       detailSummary.textContent = data.summary;
+      detailImage.src = imageSrc;
+      detailImage.alt = `${data.title} visual preview`;
+      detailVisual.classList.toggle('default', !data.image);
 
       detailBullets.innerHTML = '';
       data.bullets.forEach(b => {
