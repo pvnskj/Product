@@ -78,6 +78,92 @@
       text-decoration: none;
       color: #0b5fff;
     }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.2rem 0 1.5rem;
+    }
+    .card {
+      background: linear-gradient(135deg, #fdfdff, #f4f6fb);
+      border: 1px solid #e0e0e5;
+      border-radius: 12px;
+      padding: 1rem 1.1rem 1.05rem;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+    .card h4 {
+      margin: 0 0 0.4rem;
+      font-size: 0.98rem;
+      font-weight: 650;
+      color: #1c2430;
+    }
+    .metric-value {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0b5fff;
+      margin: 0.1rem 0;
+    }
+    .metric-caption {
+      margin: 0;
+      color: #4b5563;
+      font-size: 0.9rem;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .data-table th, .data-table td {
+      border: 1px solid #e0e0e5;
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+    }
+    .data-table th {
+      background: #f3f4f6;
+      font-weight: 650;
+    }
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      margin-top: 0.6rem;
+    }
+    .flow-node {
+      background: #0b5fff10;
+      border: 1px solid #d4ddff;
+      border-radius: 10px;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.9rem;
+      color: #0b2c70;
+      box-shadow: 0 6px 14px rgba(11,95,255,0.08);
+    }
+    .flow-arrow {
+      color: #94a3b8;
+      font-weight: 700;
+    }
+    .sparkline {
+      width: 100%;
+      height: 86px;
+      margin-top: 0.3rem;
+    }
+    .mini-chart {
+      display: flex;
+      gap: 6px;
+      margin-top: 0.5rem;
+    }
+    .mini-bar {
+      flex: 1;
+      min-height: 42px;
+      border-radius: 8px 8px 2px 2px;
+      background: linear-gradient(180deg, #0b5fff, #0b5fffcc);
+      opacity: 0.75;
+    }
+    .mini-bar:nth-child(2) { height: 52px; opacity: 0.82; }
+    .mini-bar:nth-child(3) { height: 64px; opacity: 0.9; }
+    .mini-bar:nth-child(4) { height: 70px; opacity: 0.96; }
+    .mini-bar:nth-child(5) { height: 60px; opacity: 0.88; }
   </style>
 </head>
 <body>
@@ -94,6 +180,86 @@
       <h2>Asset Catalog WHitepaper</h2>
 
       <h3>A Framework for Automated Asset Catalog Lifecycle Management</h3>
+
+      <div class="dashboard-grid">
+        <div class="card metric-card">
+          <h4>Catalog Accuracy</h4>
+          <div class="metric-value">99.2%</div>
+          <p class="metric-caption">Validated attributes synchronized across MDM, ERP, and operational systems.</p>
+        </div>
+        <div class="card metric-card">
+          <h4>Approval Velocity</h4>
+          <div class="metric-value">&minus;42%</div>
+          <p class="metric-caption">Reduction in cycle time by routing low-risk updates through configurable rules.</p>
+        </div>
+        <div class="card metric-card">
+          <h4>Duplicate Prevention</h4>
+          <div class="metric-value">3.4K</div>
+          <p class="metric-caption">Potential duplicate submissions blocked annually through taxonomy checks.</p>
+          <div class="mini-chart" aria-hidden="true">
+            <div class="mini-bar" style="height:48px"></div>
+            <div class="mini-bar" style="height:58px"></div>
+            <div class="mini-bar" style="height:70px"></div>
+            <div class="mini-bar" style="height:78px"></div>
+            <div class="mini-bar" style="height:65px"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>Impact Snapshot</h4>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Outcome</th>
+              <th>Owner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dynamic field governance</td>
+              <td>Eliminates bespoke code releases for new attributes</td>
+              <td>Catalog Admin</td>
+            </tr>
+            <tr>
+              <td>Automated validation tiers</td>
+              <td>Shortens non-critical change approvals to hours</td>
+              <td>Data Stewards</td>
+            </tr>
+            <tr>
+              <td>Cross-system propagation</td>
+              <td>Prevents divergence between PCM, Oracle, and Agile</td>
+              <td>Integration Ops</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h4>Governance Workflow at a Glance</h4>
+        <div class="flow-diagram">
+          <div class="flow-node">User submits part</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node">Taxonomy &amp; duplicate scan</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node">Rule-driven approvals</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node">MDM/ERP publish</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node">Analytics &amp; audit</div>
+        </div>
+        <svg class="sparkline" viewBox="0 0 180 70" role="img" aria-label="Approval cycle time trend">
+          <polyline
+            fill="none"
+            stroke="#0b5fff"
+            stroke-width="3"
+            points="5,60 40,55 70,48 100,38 130,32 165,28" />
+          <circle cx="5" cy="60" r="3" fill="#0b5fff" />
+          <circle cx="165" cy="28" r="4" fill="#0b5fff" />
+          <text x="8" y="20" font-size="11" fill="#42526e">Faster approvals over 2 quarters</text>
+        </svg>
+      </div>
 
       <p><strong>1.0 Introduction: The Strategic Imperative of Asset Data Management</strong></p>
       <p>

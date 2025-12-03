@@ -77,6 +77,92 @@
       text-decoration: none;
       color: #0b5fff;
     }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.2rem 0 1.5rem;
+    }
+    .card {
+      background: linear-gradient(135deg, #fdfdff, #f4f6fb);
+      border: 1px solid #e0e0e5;
+      border-radius: 12px;
+      padding: 1rem 1.1rem 1.05rem;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+    .card h4 {
+      margin: 0 0 0.4rem;
+      font-size: 0.98rem;
+      font-weight: 650;
+      color: #1c2430;
+    }
+    .metric-value {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0b5fff;
+      margin: 0.1rem 0;
+    }
+    .metric-caption {
+      margin: 0;
+      color: #4b5563;
+      font-size: 0.9rem;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .data-table th, .data-table td {
+      border: 1px solid #e0e0e5;
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+    }
+    .data-table th {
+      background: #f3f4f6;
+      font-weight: 650;
+    }
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      margin-top: 0.6rem;
+    }
+    .flow-node {
+      background: #0b5fff10;
+      border: 1px solid #d4ddff;
+      border-radius: 10px;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.9rem;
+      color: #0b2c70;
+      box-shadow: 0 6px 14px rgba(11,95,255,0.08);
+    }
+    .flow-arrow {
+      color: #94a3b8;
+      font-weight: 700;
+    }
+    .sparkline {
+      width: 100%;
+      height: 86px;
+      margin-top: 0.3rem;
+    }
+    .mini-chart {
+      display: flex;
+      gap: 6px;
+      margin-top: 0.5rem;
+    }
+    .mini-bar {
+      flex: 1;
+      min-height: 42px;
+      border-radius: 8px 8px 2px 2px;
+      background: linear-gradient(180deg, #0b5fff, #0b5fffcc);
+      opacity: 0.75;
+    }
+    .mini-bar:nth-child(2) { height: 52px; opacity: 0.82; }
+    .mini-bar:nth-child(3) { height: 64px; opacity: 0.9; }
+    .mini-bar:nth-child(4) { height: 70px; opacity: 0.96; }
+    .mini-bar:nth-child(5) { height: 60px; opacity: 0.88; }
   </style>
 </head>
 <body>
@@ -93,6 +179,86 @@
       <h2>Inventory and Asset Lifecycle</h2>
 
       <h3>A Framework for Automated, End-to-End Inventory and Asset Lifecycle Management</h3>
+
+      <div class="dashboard-grid">
+        <div class="card metric-card">
+          <h4>Stock Accuracy</h4>
+          <div class="metric-value">98.7%</div>
+          <p class="metric-caption">Real-time counts from sensor feeds and transactional reconciliation.</p>
+        </div>
+        <div class="card metric-card">
+          <h4>Carrying Cost Reduction</h4>
+          <div class="metric-value">&minus;18%</div>
+          <p class="metric-caption">Right-sized reorder points and dynamic safety stock buffers.</p>
+        </div>
+        <div class="card metric-card">
+          <h4>Fulfillment SLA</h4>
+          <div class="metric-value">92%</div>
+          <p class="metric-caption">Orders shipped inside target windows with predictive picking.</p>
+          <div class="mini-chart" aria-hidden="true">
+            <div class="mini-bar" style="height:52px"></div>
+            <div class="mini-bar" style="height:58px"></div>
+            <div class="mini-bar" style="height:68px"></div>
+            <div class="mini-bar" style="height:73px"></div>
+            <div class="mini-bar" style="height:65px"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>Inventory Impact Grid</h4>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Driver</th>
+              <th>Effect</th>
+              <th>Owner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Perpetual inventory sync</td>
+              <td>Eliminates blind spots between WMS and ERP</td>
+              <td>Warehouse Ops</td>
+            </tr>
+            <tr>
+              <td>AI reorder proposals</td>
+              <td>Reduces stockouts during demand spikes</td>
+              <td>Supply Planning</td>
+            </tr>
+            <tr>
+              <td>Exception-based picking</td>
+              <td>Protects SLA with dynamic task reprioritization</td>
+              <td>Fulfillment Leads</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h4>Inventory Flow Overview</h4>
+        <div class="flow-diagram">
+          <div class="flow-node">Demand signal</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node">Forecast &amp; reorder</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node">Inbound receiving</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node">Slotting &amp; picking</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node">Shipment confirmation</div>
+        </div>
+        <svg class="sparkline" viewBox="0 0 180 70" role="img" aria-label="Fill rate trend">
+          <polyline
+            fill="none"
+            stroke="#0b5fff"
+            stroke-width="3"
+            points="5,62 40,58 70,50 100,43 130,38 165,34" />
+          <circle cx="5" cy="62" r="3" fill="#0b5fff" />
+          <circle cx="165" cy="34" r="4" fill="#0b5fff" />
+          <text x="8" y="20" font-size="11" fill="#42526e">Fill rate rising as stockouts fall</text>
+        </svg>
+      </div>
 
       <p><strong>Introduction: Overcoming Fragmentation in Modern Supply Chains</strong></p>
       <p>
