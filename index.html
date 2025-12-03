@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>A Framework for Automated, End-to-End Inventory and Asset Lifecycle Management</title>
+  <title>Systems & Lifecycle Frameworks – Project Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
@@ -19,7 +19,7 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.65;
+      line-height: 1.6;
     }
     header {
       padding: 2.5rem 10vw 1.5rem;
@@ -27,75 +27,77 @@
       border-bottom: 1px solid var(--border);
     }
     header h1 {
-      margin: 0 0 0.75rem;
-      font-size: 1.9rem;
-      font-weight: 620;
+      margin: 0 0 0.5rem;
+      font-size: 2rem;
+      font-weight: 640;
     }
     header p {
       margin: 0;
-      max-width: 60rem;
-      color: var(--muted);
+      max-width: 52rem;
       font-size: 0.98rem;
+      color: var(--muted);
     }
     main {
-      max-width: 960px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 2rem 10vw 3rem;
     }
-    section {
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
       background: var(--card-bg);
-      border-radius: 14px;
-      padding: 1.75rem 1.75rem 1.5rem;
-      margin-bottom: 1.75rem;
+      border-radius: 16px;
+      padding: 1.5rem 1.5rem 1.25rem;
       border: 1px solid var(--border);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.03);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    section h2 {
-      margin-top: 0;
-      margin-bottom: 0.5rem;
-      font-size: 1.3rem;
-      font-weight: 600;
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 620;
+      margin: 0 0 0.35rem;
     }
-    section h3 {
-      margin-top: 1.4rem;
-      margin-bottom: 0.35rem;
-      font-size: 1.05rem;
-      font-weight: 560;
-    }
-    p {
-      margin: 0 0 0.9rem;
-      font-size: 0.96rem;
-    }
-    .divider {
-      border-top: 1px solid var(--border);
-      margin: 1.4rem 0 1.2rem;
-    }
-    .diagram-wrapper {
-      text-align: center;
-      margin: 1.5rem 0 1rem;
-    }
-    .diagram-wrapper img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.06);
-    }
-    .caption {
-      font-size: 0.85rem;
+    .project-tagline {
+      font-size: 0.9rem;
       color: var(--muted);
-      margin-top: 0.5rem;
+      margin: 0 0 0.75rem;
+    }
+    .project-links {
+      margin-top: 0.75rem;
+      font-size: 0.88rem;
+    }
+    .project-links a {
+      display: inline-block;
+      margin-right: 0.75rem;
+      margin-bottom: 0.35rem;
+      text-decoration: none;
+      color: var(--accent);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(11,95,255,0.18);
+      font-size: 0.8rem;
+    }
+    .project-links a:hover {
+      background: rgba(11,95,255,0.06);
     }
     .pill {
       display: inline-block;
       padding: 0.15rem 0.6rem;
       border-radius: 999px;
       border: 1px solid var(--border);
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--muted);
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+    .placeholder {
+      opacity: 0.7;
     }
     @media (max-width: 768px) {
       header, main { padding-left: 1.25rem; padding-right: 1.25rem; }
@@ -104,339 +106,94 @@
 </head>
 <body>
   <header>
-    <h1>A Framework for Automated, End-to-End Inventory and Asset Lifecycle Management</h1>
+    <h1>Systems & Lifecycle Frameworks</h1>
     <p>
-      An integrated architectural approach to unifying inventory, logistics, and fixed asset accounting
-      through centralized custody tracking, serialization, and automated, event-driven workflows.
+      A portfolio of architectural frameworks and societal impact narratives spanning asset catalogs,
+      inspection management, and end-to-end inventory and asset lifecycle governance. This index is
+      designed to scale to at least ten projects as additional work is published.
     </p>
   </header>
 
   <main>
-    <section>
-      <div class="pill">Introduction</div>
-      <h2>Overcoming Fragmentation in Modern Supply Chains</h2>
-      <p>
-        Modern enterprises face a persistent disconnect between operational systems of record, such as a
-        Warehouse Management System (WMS), and financial systems of record, like an ERP’s Fixed Asset module.
-        This fragmentation, exacerbated by manual processes, inconsistent tracking protocols, and disparate
-        data silos, creates significant compliance exposure and operational opacity. Without a unified view of
-        an asset's lifecycle, organizations are vulnerable to inventory shrinkage, audit failures, and
-        inefficient capital allocation.
-      </p>
-      <p>
-        The purpose of this whitepaper is to present a comprehensive framework for an automated, integrated
-        inventory and asset management system designed to resolve these fundamental challenges. The core value
-        proposition of this framework is the establishment of end-to-end visibility and unimpeachable data
-        integrity, driving operational efficiency from the moment an asset is procured to its final retirement.
-        This document will now explore the underlying architecture that makes this unified approach possible.
-      </p>
-    </section>
+    <div class="pill">Projects</div>
+    <div class="projects-grid">
 
-    <section>
-      <div class="pill">High-Level Architecture</div>
-      <h2>End-to-End Data Flow Overview</h2>
-      <p>
-        The diagram below illustrates how the custody tracking system orchestrates data and events across
-        ERP, WMS, Fixed Assets, planning systems, and field operations to create a single, auditable lifecycle
-        for every serialized asset.
-      </p>
-      <div class="diagram-wrapper">
-        <!-- Update the src path to match your uploaded file -->
-        <img src="assets/images/inventory-lifecycle-diagram.png"
-             alt="End-to-end inventory and asset lifecycle data flow diagram">
-        <div class="caption">
-          Figure 1. End-to-end data flow from purchase order creation through forward logistics,
-          capitalization, reverse logistics, and final disposition.
+      <!-- Project 1: Asset Catalog -->
+      <article class="project-card">
+        <h2 class="project-title">Asset Catalog Management</h2>
+        <p class="project-tagline">
+          Centralized, workflow-driven asset catalog lifecycle with data governance, duplicate prevention,
+          and cross-system synchronization.
+        </p>
+        <div class="project-links">
+          <a href="asset-catalog-whitepaper.html">Whitepaper</a>
+          <a href="asset-catalog-impact.html">National impact analysis</a>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <section>
-      <h2>1. The Architectural Philosophy: A Centralized System for Custody and Integration</h2>
-      <p>
-        The strategic power of this framework lies in its architectural philosophy. It is not designed as a
-        monolithic Enterprise Resource Planning (ERP) system that attempts to perform all functions, but rather
-        as a central "custody tracking system" that serves as a powerful integration and orchestration layer.
-        This system acts as a central hub, specifically engineered to ingest, consolidate, and synchronize data
-        from the multiple specialized enterprise platforms that an organization relies upon.
-      </p>
-      <p>
-        The system's primary role is to create a single, cohesive narrative for every asset by integrating data
-        from various sources of truth across the enterprise. These integrated systems include:
-      </p>
-      <p>
-        <strong>ERP System:</strong> The authoritative source for Purchase Orders (POs), overarching financial
-        data, and the final capitalization status of assets.<br>
-        <strong>Warehouse Management System (WMS):</strong> The source for all physical receipt data, kitting
-        activities, and warehouse movements.<br>
-        <strong>Fixed Assets (FA) Module:</strong> The official destination for capitalized asset data, managed
-        within the ERP but architecturally distinct from the inventory module.<br>
-        <strong>Planning &amp; Forecasting Systems:</strong> Platforms responsible for inventory lifecycle
-        management, demand planning, and usage tracking.<br>
-        <strong>Receiving &amp; Validation Systems:</strong> A designated receiving system or "warranty
-        database" that serves as the ingestion point for capturing critical identity data like serial numbers
-        and asset condition upon physical receipt.
-      </p>
-      <p>
-        The strategic benefit of this integrated "system of systems" approach is profound. It ensures that
-        operational events, such as the physical scan of an asset at a warehouse, are automatically reconciled
-        with financial records in the ERP in near real-time. This synchronization between physical reality and
-        financial accounting is critical for satisfying Sarbanes-Oxley (SOX) audit requirements, creating an
-        auditable and transparent asset management environment. The foundational element that enables this
-        entire integrated architecture is the universal application of serialization.
-      </p>
-    </section>
+      <!-- Project 2: Inspection Management -->
+      <article class="project-card">
+        <h2 class="project-title">Inspection & Asset Management</h2>
+        <p class="project-tagline">
+          Automated, data-driven inspection lifecycle that shifts operations from reactive maintenance
+          to proactive and predictive field execution.
+        </p>
+        <div class="project-links">
+          <a href="inspection-whitepaper.html">Whitepaper</a>
+          <a href="inspection-impact.html">National impact analysis</a>
+        </div>
+      </article>
 
-    <section>
-      <h2>2. The Core Principle: Serialization as the Single Source of Truth</h2>
-      <p>
-        Serialization is the foundational principle of the entire framework. The assignment of a unique
-        identifier to every critical asset serves as the immutable anchor for all subsequent tracking,
-        validation, and auditing activities throughout its lifecycle. This principle directly addresses the
-        core compliance gap identified in manual processes: the lack of a verifiable, auditable link between a
-        physical asset's lifecycle and its financial reporting.
-      </p>
-      <p>
-        Recognizing the operational challenges of a full-scale rollout, the system is designed to support a
-        phased implementation strategy. Serialization can be enabled gradually by part type or market. To
-        maintain 100% tracking from day one for designated assets, the system automatically generates unique
-        "dummy" serials as placeholders. These placeholders can be updated with the actual serial number at a
-        later scan point, ensuring that a complete chain of custody is maintained without interruption.
-      </p>
-      <p>
-        The framework's integrity is reinforced by a series of robust validation processes built around this
-        core principle.
-      </p>
+      <!-- Project 3: Inventory Management -->
+      <article class="project-card">
+        <h2 class="project-title">Inventory & Asset Lifecycle</h2>
+        <p class="project-tagline">
+          End-to-end custody, serialization, and financial alignment from procurement through deployment,
+          reverse logistics, and final disposition.
+        </p>
+        <div class="project-links">
+          <a href="inventory-whitepaper.html">Whitepaper</a>
+          <a href="inventory-impact.html">National impact analysis</a>
+        </div>
+      </article>
 
-      <div class="divider"></div>
+      <!-- Placeholder projects 4–10 -->
+      <article class="project-card placeholder">
+        <h2 class="project-title">Project 4 – Placeholder</h2>
+        <p class="project-tagline">Reserved for a future system or framework. Content coming soon.</p>
+      </article>
 
-      <h3>Key Serialization Controls and Their Impact</h3>
-      <p><strong>ASN Cross-Validation</strong><br>
-        Identifies vendor shipping discrepancies at the point of entry by comparing physically scanned serials
-        against the vendor's Advance Ship Notice (ASN), preventing inaccurate data from polluting the ecosystem.
-      </p>
-      <p><strong>Physical Scan as Source of Truth</strong><br>
-        Corrects vendor shipping errors or ASN inaccuracies at the point of entry by empowering the organization
-        to designate the physical scan as the record of truth, ensuring the custody log reflects physical reality
-        from day one.
-      </p>
-      <p><strong>Format Validation at Every Scan Point</strong><br>
-        Prevents data conflicts and maintains high data quality by enforcing serial number format validation
-        (e.g., using regular expressions) at every scan point in the logistics network.
-      </p>
-      <p><strong>Parent-Child Hierarchy Validation</strong><br>
-        Ensures the integrity of kitted products by validating that all subcomponent serials match the master
-        Bill of Materials (BOM) for complex assemblies, creating a complete and auditable assembly lineage.
-      </p>
-      <p>
-        This rigorous application of serialization provides the data-rich foundation upon which all other asset
-        management workflows are built, starting with the forward movement of new assets into the organization.
-      </p>
-    </section>
+      <article class="project-card placeholder">
+        <h2 class="project-title">Project 5 – Placeholder</h2>
+        <p class="project-tagline">Reserved for a future system or framework. Content coming soon.</p>
+      </article>
 
-    <section>
-      <h2>3. Forward Logistics Workflow: From Procurement to Deployment</h2>
-      <p>
-        The forward logistics workflow is the critical first chapter in an asset’s lifecycle, where its digital
-        identity and auditable history are formally established. This automated, event-driven process ensures
-        that from the moment an asset is ordered, its journey is meticulously tracked, validated, and recorded,
-        creating a reliable chain of custody that extends from the vendor to the final deployment site.
-      </p>
-      <p>
-        The journey of a new asset through the forward logistics network is marked by key stages, each
-        triggering an automatic update to its custody record and status:
-      </p>
-      <p>
-        <strong>Order Ingestion:</strong> The lifecycle begins when a Purchase Order (PO) is generated in the
-        ERP system. The custody system automatically ingests this data and creates a custody record for each
-        line item with an <em>Ordered</em> status.
-      </p>
-      <p>
-        <strong>Vendor Acceptance &amp; Shipment:</strong> As the vendor accepts the order and later dispatches
-        the goods, data feeds from the ERP update the asset's status to <em>Accepted</em> and then
-        <em>Vendor Shipped</em>, providing crucial inbound visibility before the asset physically arrives.
-      </p>
-      <p>
-        <strong>Hub Receipt &amp; Ownership Transfer:</strong> Upon physical receipt at a central hub, a scan
-        updates the status to <em>Hub Received</em>. This is a critical financial milestone where ownership is
-        formally transferred to the parent enterprise, and the asset is flagged as <em>Uncapitalized</em>.
-      </p>
-      <p>
-        <strong>Validation and Condition Check:</strong> At the hub, serial numbers are physically scanned and
-        validated against the vendor's Advance Ship Notice (ASN). The asset's physical condition (e.g.,
-        <em>Available</em>, <em>Damaged</em>) is recorded against its unique serial number, creating an
-        immediate quality record.
-      </p>
-      <p>
-        <strong>Movement to Field:</strong> As the asset moves from the hub through Forward Stocking Locations
-        (FSLs) and is released to field personnel, each handoff is recorded via a mandatory scan. This updates
-        the status sequentially to <em>FSL Received</em>, <em>FSL Shipped</em>, and finally <em>Field
-        Received</em>.
-      </p>
-      <p>
-        <strong>Site Arrival:</strong> A final scan performed by field personnel at the deployment site updates
-        the status to <em>Site Received</em>. This confirms the asset has reached its final destination and is
-        ready for installation, completing the forward journey.
-      </p>
-      <p>
-        This automated workflow starkly contrasts with the risks inherent in manual systems, where inconsistent
-        data entry, reconciliation delays between physical receipt and financial booking, and a lack of
-        serial-level validation create significant exposure to inventory shrinkage, audit failures, and
-        inefficient capital allocation. It mitigates the risk of financial misstatements and compliance failures
-        by creating an immutable, real-time link between physical assets and financial records.
-      </p>
-    </section>
+      <article class="project-card placeholder">
+        <h2 class="project-title">Project 6 – Placeholder</h2>
+        <p class="project-tagline">Reserved for a future system or framework. Content coming soon.</p>
+      </article>
 
-    <section>
-      <h2>4. Reverse Logistics and Asset State Management</h2>
-      <p>
-        The strategic challenges of reverse logistics are often more complex than those of forward logistics,
-        particularly when dealing with capitalized assets. This workflow is critical not only for managing
-        returns, repairs, and asset retirement but also for maintaining strict financial compliance. An
-        integrated framework must gracefully handle the operational movement of assets while adhering to rigid
-        accounting rules.
-      </p>
-      <p>
-        For uncapitalized returns, the process is initiated via a fault report that captures a specific reason
-        code tied directly to the asset's unique serial number. As the asset moves from the field back through a
-        stocking location or central hub, mandatory scans at each handoff ensure its chain of custody is
-        preserved, providing full visibility into the reverse journey.
-      </p>
-      <p>
-        Handling the return of previously capitalized assets requires a specialized workflow to navigate a
-        significant architectural challenge. Capitalized assets reside in the ERP's Fixed Assets (FA) module,
-        which is architecturally distinct and does not communicate bidirectionally with the inventory module
-        that the custody system interacts with. Attempting to move an asset from the FA ledger back into the
-        inventory ledger would violate fundamental accounting controls. The framework solves this with an
-        elegant, compliant solution:
-      </p>
-      <p>
-        When a capitalized asset is designated for return, the system generates a "recovered" part number (often
-        with a "-R" suffix) and a corresponding new serial number. This new, recovered part is then brought back
-        into the inventory system at zero cost. This allows the physical asset to be tracked, moved, and managed
-        operationally within the custody system without violating financial accounting principles by
-        re-introducing a capitalized asset into an inventory sub-ledger.
-      </p>
-      <p>
-        Crucially, the system maintains an indelible link between the original capitalized asset and its new
-        "recovered" identity. This preserves a complete, auditable history, ensuring that the asset’s full
-        lifecycle—from initial purchase through capitalization, return, and final disposition—remains intact and
-        traceable.
-      </p>
-      <p>
-        These carefully designed workflows demonstrate how an integrated system can manage complex operational
-        realities while simultaneously enforcing financial integrity. This synergy is what unlocks the
-        framework's most significant strategic benefits.
-      </p>
-    </section>
+      <article class="project-card placeholder">
+        <h2 class="project-title">Project 7 – Placeholder</h2>
+        <p class="project-tagline">Reserved for a future system or framework. Content coming soon.</p>
+      </article>
 
-    <section>
-      <h2>5. Strategic Benefits of an Integrated Framework</h2>
-      <p>
-        By shifting asset management from a reactive, manual discipline to a proactive and automated strategic
-        function, this integrated framework unlocks four pillars of business value. By seamlessly integrating
-        operational workflows with financial systems through a centralized custody model, it moves asset
-        management from a tactical necessity to a source of competitive advantage.
-      </p>
+      <article class="project-card placeholder">
+        <h2 class="project-title">Project 8 – Placeholder</h2>
+        <p class="project-tagline">Reserved for a future system or framework. Content coming soon.</p>
+      </article>
 
-      <h3>Enhanced Data Integrity and Compliance</h3>
-      <p>
-        The framework establishes a single, verifiable source of truth for every asset. Automated serial number
-        validation, mandatory scans at every custody transfer, and immutable, timestamped audit logs create a
-        powerful defense against data drift and error. This direct synchronization of physical asset events with
-        financial records is essential for supporting rigorous financial regulations like Sarbanes-Oxley (SOX),
-        simplifying audits, and minimizing compliance risk.
-      </p>
+      <article class="project-card placeholder">
+        <h2 class="project-title">Project 9 – Placeholder</h2>
+        <p class="project-tagline">Reserved for a future system or framework. Content coming soon.</p>
+      </article>
 
-      <h3>Increased Operational Efficiency</h3>
-      <p>
-        Automating previously manual tasks—such as data entry, status updates, and cross-system reconciliation—
-        eliminates significant operational friction. Scan-based workflows reduce data entry errors, minimize
-        delays in processing shipments and returns, and accelerate the entire asset lifecycle. This frees up
-        personnel from low-value administrative tasks, allowing them to focus on more strategic activities like
-        analysis, planning, and process improvement.
-      </p>
+      <article class="project-card placeholder">
+        <h2 class="project-title">Project 10 – Placeholder</h2>
+        <p class="project-tagline">Reserved for a future system or framework. Content coming soon.</p>
+      </article>
 
-      <h3>Complete Lifecycle Visibility</h3>
-      <p>
-        End-to-end tracking provides unprecedented, real-time visibility into every asset's location, status,
-        and condition. This comprehensive view enables superior demand planning, proactive maintenance
-        scheduling based on usage data, and a dramatic reduction in asset loss or theft. Managers can make
-        faster, more informed decisions because they are operating with a complete and accurate picture of their
-        physical asset base.
-      </p>
-
-      <h3>Cross-System Synchronization</h3>
-      <p>
-        The framework's role as an integration hub ensures that the ERP, WMS, and Fixed Assets modules are in
-        constant alignment. When a part is physically received, the inventory record is updated. When it is
-        capitalized, the financial record is updated. This continuous synchronization eliminates the
-        discrepancies that arise from data lags and manual updates, ensuring that all business decisions are
-        based on accurate, up-to-the-minute information.
-      </p>
-      <p>
-        The principles underlying this framework are not limited to a single organization but have the potential
-        to drive similar efficiencies across broader economic sectors.
-      </p>
-    </section>
-
-    <section>
-      <h2>6. Broader Applications: Enhancing National Sector Efficiency</h2>
-      <p>
-        The core principles of this framework—robust serialization, an auditable chain of custody, and the
-        seamless integration of field operations with central logistics—have transformative applications beyond
-        a single enterprise. The system's proven ability to track high volumes of serialized assets, manage
-        complex parent-child assemblies, and reconcile physical movements with financial records can be adapted
-        to enhance efficiency, accountability, and security in major national sectors.
-      </p>
-
-      <h3>National Infrastructure Projects</h3>
-      <p>
-        For large-scale projects like the modernization of energy grids, transportation networks, or
-        communication infrastructure, this framework could track high-value and critical components from the
-        point of manufacture to final installation. By ensuring every transformer, switch, or specialized module
-        is serialized and tracked, project managers can guarantee project integrity, prevent the introduction of
-        counterfeit parts, and maintain an accurate inventory for maintenance and future upgrades.
-      </p>
-
-      <h3>Defense and Aerospace Logistics</h3>
-      <p>
-        The framework is ideally suited to provide a secure, auditable chain of custody for sensitive,
-        regulated, or mission-critical military and aerospace equipment. It could track assets as they move
-        between manufacturing facilities, central depots, forward operating bases, and operational theaters.
-        This level of granular visibility would enhance mission readiness, simplify logistics, and ensure
-        accountability for high-value national security assets.
-      </p>
-
-      <h3>Pharmaceutical and Medical Device Supply Chains</h3>
-      <p>
-        In a sector where regulatory compliance and patient safety are paramount, this framework could be used
-        to track high-value medical devices or pharmaceutical batches by serial or lot number. This would
-        provide an unimpeachable record from the factory to the healthcare provider, dramatically enhancing the
-        speed and precision of product recalls, preventing counterfeits from entering the supply chain, and
-        ensuring compliance with stringent health regulations.
-      </p>
-      <p>
-        These examples illustrate the broad applicability of a systematic approach to asset management,
-        highlighting its potential to become a foundational tool for modernizing critical sectors.
-      </p>
-    </section>
-
-    <section>
-      <h2>7. Conclusion: A Blueprint for the Future of Asset Management</h2>
-      <p>
-        This whitepaper has outlined a framework built on three core tenets: a centralized custody architecture
-        that integrates disparate enterprise systems, the foundational principle of serialization as the single
-        source of truth, and a series of automated, event-driven workflows that cover the full asset lifecycle.
-        By adhering to this model, an organization can achieve profound strategic outcomes, including enhanced
-        data integrity, superior operational efficiency, and rigorous, auditable compliance.
-      </p>
-      <p>
-        This framework is more than a technical solution; it is an essential blueprint for any modern enterprise
-        seeking to gain definitive control over its physical assets in an increasingly complex and
-        interconnected world.
-      </p>
-    </section>
+    </div>
   </main>
 </body>
 </html>
