@@ -240,6 +240,73 @@
       background: #f3f4f6;
     }
 
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0 1.25rem;
+    }
+
+    .metric-card {
+      background: #ffffff;
+      border: 1px solid rgba(209,213,219,1);
+      border-radius: 14px;
+      padding: 1rem 1.05rem;
+      box-shadow: 0 12px 28px rgba(148,163,184,0.28);
+    }
+
+    .metric-card h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .metric-value {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .metric-caption {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .mini-line {
+      width: 100%;
+      height: 72px;
+      margin-top: 0.35rem;
+    }
+
+    .mini-chart {
+      display: flex;
+      gap: 6px;
+      margin-top: 0.5rem;
+    }
+
+    .mini-bar {
+      flex: 1;
+      min-height: 42px;
+      border-radius: 8px 8px 2px 2px;
+      background: linear-gradient(180deg, var(--accent), rgba(14,165,233,0.65));
+      opacity: 0.78;
+    }
+
+    .impact-card {
+      background: linear-gradient(135deg, #f9fafb, #eef2ff);
+      border: 1px solid rgba(148,163,184,0.55);
+      border-radius: 14px;
+      padding: 1rem;
+      margin: 1rem 0 1.25rem;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 10px 24px rgba(148,163,184,0.25);
+    }
+
+    .impact-card h4 {
+      margin-bottom: 0.45rem;
+      font-size: 0.96rem;
+    }
+
     /* Sidebar */
     .sidebar {
       position: sticky;
@@ -414,6 +481,71 @@
             </div>
           </div>
         </section>
+
+        <div class="metric-grid">
+          <div class="metric-card">
+            <h4>On-Time Ship Confirm</h4>
+            <div class="metric-value">96%</div>
+            <p class="metric-caption">Orders leaving the dock inside promised windows after hub orchestration.</p>
+            <svg class="mini-line" viewBox="0 0 180 72" role="img" aria-label="On-time trend">
+              <polyline fill="none" stroke="var(--accent)" stroke-width="3" points="8,60 40,54 70,46 100,38 140,32 172,28" />
+              <circle cx="8" cy="60" r="3" fill="var(--accent)" />
+              <circle cx="172" cy="28" r="4" fill="var(--accent)" />
+            </svg>
+          </div>
+          <div class="metric-card">
+            <h4>Backlog Burn Rate</h4>
+            <div class="metric-value">+28%</div>
+            <p class="metric-caption">Faster queue reduction using forecast-aligned release cadences.</p>
+            <svg class="mini-line" viewBox="0 0 180 72" role="img" aria-label="Backlog cleared">
+              <polyline fill="none" stroke="#16a34a" stroke-width="3" points="8,46 40,44 72,40 104,34 140,30 172,26" />
+              <circle cx="8" cy="46" r="3" fill="#16a34a" />
+              <circle cx="172" cy="26" r="4" fill="#16a34a" />
+            </svg>
+          </div>
+          <div class="metric-card">
+            <h4>Exception Automation</h4>
+            <div class="metric-value">72%</div>
+            <p class="metric-caption">Discrepancies auto-routed to root-cause queues with no manual triage.</p>
+            <div class="mini-chart" aria-hidden="true">
+              <div class="mini-bar" style="height:48px"></div>
+              <div class="mini-bar" style="height:60px"></div>
+              <div class="mini-bar" style="height:68px"></div>
+              <div class="mini-bar" style="height:74px"></div>
+              <div class="mini-bar" style="height:66px"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="impact-card">
+          <h4>Workflow Snapshot</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Flow</th>
+                <th>Outcome</th>
+                <th>System Anchor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Guided initiation</td>
+                <td>Eliminates miscoded order types and rework</td>
+                <td>Order Hub</td>
+              </tr>
+              <tr>
+                <td>Backlog cadence</td>
+                <td>Aligns releases to forecast without starving projects</td>
+                <td>Planning</td>
+              </tr>
+              <tr>
+                <td>Discrepancy triage</td>
+                <td>Accelerates credits and replacements with clearer visibility</td>
+                <td>ERP / WMS</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <!-- Your full text below, structured with headings but not omitted -->
 
