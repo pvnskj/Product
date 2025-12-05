@@ -8,27 +8,84 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <style>
-    :root { --bg:#05060b; --card:rgba(255,255,255,0.04); --border:rgba(255,255,255,0.08); --accent:#a0f668; --accent-2:#6ddcff; --text:#f5f7fb; --muted:#9ca3af; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; background:radial-gradient(circle at 25% 15%,rgba(160,246,104,0.14),transparent 30%), radial-gradient(circle at 70% 70%,rgba(109,220,255,0.12),transparent 30%), #05060b; color:var(--text); line-height:1.6; }
-    a { color:inherit; }
-    header { padding:2.5rem 1.5rem 1.5rem; max-width:1100px; margin:0 auto; display:flex; gap:1.5rem; align-items:center; justify-content:space-between; }
-    h1 { font-size:clamp(2rem,3vw,2.7rem); margin-bottom:0.4rem; }
-    p.lead { color:var(--muted); max-width:700px; }
-    .pill { display:inline-flex; padding:0.3rem 0.75rem; border-radius:999px; border:1px solid var(--border); color:var(--muted); letter-spacing:0.1em; font-size:0.8rem; text-transform:uppercase; }
-    main { max-width:1100px; margin:0 auto; padding:0 1.5rem 3rem; display:grid; gap:1.5rem; }
-    section { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.4rem; box-shadow:0 10px 60px rgba(0,0,0,0.4); }
-    h2 { font-size:1.2rem; margin-bottom:0.5rem; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
-    .stat { font-size:1.3rem; font-weight:700; color:var(--accent); margin-bottom:0.15rem; }
-    .muted { color:var(--muted); }
-    ul { padding-left:1.1rem; color:var(--muted); }
-    li { margin-bottom:0.35rem; }
-    .flow { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0.8rem; }
-    .node { padding:1rem; border-radius:12px; border:1px dashed var(--border); background:rgba(255,255,255,0.03); }
-    .badge { display:inline-block; padding:0.2rem 0.6rem; border-radius:8px; background:rgba(160,246,104,0.12); color:#dcffd4; font-size:0.85rem; margin-bottom:0.3rem; }
-    .cta { text-align:center; color:var(--muted); padding-top:0.6rem; }
-    @media (max-width:960px){ header{flex-direction:column; align-items:flex-start;} }
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --accent-2: #0ea5e9;
+      --accent-3: #16a34a;
+      --pill: #eef2ff;
+      --shadow: 0 20px 70px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 18% 20%, rgba(37,99,235,0.12), transparent 30%),
+                  radial-gradient(circle at 78% 8%, rgba(14,165,233,0.12), transparent 32%),
+                  radial-gradient(circle at 40% 90%, rgba(22,163,74,0.12), transparent 30%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      max-width: 1180px; margin: 0 auto; padding: 2.25rem 1.5rem 1.2rem;
+      display: flex; align-items: flex-start; gap: 1.5rem; justify-content: space-between;
+    }
+    .pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--pill); color: var(--accent); font-weight: 700; letter-spacing: 0.08em;
+      font-size: 0.78rem; text-transform: uppercase; }
+    h1 { font-size: clamp(2rem, 3vw, 2.7rem); margin: 0.35rem 0 0.4rem; line-height: 1.1; }
+    p.lead { color: var(--muted); max-width: 720px; }
+    .cta-row { display: flex; gap: 0.75rem; margin-top: 0.8rem; }
+    .btn { padding: 0.65rem 1rem; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; font-size: 0.95rem; }
+    .btn.primary { background: linear-gradient(120deg, #2563eb, #0ea5e9); color: white; box-shadow: var(--shadow); }
+    .btn.ghost { background: #fff; color: var(--text); }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3rem; display: grid; gap: 1.25rem; }
+    section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 1.4rem; box-shadow: var(--shadow); }
+    .section-top { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem; }
+    h2 { font-size: 1.15rem; }
+    .tag { padding: 0.25rem 0.65rem; border-radius: 10px; background: rgba(37,99,235,0.08); color: var(--muted); font-size: 0.85rem; }
+
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem; }
+    .metric { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; padding: 1rem; border-radius: 16px; border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(255,255,255,0.9)); }
+    .number { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; background: var(--pill); color: var(--accent);
+      font-weight: 700; }
+    .metric h3 { margin-bottom: 0.2rem; }
+    .metric p { color: var(--muted); font-size: 0.95rem; }
+
+    .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; margin-top: 0.8rem; }
+    .chart, .pie, .flow { border: 1px dashed var(--border); border-radius: 14px; padding: 1rem; background: #fbfdff; }
+    .chart-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; }
+    .bar { flex: 1; height: 10px; border-radius: 999px; background: #e5e7eb; position: relative; overflow: hidden; }
+    .bar span { position: absolute; inset: 0; background: linear-gradient(120deg, #2563eb, #0ea5e9); width: var(--fill); }
+    .bar.alt span { background: linear-gradient(120deg, #16a34a, #0ea5e9); }
+    .chart small { color: var(--muted); }
+
+    .pie { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; align-items: center; }
+    .pie::before { content: ""; display: block; width: 90px; height: 90px; border-radius: 50%;
+      background: conic-gradient(#2563eb 0 46%, #0ea5e9 46% 78%, #16a34a 78% 100%); border: 8px solid #eef2ff; box-shadow: var(--shadow); }
+    .pie ul { list-style: none; padding-left: 0; }
+    .pie li { color: var(--muted); margin-bottom: 0.35rem; }
+
+    .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 0.75rem; position: relative; }
+    .flow .node { padding: 0.95rem; border-radius: 12px; background: #ffffff; border: 1px solid var(--border); box-shadow: inset 0 0 0 1px #eef2ff; }
+    .flow .badge { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 10px; background: rgba(37,99,235,0.1); color: var(--text);
+      font-weight: 600; font-size: 0.85rem; }
+    .flow .caption { color: var(--muted); margin-top: 0.35rem; font-size: 0.95rem; }
+
+    ul { color: var(--muted); padding-left: 1.1rem; }
+    li { margin-bottom: 0.35rem; }
+    .cta { text-align: center; color: var(--muted); padding-top: 0.3rem; }
+
+    @media (max-width: 960px) { header { flex-direction: column; } }
   </style>
 </head>
 <body>
@@ -37,87 +94,118 @@
       <div class="pill">Visual whitepaper</div>
       <h1>Inspection Management Framework</h1>
       <p class="lead">A visual map of digital inspections that ensure quality, safety, and regulatory trust with clear evidence chains.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#blueprint">View blueprint</a>
+        <a class="btn ghost" href="inspection-impact.html">Impact deck</a>
+      </div>
     </div>
-    <div><a class="pill" href="inspection-impact.html">Impact deck</a></div>
+    <div class="pill">Trusted compliance</div>
   </header>
 
   <main>
-    <section>
-      <h2>Blueprint</h2>
-      <div class="grid">
-        <div><div class="stat">Risk-led</div><p class="muted">Critical assets prioritized by severity, exposure, and history.</p></div>
-        <div><div class="stat">Evidence rich</div><p class="muted">Media, sensors, and checklists captured with context, lineage, and signatures.</p></div>
-        <div><div class="stat">Closed loop</div><p class="muted">Exceptions route to disposition, repair, or learning with SLA timers.</p></div>
+    <section id="blueprint">
+      <div class="section-top">
+        <h2>Blueprint</h2>
+        <div class="tag">Risk-weighted</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="number">01</div><div><h3>Risk-led</h3><p>Critical assets prioritized by severity, exposure, and history to set cadences.</p></div></div>
+        <div class="metric"><div class="number">02</div><div><h3>Evidence rich</h3><p>Media, sensors, and checklists captured with context, lineage, and signatures.</p></div></div>
+        <div class="metric"><div class="number">03</div><div><h3>Closed loop</h3><p>Exceptions route to disposition, repair, or learning with SLA timers.</p></div></div>
+      </div>
+      <div class="charts">
+        <div class="chart">
+          <div class="chart-row"><small>On-time inspections</small><div class="bar" style="--fill:86%"><span></span></div></div>
+          <div class="chart-row"><small>Evidence completeness</small><div class="bar alt" style="--fill:91%"><span></span></div></div>
+          <div class="chart-row"><small>Auto-classified exceptions</small><div class="bar" style="--fill:63%"><span></span></div></div>
+        </div>
+        <div class="pie">
+          <div></div>
+          <ul>
+            <li><strong>46%</strong> risk-based rounds</li>
+            <li><strong>32%</strong> regulatory-driven tasks</li>
+            <li><strong>22%</strong> predictive/sensor triggers</li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <section>
-      <h2>Operating model</h2>
+      <div class="section-top">
+        <h2>Operating model</h2>
+        <div class="tag">Field execution</div>
+      </div>
       <div class="flow">
-        <div class="node"><span class="badge">Plan</span>Cadences set by regulation, usage, and risk; dynamic routes with site constraints.</div>
-        <div class="node"><span class="badge">Stage</span>People, certifications, tools, and parts reserved with proof of readiness.</div>
-        <div class="node"><span class="badge">Execute</span>Guided workflows capture readings, anomalies, and media with offline support.</div>
-        <div class="node"><span class="badge">Decide</span>Auto-classify results; trigger holds, repairs, or coaching.</div>
-        <div class="node"><span class="badge">Report</span>Evidence bundles and KPIs pushed to regulators, customers, and leadership.</div>
+        <div class="node"><span class="badge">Plan</span><div class="caption">Cadences set by regulation, usage, and risk with routes that honor site constraints.</div></div>
+        <div class="node"><span class="badge">Stage</span><div class="caption">People, certifications, tools, and parts reserved with proof of readiness.</div></div>
+        <div class="node"><span class="badge">Execute</span><div class="caption">Guided workflows capture readings, anomalies, and media with offline support.</div></div>
+        <div class="node"><span class="badge">Decide</span><div class="caption">Auto-classify results; trigger holds, repairs, or coaching.</div></div>
+        <div class="node"><span class="badge">Report</span><div class="caption">Evidence bundles and KPIs pushed to regulators, customers, and leadership.</div></div>
       </div>
-    </section>
-
-    <section>
-      <h2>Data contracts</h2>
-      <div class="grid">
-        <div>
-          <h3>Signals</h3>
-          <ul>
-            <li>Asset identity with location, version, and calibration state.</li>
-            <li>Checklists with rule versions, tolerances, and instructions.</li>
-            <li>Media + sensor data with timestamps and geo signatures.</li>
-          </ul>
+      <div class="charts">
+        <div class="chart">
+          <div class="chart-row"><small>Route optimization</small><div class="bar" style="--fill:58%"><span></span></div></div>
+          <div class="chart-row"><small>First-time pass</small><div class="bar alt" style="--fill:77%"><span></span></div></div>
+          <div class="chart-row"><small>Technician productivity</small><div class="bar" style="--fill:71%"><span></span></div></div>
         </div>
-        <div>
-          <h3>Quality rules</h3>
-          <ul>
-            <li>On-device validations (range, completeness, photo clarity).</li>
-            <li>Required evidence by risk level and jurisdiction.</li>
-            <li>Drift detection on recurring inspections and inspector variance.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Audit & lineage</h3>
-          <ul>
-            <li>Immutable logs of who, when, where, and which rule set.</li>
-            <li>Chain-of-custody for parts and tools used during the visit.</li>
-            <li>Redaction + retention controls aligned to regulatory windows.</li>
-          </ul>
+        <div class="chart">
+          <div class="chart-row"><small>Exception SLA adherence</small><div class="bar" style="--fill:88%"><span></span></div></div>
+          <div class="chart-row"><small>Evidence traceability</small><div class="bar alt" style="--fill:95%"><span></span></div></div>
+          <div class="chart-row"><small>Stakeholder notifications</small><div class="bar" style="--fill:82%"><span></span></div></div>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Playbooks</h2>
-      <div class="grid">
-        <div>
-          <h3>Critical outage</h3>
+      <div class="section-top">
+        <h2>Data contracts</h2>
+        <div class="tag">Proof-ready</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="number">A</div><div><h3>Signals</h3><p>Asset identity, location, calibration state, and checklist versions with tolerances.</p></div></div>
+        <div class="metric"><div class="number">B</div><div><h3>Quality rules</h3><p>On-device validations for ranges, completeness, media clarity, and required evidence by jurisdiction.</p></div></div>
+        <div class="metric"><div class="number">C</div><div><h3>Audit + lineage</h3><p>Geo/time signatures, chain-of-custody, and immutable evidence bundles for regulators.</p></div></div>
+      </div>
+      <div class="charts">
+        <div class="pie">
+          <div></div>
           <ul>
-            <li>Auto-assign crews nearest to the incident with ready kits.</li>
-            <li>Live evidence streamed to command for approvals and detours.</li>
+            <li><strong>42%</strong> digital checklists</li>
+            <li><strong>34%</strong> media + IoT signals</li>
+            <li><strong>24%</strong> manual attestations</li>
           </ul>
         </div>
-        <div>
-          <h3>Quality escape</h3>
-          <ul>
-            <li>Containment holds triggered on affected batches/assets.</li>
-            <li>Root cause mapped to process gaps; coaching flows scheduled.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Audit request</h3>
-          <ul>
-            <li>One-click export of evidence bundles with signatures.</li>
-            <li>Reviewer portals show lineage, exceptions, and remediation.</li>
-          </ul>
+        <div class="chart">
+          <div class="chart-row"><small>Data completeness</small><div class="bar" style="--fill:90%"><span></span></div></div>
+          <div class="chart-row"><small>Geo/time accuracy</small><div class="bar alt" style="--fill:93%"><span></span></div></div>
+          <div class="chart-row"><small>Dispute resolution speed</small><div class="bar" style="--fill:67%"><span></span></div></div>
         </div>
       </div>
-      <div class="cta">Explore scenarios → <a href="inspection-impact.html">impact visual</a></div>
+    </section>
+
+    <section>
+      <div class="section-top">
+        <h2>Playbooks</h2>
+        <div class="tag">Action loops</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="number">01</div><div><h3>Regulatory audit</h3><p>Instantly assemble evidence packets with lineage, sign-offs, and exceptions resolved.</p></div></div>
+        <div class="metric"><div class="number">02</div><div><h3>Field outage</h3><p>Trigger mobile holds, reroute work, and pre-stage parts while alerts inform customers.</p></div></div>
+        <div class="metric"><div class="number">03</div><div><h3>Vendor onboarding</h3><p>Validate certifications, attach SOPs, and score vendor performance per inspection.</p></div></div>
+      </div>
+      <div class="charts">
+        <div class="chart">
+          <div class="chart-row"><small>Audit readiness</small><div class="bar" style="--fill:94%"><span></span></div></div>
+          <div class="chart-row"><small>Outage containment</small><div class="bar alt" style="--fill:79%"><span></span></div></div>
+          <div class="chart-row"><small>Vendor score coverage</small><div class="bar" style="--fill:72%"><span></span></div></div>
+        </div>
+        <div class="chart">
+          <div class="chart-row"><small>Time-to-inform stakeholders</small><div class="bar" style="--fill:83%"><span></span></div></div>
+          <div class="chart-row"><small>Automated escalations</small><div class="bar alt" style="--fill:65%"><span></span></div></div>
+          <div class="chart-row"><small>Learning loop adoption</small><div class="bar" style="--fill:69%"><span></span></div></div>
+        </div>
+      </div>
+      <div class="cta">See live impact → <a href="inspection-impact.html">impact visual</a></div>
     </section>
   </main>
 </body>
