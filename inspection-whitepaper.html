@@ -9,204 +9,244 @@
   <meta http-equiv="Expires" content="0">
   <style>
     :root {
-      --bg: #f7f8fb;
+      --bg: #f8fbff;
       --card: #ffffff;
       --border: #e5e7eb;
       --text: #0f172a;
-      --muted: #475569;
+      --muted: #46566d;
       --accent: #2563eb;
       --accent-2: #0ea5e9;
       --accent-3: #16a34a;
-      --pill: #eef2ff;
-      --shadow: 0 20px 70px rgba(15, 23, 42, 0.08);
+      --shadow: 0 25px 70px rgba(15, 23, 42, 0.08);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at 18% 20%, rgba(37,99,235,0.12), transparent 30%),
-                  radial-gradient(circle at 78% 8%, rgba(14,165,233,0.12), transparent 32%),
-                  radial-gradient(circle at 40% 90%, rgba(22,163,74,0.12), transparent 30%),
+      background: radial-gradient(circle at 14% 18%, rgba(37,99,235,0.14), transparent 30%),
+                  radial-gradient(circle at 78% 12%, rgba(14,165,233,0.12), transparent 32%),
+                  radial-gradient(circle at 30% 82%, rgba(22,163,74,0.12), transparent 28%),
                   var(--bg);
       color: var(--text);
       line-height: 1.6;
+      padding-bottom: 2rem;
     }
+
     a { color: inherit; text-decoration: none; }
 
-    header {
-      max-width: 1180px; margin: 0 auto; padding: 2.25rem 1.5rem 1.2rem;
-      display: flex; align-items: flex-start; gap: 1.5rem; justify-content: space-between;
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.2rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      background: linear-gradient(120deg, rgba(255,255,255,0.85), rgba(255,255,255,0.95));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 1rem;
     }
-    .pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; border-radius: 999px;
-      border: 1px solid var(--border); background: var(--pill); color: var(--accent); font-weight: 700; letter-spacing: 0.08em;
-      font-size: 0.78rem; text-transform: uppercase; }
-    h1 { font-size: clamp(2rem, 3vw, 2.7rem); margin: 0.35rem 0 0.4rem; line-height: 1.1; }
+
+    .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; filter: drop-shadow(0 10px 20px rgba(37,99,235,0.18)); }
+    .hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 75% 40%, rgba(14,165,233,0.16), transparent 50%),
+      radial-gradient(circle at 32% 18%, rgba(37,99,235,0.12), transparent 46%); pointer-events: none; }
+
+    header { position: relative; z-index: 1; display: grid; gap: 0.8rem; }
+    .pill { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.9rem; border-radius: 999px; border: 1px solid var(--border);
+      background: rgba(37,99,235,0.08); color: var(--accent); font-weight: 700; letter-spacing: 0.05em; font-size: 0.8rem; text-transform: uppercase; }
+    h1 { font-size: clamp(2rem, 3vw, 2.9rem); line-height: 1.1; }
     p.lead { color: var(--muted); max-width: 720px; }
-    .cta-row { display: flex; gap: 0.75rem; margin-top: 0.8rem; }
-    .btn { padding: 0.65rem 1rem; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; font-size: 0.95rem; }
-    .btn.primary { background: linear-gradient(120deg, #2563eb, #0ea5e9); color: white; box-shadow: var(--shadow); }
-    .btn.ghost { background: #fff; color: var(--text); }
+    .cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.25rem; }
+    .btn { padding: 0.7rem 1.05rem; border-radius: 14px; border: 1px solid var(--border); font-weight: 650; font-size: 0.96rem; background: #fff; box-shadow: 0 12px 40px rgba(15,23,42,0.08); }
+    .btn.primary { background: linear-gradient(120deg, #2563eb, #0ea5e9); color: white; }
 
-    main { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3rem; display: grid; gap: 1.25rem; }
-    section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 1.4rem; box-shadow: var(--shadow); }
-    .section-top { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem; }
-    h2 { font-size: 1.15rem; }
-    .tag { padding: 0.25rem 0.65rem; border-radius: 10px; background: rgba(37,99,235,0.08); color: var(--muted); font-size: 0.85rem; }
+    .hero-note { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.8rem; border-radius: 12px; background: rgba(22,163,74,0.08); border: 1px solid var(--border); color: var(--text); width: fit-content; }
+    .hero-note small { color: var(--muted); font-weight: 600; letter-spacing: 0.02em; }
 
-    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem; }
-    .metric { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; padding: 1rem; border-radius: 16px; border: 1px solid var(--border);
-      background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(255,255,255,0.9)); }
-    .number { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; background: var(--pill); color: var(--accent);
-      font-weight: 700; }
-    .metric h3 { margin-bottom: 0.2rem; }
-    .metric p { color: var(--muted); font-size: 0.95rem; }
+    main { max-width: 1180px; margin: 1.5rem auto; padding: 0 1.5rem; display: grid; gap: 1.1rem; }
 
-    .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; margin-top: 0.8rem; }
-    .chart, .pie, .flow { border: 1px dashed var(--border); border-radius: 14px; padding: 1rem; background: #fbfdff; }
-    .chart-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; }
-    .bar { flex: 1; height: 10px; border-radius: 999px; background: #e5e7eb; position: relative; overflow: hidden; }
-    .bar span { position: absolute; inset: 0; background: linear-gradient(120deg, #2563eb, #0ea5e9); width: var(--fill); }
-    .bar.alt span { background: linear-gradient(120deg, #16a34a, #0ea5e9); }
-    .chart small { color: var(--muted); }
+    section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 1.4rem; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+    .section-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.85rem; }
+    h2 { font-size: 1.2rem; }
+    .tag { padding: 0.25rem 0.65rem; border-radius: 10px; background: rgba(37,99,235,0.1); color: var(--muted); font-size: 0.85rem; }
+    .subcopy { color: var(--muted); margin-bottom: 0.6rem; }
 
-    .pie { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; align-items: center; }
-    .pie::before { content: ""; display: block; width: 90px; height: 90px; border-radius: 50%;
-      background: conic-gradient(#2563eb 0 46%, #0ea5e9 46% 78%, #16a34a 78% 100%); border: 8px solid #eef2ff; box-shadow: var(--shadow); }
-    .pie ul { list-style: none; padding-left: 0; }
-    .pie li { color: var(--muted); margin-bottom: 0.35rem; }
+    .loop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.8rem; }
+    .loop-card { padding: 1rem; border-radius: 14px; border: 1px solid var(--border); background: linear-gradient(150deg, rgba(37,99,235,0.05), rgba(14,165,233,0.06)); position: relative; overflow: hidden; }
+    .loop-card::after { content: ""; position: absolute; inset: auto -18% -42% auto; width: 120px; height: 120px; background: radial-gradient(circle, rgba(14,165,233,0.14), transparent 60%); transform: rotate(-6deg); }
+    .loop-title { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; letter-spacing: 0.01em; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(120deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 6px rgba(37,99,235,0.08); }
+    .loop-card p { color: var(--muted); margin-top: 0.35rem; }
 
-    .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 0.75rem; position: relative; }
-    .flow .node { padding: 0.95rem; border-radius: 12px; background: #ffffff; border: 1px solid var(--border); box-shadow: inset 0 0 0 1px #eef2ff; }
-    .flow .badge { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 10px; background: rgba(37,99,235,0.1); color: var(--text);
-      font-weight: 600; font-size: 0.85rem; }
-    .flow .caption { color: var(--muted); margin-top: 0.35rem; font-size: 0.95rem; }
+    .infographic { border: 1px dashed var(--border); border-radius: 16px; padding: 1rem; background: #f6f9ff; }
+    .loop-path { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; }
+    .step { display: grid; gap: 0.2rem; padding: 0.8rem 0.95rem; border-radius: 12px; background: #fff; border: 1px solid var(--border); box-shadow: inset 0 0 0 1px #eef2ff; min-width: 140px; }
+    .step strong { font-size: 0.95rem; }
+    .step small { color: var(--muted); }
+    .connector { flex: 1; min-width: 48px; height: 8px; border-radius: 999px; background: linear-gradient(90deg, rgba(37,99,235,0.25), rgba(14,165,233,0.35), rgba(22,163,74,0.32)); position: relative; overflow: hidden; }
+    .connector span { position: absolute; left: -20%; top: -4px; width: 24%; height: 16px; background: linear-gradient(120deg, rgba(255,255,255,0), rgba(255,255,255,0.85), rgba(255,255,255,0)); filter: blur(4px); animation: sweep 3.5s infinite ease-in-out; }
 
-    ul { color: var(--muted); padding-left: 1.1rem; }
-    li { margin-bottom: 0.35rem; }
-    .cta { text-align: center; color: var(--muted); padding-top: 0.3rem; }
+    .legend { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.6rem; color: var(--muted); font-weight: 600; }
+    .legend span { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.65rem; border-radius: 12px; background: rgba(255,255,255,0.9); border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(15,23,42,0.06); }
+    .pill-dot { width: 12px; height: 12px; border-radius: 50%; }
 
-    @media (max-width: 960px) { header { flex-direction: column; } }
+    .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.8rem; margin-top: 0.8rem; }
+    .mini-card { padding: 1rem; border-radius: 14px; border: 1px solid var(--border); background: linear-gradient(140deg, rgba(22,163,74,0.08), rgba(14,165,233,0.05)); display: grid; gap: 0.3rem; }
+    .mini-card small { color: var(--muted); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .chip { padding: 0.3rem 0.65rem; border-radius: 999px; background: rgba(15,23,42,0.04); border: 1px solid var(--border); color: var(--text); font-weight: 600; font-size: 0.9rem; }
+
+    @keyframes sweep { 0% { transform: translateX(0); opacity: 0.8; } 50% { opacity: 1; } 100% { transform: translateX(520%); opacity: 0; } }
+
+    @media (max-width: 960px) { .hero { padding: 1.6rem 1.2rem; } }
   </style>
 </head>
 <body>
-  <header>
-    <div>
+  <div class="hero">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <header>
       <div class="pill">Visual whitepaper</div>
       <h1>Inspection Management Framework</h1>
-      <p class="lead">A visual map of digital inspections that ensure quality, safety, and regulatory trust with clear evidence chains.</p>
+      <p class="lead">Lightweight visuals that show how inspections flow from risk sensing to remediation with evidence that stands up to audits.</p>
       <div class="cta-row">
-        <a class="btn primary" href="#blueprint">View blueprint</a>
-        <a class="btn ghost" href="inspection-impact.html">Impact deck</a>
+        <a class="btn primary" href="#loop">View inspection loop</a>
+        <a class="btn" href="inspection-impact.html">Impact deck</a>
       </div>
-    </div>
-    <div class="pill">Trusted compliance</div>
-  </header>
+      <div class="hero-note"><strong>Trusted compliance</strong><small>Evidence-rich, risk-weighted paths</small></div>
+    </header>
+  </div>
 
   <main>
-    <section id="blueprint">
-      <div class="section-top">
-        <h2>Blueprint</h2>
-        <div class="tag">Risk-weighted</div>
+    <section id="loop">
+      <div class="section-head">
+        <h2>Inspection-to-remediation loop</h2>
+        <div class="tag">Observe → Act → Verify</div>
       </div>
-      <div class="metrics">
-        <div class="metric"><div class="number">01</div><div><h3>Risk-led</h3><p>Critical assets prioritized by severity, exposure, and history to set cadences.</p></div></div>
-        <div class="metric"><div class="number">02</div><div><h3>Evidence rich</h3><p>Media, sensors, and checklists captured with context, lineage, and signatures.</p></div></div>
-        <div class="metric"><div class="number">03</div><div><h3>Closed loop</h3><p>Exceptions route to disposition, repair, or learning with SLA timers.</p></div></div>
-      </div>
-      <div class="charts">
-        <div class="chart">
-          <div class="chart-row"><small>On-time inspections</small><div class="bar" style="--fill:86%"><span></span></div></div>
-          <div class="chart-row"><small>Evidence completeness</small><div class="bar alt" style="--fill:91%"><span></span></div></div>
-          <div class="chart-row"><small>Auto-classified exceptions</small><div class="bar" style="--fill:63%"><span></span></div></div>
+      <p class="subcopy">Each phase is labeled, simplified, and connected so teams see how issues close without hunting through metrics.</p>
+      <div class="infographic">
+        <div class="loop-path">
+          <div class="step"><strong>Inspect</strong><small>Risk-based cadences and checklists.</small></div>
+          <div class="connector"><span></span></div>
+          <div class="step"><strong>Flag</strong><small>Auto-classified exceptions with evidence bundles.</small></div>
+          <div class="connector"><span></span></div>
+          <div class="step"><strong>Route</strong><small>Sends to repair, compliance, or learning with SLA timers.</small></div>
+          <div class="connector"><span></span></div>
+          <div class="step"><strong>Fix + Verify</strong><small>Remediation, retest, and sign-off captured.</small></div>
         </div>
-        <div class="pie">
-          <div></div>
-          <ul>
-            <li><strong>46%</strong> risk-based rounds</li>
-            <li><strong>32%</strong> regulatory-driven tasks</li>
-            <li><strong>22%</strong> predictive/sensor triggers</li>
-          </ul>
+        <div class="legend">
+          <span><span class="pill-dot" style="background: var(--accent);"></span> Evidence attached</span>
+          <span><span class="pill-dot" style="background: var(--accent-2);"></span> SLA clock running</span>
+          <span><span class="pill-dot" style="background: var(--accent-3);"></span> Closed and learned</span>
         </div>
       </div>
     </section>
 
     <section>
-      <div class="section-top">
-        <h2>Operating model</h2>
-        <div class="tag">Field execution</div>
+      <div class="section-head">
+        <h2>Evidence lanes</h2>
+        <div class="tag">Clear labeling</div>
       </div>
-      <div class="flow">
-        <div class="node"><span class="badge">Plan</span><div class="caption">Cadences set by regulation, usage, and risk with routes that honor site constraints.</div></div>
-        <div class="node"><span class="badge">Stage</span><div class="caption">People, certifications, tools, and parts reserved with proof of readiness.</div></div>
-        <div class="node"><span class="badge">Execute</span><div class="caption">Guided workflows capture readings, anomalies, and media with offline support.</div></div>
-        <div class="node"><span class="badge">Decide</span><div class="caption">Auto-classify results; trigger holds, repairs, or coaching.</div></div>
-        <div class="node"><span class="badge">Report</span><div class="caption">Evidence bundles and KPIs pushed to regulators, customers, and leadership.</div></div>
-      </div>
-      <div class="charts">
-        <div class="chart">
-          <div class="chart-row"><small>Route optimization</small><div class="bar" style="--fill:58%"><span></span></div></div>
-          <div class="chart-row"><small>First-time pass</small><div class="bar alt" style="--fill:77%"><span></span></div></div>
-          <div class="chart-row"><small>Technician productivity</small><div class="bar" style="--fill:71%"><span></span></div></div>
+      <p class="subcopy">Short copy and responsive spacing keep the most-used evidence flows easy to parse.</p>
+      <div class="loop-grid">
+        <div class="loop-card">
+          <div class="loop-title"><span class="dot"></span>Field capture</div>
+          <p>Photos, video, and sensor traces are tagged to assets and geo-stamped automatically.</p>
+          <div class="chips"><span class="chip">Geo + time</span><span class="chip">Asset ID</span><span class="chip">Hazard flags</span></div>
         </div>
-        <div class="chart">
-          <div class="chart-row"><small>Exception SLA adherence</small><div class="bar" style="--fill:88%"><span></span></div></div>
-          <div class="chart-row"><small>Evidence traceability</small><div class="bar alt" style="--fill:95%"><span></span></div></div>
-          <div class="chart-row"><small>Stakeholder notifications</small><div class="bar" style="--fill:82%"><span></span></div></div>
+        <div class="loop-card">
+          <div class="loop-title"><span class="dot" style="background: linear-gradient(120deg, var(--accent-2), var(--accent-3));"></span>Review</div>
+          <p>Supervisors see redline deltas, AI notes, and prior incidents in one view.</p>
+          <div class="chips"><span class="chip">Redlines</span><span class="chip">Contextual AI</span><span class="chip">History</span></div>
         </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-top">
-        <h2>Data contracts</h2>
-        <div class="tag">Proof-ready</div>
-      </div>
-      <div class="metrics">
-        <div class="metric"><div class="number">A</div><div><h3>Signals</h3><p>Asset identity, location, calibration state, and checklist versions with tolerances.</p></div></div>
-        <div class="metric"><div class="number">B</div><div><h3>Quality rules</h3><p>On-device validations for ranges, completeness, media clarity, and required evidence by jurisdiction.</p></div></div>
-        <div class="metric"><div class="number">C</div><div><h3>Audit + lineage</h3><p>Geo/time signatures, chain-of-custody, and immutable evidence bundles for regulators.</p></div></div>
-      </div>
-      <div class="charts">
-        <div class="pie">
-          <div></div>
-          <ul>
-            <li><strong>42%</strong> digital checklists</li>
-            <li><strong>34%</strong> media + IoT signals</li>
-            <li><strong>24%</strong> manual attestations</li>
-          </ul>
-        </div>
-        <div class="chart">
-          <div class="chart-row"><small>Data completeness</small><div class="bar" style="--fill:90%"><span></span></div></div>
-          <div class="chart-row"><small>Geo/time accuracy</small><div class="bar alt" style="--fill:93%"><span></span></div></div>
-          <div class="chart-row"><small>Dispute resolution speed</small><div class="bar" style="--fill:67%"><span></span></div></div>
+        <div class="loop-card">
+          <div class="loop-title"><span class="dot" style="background: linear-gradient(120deg, var(--accent-3), var(--accent));"></span>Closure</div>
+          <p>Re-tests, checklists, and sign-offs sync back to regulators and partners.</p>
+          <div class="chips"><span class="chip">Retest proof</span><span class="chip">Sign-offs</span><span class="chip">Regulator share</span></div>
         </div>
       </div>
     </section>
 
     <section>
-      <div class="section-top">
-        <h2>Playbooks</h2>
-        <div class="tag">Action loops</div>
+      <div class="section-head">
+        <h2>Risk posture view</h2>
+        <div class="tag">Simple legend</div>
       </div>
-      <div class="metrics">
-        <div class="metric"><div class="number">01</div><div><h3>Regulatory audit</h3><p>Instantly assemble evidence packets with lineage, sign-offs, and exceptions resolved.</p></div></div>
-        <div class="metric"><div class="number">02</div><div><h3>Field outage</h3><p>Trigger mobile holds, reroute work, and pre-stage parts while alerts inform customers.</p></div></div>
-        <div class="metric"><div class="number">03</div><div><h3>Vendor onboarding</h3><p>Validate certifications, attach SOPs, and score vendor performance per inspection.</p></div></div>
-      </div>
-      <div class="charts">
-        <div class="chart">
-          <div class="chart-row"><small>Audit readiness</small><div class="bar" style="--fill:94%"><span></span></div></div>
-          <div class="chart-row"><small>Outage containment</small><div class="bar alt" style="--fill:79%"><span></span></div></div>
-          <div class="chart-row"><small>Vendor score coverage</small><div class="bar" style="--fill:72%"><span></span></div></div>
+      <p class="subcopy">A quick read on risk lets teams spot where to intervene without scanning charts.</p>
+      <div class="split">
+        <div class="mini-card">
+          <strong>Critical assets</strong>
+          <small>High-severity equipment stays on short inspection cadences with double sign-off.</small>
+          <div class="chips"><span class="chip">High cadence</span><span class="chip">Dual review</span></div>
         </div>
-        <div class="chart">
-          <div class="chart-row"><small>Time-to-inform stakeholders</small><div class="bar" style="--fill:83%"><span></span></div></div>
-          <div class="chart-row"><small>Automated escalations</small><div class="bar alt" style="--fill:65%"><span></span></div></div>
-          <div class="chart-row"><small>Learning loop adoption</small><div class="bar" style="--fill:69%"><span></span></div></div>
+        <div class="mini-card">
+          <strong>Moderate</strong>
+          <small>AI-assisted auto-approvals kick in when history is clean and evidence is complete.</small>
+          <div class="chips"><span class="chip">AI approve</span><span class="chip">Evidence complete</span></div>
+        </div>
+        <div class="mini-card">
+          <strong>Low</strong>
+          <small>Shared learnings feed templates so minor issues close faster with fewer manual touches.</small>
+          <div class="chips"><span class="chip">Templates</span><span class="chip">Short SLAs</span></div>
         </div>
       </div>
-      <div class="cta">See live impact → <a href="inspection-impact.html">impact visual</a></div>
     </section>
   </main>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script>
+    const canvas = document.querySelector('.hero-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+    camera.position.z = 5;
+
+    const count = 420;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+    const speeds = new Float32Array(count);
+    const phases = new Float32Array(count);
+
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 4;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 2.6;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 2.6;
+      speeds[i] = 0.35 + Math.random() * 0.9;
+      phases[i] = Math.random() * Math.PI * 2;
+    }
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const material = new THREE.PointsMaterial({ color: 0x37a8f0, size: 0.035, transparent: true, opacity: 0.9 });
+    const points = new THREE.Points(geometry, material);
+    scene.add(points);
+
+    const resize = () => {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      renderer.setSize(width, height, false);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    function animate(time) {
+      const attr = geometry.getAttribute('position');
+      for (let i = 0; i < count; i++) {
+        const radius = 1.5 + Math.sin(time * 0.00045 + phases[i]) * 0.55;
+        const angle = (i / count) * Math.PI * 2 + time * 0.00024 * speeds[i];
+        attr.array[i * 3] = Math.cos(angle) * radius;
+        attr.array[i * 3 + 1] = Math.sin(angle * 1.4) * 1.2;
+        attr.array[i * 3 + 2] = Math.sin(angle) * 1.6;
+      }
+      attr.needsUpdate = true;
+      points.rotation.z += 0.0009;
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script>
 </body>
 </html>

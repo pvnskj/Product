@@ -9,204 +9,274 @@
   <meta http-equiv="Expires" content="0">
   <style>
     :root {
-      --bg: #f7f8fb;
+      --bg: #f8fbff;
       --card: #ffffff;
       --border: #e5e7eb;
       --text: #0f172a;
-      --muted: #475569;
+      --muted: #46566d;
       --accent: #2563eb;
       --accent-2: #0ea5e9;
       --accent-3: #16a34a;
-      --pill: #eef2ff;
-      --shadow: 0 20px 70px rgba(15, 23, 42, 0.08);
+      --shadow: 0 25px 70px rgba(15, 23, 42, 0.08);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at 18% 20%, rgba(37,99,235,0.12), transparent 30%),
-                  radial-gradient(circle at 78% 8%, rgba(14,165,233,0.12), transparent 32%),
-                  radial-gradient(circle at 40% 90%, rgba(22,163,74,0.12), transparent 30%),
+      background: radial-gradient(circle at 12% 14%, rgba(37,99,235,0.14), transparent 30%),
+                  radial-gradient(circle at 80% 10%, rgba(14,165,233,0.12), transparent 32%),
+                  radial-gradient(circle at 30% 82%, rgba(22,163,74,0.12), transparent 28%),
                   var(--bg);
       color: var(--text);
       line-height: 1.6;
+      padding-bottom: 2rem;
     }
+
     a { color: inherit; text-decoration: none; }
 
-    header {
-      max-width: 1180px; margin: 0 auto; padding: 2.25rem 1.5rem 1.2rem;
-      display: flex; align-items: flex-start; gap: 1.5rem; justify-content: space-between;
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.2rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      background: linear-gradient(120deg, rgba(255,255,255,0.8), rgba(255,255,255,0.92));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 1.2rem;
     }
-    .pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; border-radius: 999px;
-      border: 1px solid var(--border); background: var(--pill); color: var(--accent); font-weight: 700; letter-spacing: 0.08em;
-      font-size: 0.78rem; text-transform: uppercase; }
-    h1 { font-size: clamp(2rem, 3vw, 2.7rem); margin: 0.35rem 0 0.4rem; line-height: 1.1; }
+
+    .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; filter: drop-shadow(0 10px 20px rgba(37,99,235,0.18)); }
+    .hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 70% 40%, rgba(14,165,233,0.14), transparent 48%),
+      radial-gradient(circle at 35% 20%, rgba(37,99,235,0.12), transparent 45%); pointer-events: none; }
+
+    header { position: relative; z-index: 1; display: grid; gap: 0.8rem; }
+    .pill { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.9rem; border-radius: 999px; border: 1px solid var(--border);
+      background: rgba(37,99,235,0.08); color: var(--accent); font-weight: 700; letter-spacing: 0.05em; font-size: 0.8rem; text-transform: uppercase; }
+    h1 { font-size: clamp(2rem, 3vw, 2.9rem); line-height: 1.1; }
     p.lead { color: var(--muted); max-width: 720px; }
-    .cta-row { display: flex; gap: 0.75rem; margin-top: 0.8rem; }
-    .btn { padding: 0.65rem 1rem; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; font-size: 0.95rem; }
-    .btn.primary { background: linear-gradient(120deg, #2563eb, #0ea5e9); color: white; box-shadow: var(--shadow); }
-    .btn.ghost { background: #fff; color: var(--text); }
+    .cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.25rem; }
+    .btn { padding: 0.7rem 1.05rem; border-radius: 14px; border: 1px solid var(--border); font-weight: 650; font-size: 0.96rem; background: #fff; box-shadow: 0 12px 40px rgba(15,23,42,0.08); }
+    .btn.primary { background: linear-gradient(120deg, #2563eb, #0ea5e9); color: white; }
 
-    main { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3rem; display: grid; gap: 1.25rem; }
-    section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 1.4rem; box-shadow: var(--shadow); }
-    .section-top { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem; }
-    h2 { font-size: 1.15rem; }
-    .tag { padding: 0.25rem 0.65rem; border-radius: 10px; background: rgba(37,99,235,0.08); color: var(--muted); font-size: 0.85rem; }
+    .hero-grid { display: grid; gap: 0.8rem; align-items: start; }
+    .hero-note { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.8rem; border-radius: 12px; background: rgba(22,163,74,0.08); border: 1px solid var(--border); color: var(--text); width: fit-content; }
+    .hero-note small { color: var(--muted); font-weight: 600; letter-spacing: 0.02em; }
 
-    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem; }
-    .metric { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; padding: 1rem; border-radius: 16px; border: 1px solid var(--border);
-      background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(255,255,255,0.9)); }
-    .number { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; background: var(--pill); color: var(--accent);
-      font-weight: 700; }
-    .metric h3 { margin-bottom: 0.2rem; }
-    .metric p { color: var(--muted); font-size: 0.95rem; }
+    main { max-width: 1180px; margin: 1.5rem auto; padding: 0 1.5rem; display: grid; gap: 1.1rem; }
 
-    .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; margin-top: 0.8rem; }
-    .chart, .pie, .flow { border: 1px dashed var(--border); border-radius: 14px; padding: 1rem; background: #fbfdff; }
-    .chart-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; }
-    .bar { flex: 1; height: 10px; border-radius: 999px; background: #e5e7eb; position: relative; overflow: hidden; }
-    .bar span { position: absolute; inset: 0; background: linear-gradient(120deg, #2563eb, #0ea5e9); width: var(--fill); }
-    .bar.alt span { background: linear-gradient(120deg, #16a34a, #0ea5e9); }
-    .chart small { color: var(--muted); }
+    section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 1.4rem; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+    .section-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.85rem; }
+    h2 { font-size: 1.2rem; }
+    .tag { padding: 0.25rem 0.65rem; border-radius: 10px; background: rgba(37,99,235,0.1); color: var(--muted); font-size: 0.85rem; }
+    .subcopy { color: var(--muted); margin-bottom: 0.6rem; }
 
-    .pie { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; align-items: center; }
-    .pie::before { content: ""; display: block; width: 90px; height: 90px; border-radius: 50%;
-      background: conic-gradient(#2563eb 0 48%, #0ea5e9 48% 76%, #16a34a 76% 100%); border: 8px solid #eef2ff; box-shadow: var(--shadow); }
-    .pie ul { list-style: none; padding-left: 0; }
-    .pie li { color: var(--muted); margin-bottom: 0.35rem; }
+    .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.8rem; }
+    .flow-card { padding: 1rem; border-radius: 14px; border: 1px solid var(--border); background: linear-gradient(160deg, rgba(37,99,235,0.04), rgba(14,165,233,0.05)); position: relative; overflow: hidden; }
+    .flow-card::after { content: ""; position: absolute; inset: auto -20% -40% auto; width: 120px; height: 120px; background: radial-gradient(circle, rgba(14,165,233,0.14), transparent 58%); transform: rotate(-6deg); }
+    .flow-title { display: flex; align-items: center; gap: 0.45rem; font-weight: 700; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(120deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 6px rgba(37,99,235,0.08); }
+    .flow-card p { color: var(--muted); margin-top: 0.35rem; }
 
-    .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 0.75rem; position: relative; }
-    .flow .node { padding: 0.95rem; border-radius: 12px; background: #ffffff; border: 1px solid var(--border); box-shadow: inset 0 0 0 1px #eef2ff; }
-    .flow .badge { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 10px; background: rgba(37,99,235,0.1); color: var(--text);
-      font-weight: 600; font-size: 0.85rem; }
-    .flow .caption { color: var(--muted); margin-top: 0.35rem; font-size: 0.95rem; }
+    .lineage-stream { position: relative; background: #f6f9ff; border: 1px dashed var(--border); border-radius: 16px; padding: 1rem; overflow: hidden; }
+    .line { width: 100%; height: 4px; background: linear-gradient(90deg, rgba(37,99,235,0.35), rgba(14,165,233,0.35), rgba(22,163,74,0.35)); border-radius: 999px; position: relative; overflow: hidden; }
+    .line span { position: absolute; left: -20%; top: -6px; width: 22%; height: 16px; background: linear-gradient(120deg, rgba(255,255,255,0), rgba(255,255,255,0.85), rgba(255,255,255,0)); filter: blur(4px); animation: pulse 3.8s infinite ease-in-out; }
 
-    ul { color: var(--muted); padding-left: 1.1rem; }
-    li { margin-bottom: 0.35rem; }
-    .cta { text-align: center; color: var(--muted); padding-top: 0.3rem; }
+    .lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.8rem; margin-top: 0.8rem; align-items: center; }
+    .lane-item { display: grid; gap: 0.25rem; padding: 0.8rem; border-radius: 12px; border: 1px solid var(--border); background: #fff; box-shadow: inset 0 0 0 1px #f1f5f9; }
+    .lane-label { font-weight: 700; letter-spacing: 0.01em; }
+    .lane small { color: var(--muted); }
 
-    @media (max-width: 960px) { header { flex-direction: column; } }
+    .legend { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.6rem; color: var(--muted); font-weight: 600; }
+    .legend span { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.65rem; border-radius: 12px; background: rgba(255,255,255,0.9); border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(15,23,42,0.06); }
+    .legend .pill-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+    .loop { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.9rem; margin-top: 0.7rem; }
+    .loop-card { padding: 1rem; border-radius: 16px; border: 1px solid var(--border); background: linear-gradient(135deg, rgba(22,163,74,0.08), rgba(14,165,233,0.06)); position: relative; overflow: hidden; }
+    .loop-card::before { content: ""; position: absolute; inset: auto auto -40% -20%; width: 120px; height: 120px; background: radial-gradient(circle, rgba(37,99,235,0.14), transparent 60%); }
+    .loop h3 { margin-bottom: 0.2rem; }
+    .loop p { color: var(--muted); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
+    .chip { padding: 0.3rem 0.65rem; border-radius: 999px; background: rgba(15,23,42,0.04); border: 1px solid var(--border); color: var(--text); font-weight: 600; font-size: 0.9rem; }
+
+    .playbook { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; }
+    .play-card { border: 1px solid var(--border); border-radius: 14px; padding: 1rem; background: linear-gradient(140deg, rgba(37,99,235,0.04), rgba(22,163,74,0.05)); display: grid; gap: 0.35rem; }
+    .play-card strong { font-size: 0.95rem; }
+    .play-card small { color: var(--muted); }
+
+    @keyframes pulse { 0% { transform: translateX(0); opacity: 0.8; } 50% { opacity: 1; } 100% { transform: translateX(620%); opacity: 0; } }
+
+    @media (max-width: 960px) { .hero { padding: 1.6rem 1.2rem; } .cta-row { width: 100%; } }
   </style>
 </head>
 <body>
-  <header>
-    <div>
+  <div class="hero">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <header>
       <div class="pill">Visual whitepaper</div>
       <h1>Asset Catalog Management Framework</h1>
-      <p class="lead">A compressed, infographic-first view of the catalog system that keeps operations synchronized, AI-ready, and compliant.</p>
+      <p class="lead">A light, animated walkthrough of how catalog lineage, approvals, and activation stay synchronized across every channel.</p>
       <div class="cta-row">
-        <a class="btn primary" href="#blueprint">Jump to blueprint</a>
-        <a class="btn ghost" href="asset-catalog-impact.html">Impact deck</a>
+        <a class="btn primary" href="#lineage">See lineage spine</a>
+        <a class="btn" href="asset-catalog-impact.html">Impact deck</a>
       </div>
-    </div>
-    <div class="pill">Live governance</div>
-  </header>
+      <div class="hero-note"><strong>Live governance</strong><small>Certified, enriched, and monitored in motion</small></div>
+    </header>
+  </div>
 
   <main>
-    <section id="blueprint">
-      <div class="section-top">
-        <h2>Blueprint</h2>
-        <div class="tag">Data trust spine</div>
+    <section id="lineage">
+      <div class="section-head">
+        <h2>Lineage spine</h2>
+        <div class="tag">Source → Govern → Publish</div>
       </div>
-      <div class="metrics">
-        <div class="metric"><div class="number">01</div><div><h3>Data trust</h3><p>Golden records sourced, deduped, and lineage tracked across ERPs, suppliers, and partner feeds.</p></div></div>
-        <div class="metric"><div class="number">02</div><div><h3>Governance</h3><p>Role-based approvals and validations on safety, compliance, and naming conventions with SLA timers.</p></div></div>
-        <div class="metric"><div class="number">03</div><div><h3>Experience</h3><p>Clean search, compatibility hints, and substitution rules surfaced in every channel.</p></div></div>
-      </div>
-      <div class="charts">
-        <div class="chart">
-          <div class="chart-row"><small>Completeness</small><div class="bar" style="--fill:92%"><span></span></div></div>
-          <div class="chart-row"><small>Lineage coverage</small><div class="bar alt" style="--fill:84%"><span></span></div></div>
-          <div class="chart-row"><small>Duplication risk</small><div class="bar" style="--fill:18%"><span></span></div></div>
+      <p class="subcopy">The backbone of the catalog shows how each record moves from supplier feed to omni-channel delivery with the controls that keep it trusted.</p>
+      <div class="lineage-stream">
+        <div class="line"><span></span></div>
+        <div class="lane">
+          <div class="lane-item"><div class="lane-label">Source ingest</div><small>Supplier + ERP feeds deduped with signatures.</small></div>
+          <div class="lane-item"><div class="lane-label">Normalization</div><small>Taxonomy, UOM, hazard flags standardized.</small></div>
+          <div class="lane-item"><div class="lane-label">Approval</div><small>Role-based gates with SLA timers and lineage stamps.</small></div>
+          <div class="lane-item"><div class="lane-label">Publish</div><small>APIs push certified records to commerce, planning, and support.</small></div>
+          <div class="lane-item"><div class="lane-label">Observe</div><small>Usage + incident telemetry loops back into enrichment.</small></div>
         </div>
-        <div class="pie">
-          <div></div>
-          <ul>
-            <li><strong>48%</strong> supplier-certified attributes</li>
-            <li><strong>28%</strong> AI-enriched context (compatibility + hazards)</li>
-            <li><strong>24%</strong> operational telemetry (usage + incidents)</li>
-          </ul>
+        <div class="legend">
+          <span><span class="pill-dot" style="background: var(--accent);"></span> Certified</span>
+          <span><span class="pill-dot" style="background: var(--accent-2);"></span> Enriched</span>
+          <span><span class="pill-dot" style="background: var(--accent-3);"></span> Telemetry-aware</span>
         </div>
       </div>
     </section>
 
     <section>
-      <div class="section-top">
-        <h2>Operating model</h2>
-        <div class="tag">Closed-loop flow</div>
+      <div class="section-head">
+        <h2>Channel readiness map</h2>
+        <div class="tag">Catalog choreography</div>
       </div>
-      <div class="flow">
-        <div class="node"><span class="badge">Author</span><div class="caption">Guided templates enforce taxonomy, UOM, hazard flags, and supplier metadata.</div></div>
-        <div class="node"><span class="badge">Validate</span><div class="caption">Automated checks for duplicates, banned materials, and regional restrictions.</div></div>
-        <div class="node"><span class="badge">Approve</span><div class="caption">Workflow routes to safety, finance, and engineering with SLA timers.</div></div>
-        <div class="node"><span class="badge">Publish</span><div class="caption">APIs distribute records to planning, fulfillment, billing, and support.</div></div>
-        <div class="node"><span class="badge">Monitor</span><div class="caption">Signals on usage, substitutions, and incidents trigger playbooks.</div></div>
-      </div>
-      <div class="charts">
-        <div class="chart">
-          <div class="chart-row"><small>Cycle time reduction</small><div class="bar" style="--fill:68%"><span></span></div></div>
-          <div class="chart-row"><small>Exception auto-resolve</small><div class="bar alt" style="--fill:54%"><span></span></div></div>
-          <div class="chart-row"><small>Manual touch removal</small><div class="bar" style="--fill:72%"><span></span></div></div>
+      <p class="subcopy">Different channels pull the same spine with channel-aware overlays so product truth stays consistent.</p>
+      <div class="flow-grid">
+        <div class="flow-card">
+          <div class="flow-title"><span class="dot"></span>Commerce</div>
+          <p>Search hints, compatibility, and substitution rules keep carts accurate, with live availability badges.</p>
+          <div class="chips"><span class="chip">Attribute overlays</span><span class="chip">A/B ready</span><span class="chip">Variant guardrails</span></div>
         </div>
-        <div class="chart">
-          <div class="chart-row"><small>Change-window adherence</small><div class="bar" style="--fill:88%"><span></span></div></div>
-          <div class="chart-row"><small>Audit-ready exports</small><div class="bar alt" style="--fill:95%"><span></span></div></div>
-          <div class="chart-row"><small>Integration coverage</small><div class="bar" style="--fill:76%"><span></span></div></div>
+        <div class="flow-card">
+          <div class="flow-title"><span class="dot" style="background: linear-gradient(120deg, var(--accent-2), var(--accent-3));"></span>Planning</div>
+          <p>Lifecycle, cost, and alternates stay synchronized for planning bots and human planners.</p>
+          <div class="chips"><span class="chip">Lifecycle states</span><span class="chip">Alternates map</span><span class="chip">S&OP feed</span></div>
         </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-top">
-        <h2>Data contracts</h2>
-        <div class="tag">Guardrails</div>
-      </div>
-      <div class="metrics">
-        <div class="metric"><div class="number">A</div><div><h3>Required attributes</h3><p>Global IDs, lifecycle state, hazards, compatibility, substitutions, and effective dates.</p></div></div>
-        <div class="metric"><div class="number">B</div><div><h3>Quality rules</h3><p>Freshness thresholds, dedupe similarity limits with human-in-loop overrides, schema evolution notices.</p></div></div>
-        <div class="metric"><div class="number">C</div><div><h3>Lineage + audit</h3><p>Trace attributes to source, steward, approval, and immutable change logs with before/after payloads.</p></div></div>
-      </div>
-      <div class="charts">
-        <div class="pie">
-          <div></div>
-          <ul>
-            <li><strong>40%</strong> critical attributes locked</li>
-            <li><strong>35%</strong> conditional rules triggered</li>
-            <li><strong>25%</strong> optional enrichments applied</li>
-          </ul>
-        </div>
-        <div class="chart">
-          <div class="chart-row"><small>Freshness compliance</small><div class="bar" style="--fill:89%"><span></span></div></div>
-          <div class="chart-row"><small>Dedupe precision</small><div class="bar alt" style="--fill:86%"><span></span></div></div>
-          <div class="chart-row"><small>Audit evidence completeness</small><div class="bar" style="--fill:93%"><span></span></div></div>
+        <div class="flow-card">
+          <div class="flow-title"><span class="dot" style="background: linear-gradient(120deg, var(--accent-3), var(--accent));"></span>Field + Support</div>
+          <p>Serviceability packs and hazard flags show up where work orders happen, reducing mis-installs.</p>
+          <div class="chips"><span class="chip">Hazard flags</span><span class="chip">Service kits</span><span class="chip">Recall routing</span></div>
         </div>
       </div>
     </section>
 
     <section>
-      <div class="section-top">
-        <h2>Playbooks</h2>
-        <div class="tag">Activation</div>
+      <div class="section-head">
+        <h2>Governance loops</h2>
+        <div class="tag">Detect → Resolve → Learn</div>
       </div>
-      <div class="metrics">
-        <div class="metric"><div class="number">01</div><div><h3>New product introduction</h3><p>Author once → auto-propagate to commerce, planning, and finance with substitution hints.</p></div></div>
-        <div class="metric"><div class="number">02</div><div><h3>Quality incident</h3><p>Freeze affected items, push holds to warehouses, notify impacted orders, and map replacements.</p></div></div>
-        <div class="metric"><div class="number">03</div><div><h3>Lifecycle refresh</h3><p>Scheduled reviews on aging parts with supplier scorecards and retire/redirect logic.</p></div></div>
-      </div>
-      <div class="charts">
-        <div class="chart">
-          <div class="chart-row"><small>Time-to-publish</small><div class="bar" style="--fill:74%"><span></span></div></div>
-          <div class="chart-row"><small>Incident containment</small><div class="bar alt" style="--fill:81%"><span></span></div></div>
-          <div class="chart-row"><small>Retire + redirect coverage</small><div class="bar" style="--fill:77%"><span></span></div></div>
+      <p class="subcopy">Instead of static metrics, the loop shows how governance moves with live data.</p>
+      <div class="loop">
+        <div class="loop-card">
+          <h3>Signal</h3>
+          <p>Out-of-pattern changes or safety incidents trigger locks and route to the right steward.</p>
+          <div class="chips"><span class="chip">Anomaly score</span><span class="chip">Safety lock</span></div>
         </div>
-        <div class="chart">
-          <div class="chart-row"><small>Stakeholder satisfaction</small><div class="bar" style="--fill:88%"><span></span></div></div>
-          <div class="chart-row"><small>Data export readiness</small><div class="bar alt" style="--fill:92%"><span></span></div></div>
-          <div class="chart-row"><small>Playbook automation</small><div class="bar" style="--fill:64%"><span></span></div></div>
+        <div class="loop-card">
+          <h3>Resolve</h3>
+          <p>Stewards merge, redirect, or retire items with auto-generated change packs.</p>
+          <div class="chips"><span class="chip">Merge pack</span><span class="chip">Redirect plan</span></div>
+        </div>
+        <div class="loop-card">
+          <h3>Publish + Learn</h3>
+          <p>Approvals propagate and models retrain on the corrected lineage, keeping the catalog cleaner over time.</p>
+          <div class="chips"><span class="chip">Auto-propagate</span><span class="chip">Model retrain</span></div>
         </div>
       </div>
-      <div class="cta">See national impact → <a href="asset-catalog-impact.html">impact visual</a></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Activation playbooks</h2>
+        <div class="tag">Ready-made motions</div>
+      </div>
+      <p class="subcopy">Clear labels, shorter copy, and responsive spacing keep the playbooks scannable.</p>
+      <div class="playbook">
+        <div class="play-card">
+          <strong>New item launch</strong>
+          <small>Author once → validate → publish to commerce, planning, finance, and support in one motion.</small>
+        </div>
+        <div class="play-card">
+          <strong>Quality incident</strong>
+          <small>Freeze impacted SKUs, push holds to warehouses, and map safe substitutes automatically.</small>
+        </div>
+        <div class="play-card">
+          <strong>Lifecycle refresh</strong>
+          <small>Scheduled reviews pair supplier scorecards with redirect logic for aging parts.</small>
+        </div>
+      </div>
     </section>
   </main>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script>
+    const canvas = document.querySelector('.hero-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+    camera.position.z = 5;
+
+    const count = 420;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+    const speeds = new Float32Array(count);
+    const phases = new Float32Array(count);
+
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 4;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 2.4;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 2.6;
+      speeds[i] = 0.4 + Math.random() * 0.8;
+      phases[i] = Math.random() * Math.PI * 2;
+    }
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const material = new THREE.PointsMaterial({ color: 0x4b9bef, size: 0.035, transparent: true, opacity: 0.9 });
+    const points = new THREE.Points(geometry, material);
+    scene.add(points);
+
+    const resize = () => {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      renderer.setSize(width, height, false);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    function animate(time) {
+      const positionsAttr = geometry.getAttribute('position');
+      for (let i = 0; i < count; i++) {
+        const radius = 1.6 + Math.sin(time * 0.0004 + phases[i]) * 0.5;
+        const angle = (i / count) * Math.PI * 2 + time * 0.0002 * speeds[i];
+        positionsAttr.array[i * 3] = Math.cos(angle) * radius;
+        positionsAttr.array[i * 3 + 1] = Math.sin(angle * 1.5) * 1.2;
+        positionsAttr.array[i * 3 + 2] = Math.sin(angle) * 1.4;
+      }
+      positionsAttr.needsUpdate = true;
+      points.rotation.y += 0.0008;
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script>
 </body>
 </html>
