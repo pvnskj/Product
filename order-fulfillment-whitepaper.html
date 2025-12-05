@@ -8,27 +8,84 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <style>
-    :root { --bg:#05060b; --card:rgba(255,255,255,0.04); --border:rgba(255,255,255,0.08); --accent:#6ddcff; --accent-2:#7c3aed; --text:#f5f7fb; --muted:#9ca3af; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; background:radial-gradient(circle at 15% 20%,rgba(109,220,255,0.14),transparent 30%), radial-gradient(circle at 80% 70%,rgba(124,58,237,0.12),transparent 30%), #05060b; color:var(--text); line-height:1.6; }
-    a { color:inherit; }
-    header { padding:2.5rem 1.5rem 1.5rem; max-width:1100px; margin:0 auto; display:flex; gap:1.5rem; align-items:center; justify-content:space-between; }
-    h1 { font-size:clamp(2rem,3vw,2.7rem); margin-bottom:0.4rem; }
-    p.lead { color:var(--muted); max-width:700px; }
-    .pill { display:inline-flex; padding:0.3rem 0.75rem; border-radius:999px; border:1px solid var(--border); color:var(--muted); letter-spacing:0.1em; font-size:0.8rem; text-transform:uppercase; }
-    main { max-width:1100px; margin:0 auto; padding:0 1.5rem 3rem; display:grid; gap:1.5rem; }
-    section { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.4rem; box-shadow:0 10px 60px rgba(0,0,0,0.4); }
-    h2 { font-size:1.2rem; margin-bottom:0.5rem; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
-    .stat { font-size:1.3rem; font-weight:700; color:var(--accent); margin-bottom:0.15rem; }
-    .muted { color:var(--muted); }
-    ul { padding-left:1.1rem; color:var(--muted); }
-    li { margin-bottom:0.35rem; }
-    .flow { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0.8rem; }
-    .node { padding:1rem; border-radius:12px; border:1px dashed var(--border); background:rgba(255,255,255,0.03); }
-    .badge { display:inline-block; padding:0.2rem 0.6rem; border-radius:8px; background:rgba(109,220,255,0.12); color:#c7f1ff; font-size:0.85rem; margin-bottom:0.3rem; }
-    .cta { text-align:center; color:var(--muted); padding-top:0.6rem; }
-    @media (max-width:960px){ header{flex-direction:column; align-items:flex-start;} }
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --accent-2: #0ea5e9;
+      --accent-3: #16a34a;
+      --pill: #eef2ff;
+      --shadow: 0 20px 70px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 18% 20%, rgba(37,99,235,0.12), transparent 30%),
+                  radial-gradient(circle at 78% 8%, rgba(14,165,233,0.12), transparent 32%),
+                  radial-gradient(circle at 40% 90%, rgba(22,163,74,0.12), transparent 30%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      max-width: 1180px; margin: 0 auto; padding: 2.25rem 1.5rem 1.2rem;
+      display: flex; align-items: flex-start; gap: 1.5rem; justify-content: space-between;
+    }
+    .pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--pill); color: var(--accent); font-weight: 700; letter-spacing: 0.08em;
+      font-size: 0.78rem; text-transform: uppercase; }
+    h1 { font-size: clamp(2rem, 3vw, 2.7rem); margin: 0.35rem 0 0.4rem; line-height: 1.1; }
+    p.lead { color: var(--muted); max-width: 720px; }
+    .cta-row { display: flex; gap: 0.75rem; margin-top: 0.8rem; }
+    .btn { padding: 0.65rem 1rem; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; font-size: 0.95rem; }
+    .btn.primary { background: linear-gradient(120deg, #2563eb, #0ea5e9); color: white; box-shadow: var(--shadow); }
+    .btn.ghost { background: #fff; color: var(--text); }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3rem; display: grid; gap: 1.25rem; }
+    section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 1.4rem; box-shadow: var(--shadow); }
+    .section-top { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem; }
+    h2 { font-size: 1.15rem; }
+    .tag { padding: 0.25rem 0.65rem; border-radius: 10px; background: rgba(37,99,235,0.08); color: var(--muted); font-size: 0.85rem; }
+
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem; }
+    .metric { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; padding: 1rem; border-radius: 16px; border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(255,255,255,0.9)); }
+    .number { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; background: var(--pill); color: var(--accent);
+      font-weight: 700; }
+    .metric h3 { margin-bottom: 0.2rem; }
+    .metric p { color: var(--muted); font-size: 0.95rem; }
+
+    .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; margin-top: 0.8rem; }
+    .chart, .pie, .flow { border: 1px dashed var(--border); border-radius: 14px; padding: 1rem; background: #fbfdff; }
+    .chart-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; }
+    .bar { flex: 1; height: 10px; border-radius: 999px; background: #e5e7eb; position: relative; overflow: hidden; }
+    .bar span { position: absolute; inset: 0; background: linear-gradient(120deg, #2563eb, #0ea5e9); width: var(--fill); }
+    .bar.alt span { background: linear-gradient(120deg, #16a34a, #0ea5e9); }
+    .chart small { color: var(--muted); }
+
+    .pie { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; align-items: center; }
+    .pie::before { content: ""; display: block; width: 90px; height: 90px; border-radius: 50%;
+      background: conic-gradient(#2563eb 0 44%, #0ea5e9 44% 74%, #16a34a 74% 100%); border: 8px solid #eef2ff; box-shadow: var(--shadow); }
+    .pie ul { list-style: none; padding-left: 0; }
+    .pie li { color: var(--muted); margin-bottom: 0.35rem; }
+
+    .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 0.75rem; position: relative; }
+    .flow .node { padding: 0.95rem; border-radius: 12px; background: #ffffff; border: 1px solid var(--border); box-shadow: inset 0 0 0 1px #eef2ff; }
+    .flow .badge { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 10px; background: rgba(37,99,235,0.1); color: var(--text);
+      font-weight: 600; font-size: 0.85rem; }
+    .flow .caption { color: var(--muted); margin-top: 0.35rem; font-size: 0.95rem; }
+
+    ul { color: var(--muted); padding-left: 1.1rem; }
+    li { margin-bottom: 0.35rem; }
+    .cta { text-align: center; color: var(--muted); padding-top: 0.3rem; }
+
+    @media (max-width: 960px) { header { flex-direction: column; } }
   </style>
 </head>
 <body>
@@ -37,87 +94,118 @@
       <div class="pill">Visual whitepaper</div>
       <h1>Order Fulfillment Commitment Framework</h1>
       <p class="lead">How catalog integrity, inventory truth, and orchestration combine to ship exactly what was promised.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#blueprint">Read blueprint</a>
+        <a class="btn ghost" href="asset-catalog-whitepaper.html">Catalog backbone</a>
+      </div>
     </div>
-    <div><a class="pill" href="index.html">Home</a></div>
+    <div class="pill">Zero-friction promise</div>
   </header>
 
   <main>
-    <section>
-      <h2>Blueprint</h2>
-      <div class="grid">
-        <div><div class="stat">Promise clarity</div><p class="muted">Every offer checked against inventory, capacity, and substitution logic before confirming.</p></div>
-        <div><div class="stat">Coordinated execution</div><p class="muted">Order orchestration syncs pick/pack/ship with service appointments and billing.</p></div>
-        <div><div class="stat">Evidence trail</div><p class="muted">Events, photos, and signatures anchor every step for customers and auditors.</p></div>
+    <section id="blueprint">
+      <div class="section-top">
+        <h2>Blueprint</h2>
+        <div class="tag">Promise fabric</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="number">01</div><div><h3>Unified offer</h3><p>Catalog rules, customer terms, and sourcing options merged into a single promise engine.</p></div></div>
+        <div class="metric"><div class="number">02</div><div><h3>Reliable slots</h3><p>Inventory, labor, and carrier capacity aligned to precise cut-offs and delivery windows.</p></div></div>
+        <div class="metric"><div class="number">03</div><div><h3>Adaptive routing</h3><p>Orders routed across network nodes with substitution and split-ship logic to protect dates.</p></div></div>
+      </div>
+      <div class="charts">
+        <div class="chart">
+          <div class="chart-row"><small>On-time promise</small><div class="bar" style="--fill:90%"><span></span></div></div>
+          <div class="chart-row"><small>Slot utilization</small><div class="bar alt" style="--fill:73%"><span></span></div></div>
+          <div class="chart-row"><small>Split-ship avoidance</small><div class="bar" style="--fill:61%"><span></span></div></div>
+        </div>
+        <div class="pie">
+          <div></div>
+          <ul>
+            <li><strong>44%</strong> store/DC fulfilled</li>
+            <li><strong>30%</strong> micro/urban node</li>
+            <li><strong>26%</strong> drop-ship or partner</li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <section>
-      <h2>Operating model</h2>
+      <div class="section-top">
+        <h2>Operating model</h2>
+        <div class="tag">Orchestrated delivery</div>
+      </div>
       <div class="flow">
-        <div class="node"><span class="badge">Qualify</span>Validate item eligibility, substitutions, and restrictions per channel and region.</div>
-        <div class="node"><span class="badge">Promise</span>Reserve inventory and capacity with ETA confidence scoring.</div>
-        <div class="node"><span class="badge">Orchestrate</span>Route to optimal node; align labor, carrier, and service windows.</div>
-        <div class="node"><span class="badge">Verify</span>Scan, photo, and seal proof before handoff; update customer in real time.</div>
-        <div class="node"><span class="badge">Settle</span>Close financials and support tickets with the same source of truth.</div>
+        <div class="node"><span class="badge">Commit</span><div class="caption">Validate inventory, credit, fraud, and SLA before confirming promise.</div></div>
+        <div class="node"><span class="badge">Plan</span><div class="caption">Batch orders into waves; align labor, slotting, and carrier appointment windows.</div></div>
+        <div class="node"><span class="badge">Pick/Pack</span><div class="caption">Guided picks honor substitutions and hazardous handling with QC gates.</div></div>
+        <div class="node"><span class="badge">Ship</span><div class="caption">Carrier + mode selected on cost-to-serve and promise reliability.</div></div>
+        <div class="node"><span class="badge">Inform</span><div class="caption">Event hooks broadcast milestones to customers, finance, and support.</div></div>
       </div>
-    </section>
-
-    <section>
-      <h2>Data contracts</h2>
-      <div class="grid">
-        <div>
-          <h3>Order inputs</h3>
-          <ul>
-            <li>Catalog IDs with substitution trees and compliance flags.</li>
-            <li>Availability + freshness; capacity by node and carrier.</li>
-            <li>Customer constraints (delivery window, access, service needs).</li>
-          </ul>
+      <div class="charts">
+        <div class="chart">
+          <div class="chart-row"><small>Wave efficiency</small><div class="bar" style="--fill:71%"><span></span></div></div>
+          <div class="chart-row"><small>QC pass rate</small><div class="bar alt" style="--fill:88%"><span></span></div></div>
+          <div class="chart-row"><small>Carrier performance</small><div class="bar" style="--fill:75%"><span></span></div></div>
         </div>
-        <div>
-          <h3>Execution signals</h3>
-          <ul>
-            <li>Pick/pack scans with location, timestamp, and handler.</li>
-            <li>Photo + seal verification tied to shipment IDs.</li>
-            <li>Exception codes mapped to playbooks and customer messaging.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Assurance</h3>
-          <ul>
-            <li>Decision logs on why a promise was accepted, rerouted, or split.</li>
-            <li>Customer comms synchronized with operational state.</li>
-            <li>Settlement rules with tax, credits, and SLA adherence.</li>
-          </ul>
+        <div class="chart">
+          <div class="chart-row"><small>Promise-to-ship latency</small><div class="bar" style="--fill:66%"><span></span></div></div>
+          <div class="chart-row"><small>Exception auto-resolve</small><div class="bar alt" style="--fill:58%"><span></span></div></div>
+          <div class="chart-row"><small>Customer notification speed</small><div class="bar" style="--fill:86%"><span></span></div></div>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Playbooks</h2>
-      <div class="grid">
-        <div>
-          <h3>High-value orders</h3>
+      <div class="section-top">
+        <h2>Data contracts</h2>
+        <div class="tag">Chain of custody</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="number">A</div><div><h3>Order data</h3><p>Line-level commitments with hazard, temperature, and substitution permissions.</p></div></div>
+        <div class="metric"><div class="number">B</div><div><h3>Logistics signals</h3><p>Slot availability, carrier ETAs, proof-of-pick, and scan events with geo/time signatures.</p></div></div>
+        <div class="metric"><div class="number">C</div><div><h3>Exceptions</h3><p>Reason codes, disposition rules, and recovery steps tied to customer and finance updates.</p></div></div>
+      </div>
+      <div class="charts">
+        <div class="pie">
+          <div></div>
           <ul>
-            <li>Two-person verification, photos, and route locks before pickup.</li>
-            <li>Real-time customer ETA sharing with secure proof of delivery.</li>
+            <li><strong>43%</strong> orchestration via DC/FC</li>
+            <li><strong>31%</strong> store or micro-fulfillment nodes</li>
+            <li><strong>26%</strong> partner/drop-ship network</li>
           </ul>
         </div>
-        <div>
-          <h3>Split shipments</h3>
-          <ul>
-            <li>Optimize across nodes while keeping delivery windows aligned.</li>
-            <li>Notify customer which items ship together and why.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Service + product</h3>
-          <ul>
-            <li>Bundle installations with hardware; verify certifications and tools.</li>
-            <li>Trigger billing only after service proof and asset activation.</li>
-          </ul>
+        <div class="chart">
+          <div class="chart-row"><small>Scan completeness</small><div class="bar" style="--fill:93%"><span></span></div></div>
+          <div class="chart-row"><small>ETA fidelity</small><div class="bar alt" style="--fill:82%"><span></span></div></div>
+          <div class="chart-row"><small>Exception transparency</small><div class="bar" style="--fill:78%"><span></span></div></div>
         </div>
       </div>
-      <div class="cta">Return to the interactive home → <a href="index.html">portfolio</a></div>
+    </section>
+
+    <section>
+      <div class="section-top">
+        <h2>Playbooks</h2>
+        <div class="tag">Recovery-ready</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="number">01</div><div><h3>Weather disruption</h3><p>Re-route to alternate nodes, auto-extend delivery promises, and inform customers.</p></div></div>
+        <div class="metric"><div class="number">02</div><div><h3>Damage/short</h3><p>Instant QC flags with replacement, refund, or store pickup options before delivery.</p></div></div>
+        <div class="metric"><div class="number">03</div><div><h3>Carrier miss</h3><p>Escalate to backup carriers, schedule re-attempts, and adjust finance holds.</p></div></div>
+      </div>
+      <div class="charts">
+        <div class="chart">
+          <div class="chart-row"><small>Recovery speed</small><div class="bar" style="--fill:72%"><span></span></div></div>
+          <div class="chart-row"><small>Promise preservation</small><div class="bar alt" style="--fill:69%"><span></span></div></div>
+          <div class="chart-row"><small>Customer satisfaction</small><div class="bar" style="--fill:85%"><span></span></div></div>
+        </div>
+        <div class="chart">
+          <div class="chart-row"><small>Refund/credit automation</small><div class="bar" style="--fill:63%"><span></span></div></div>
+          <div class="chart-row"><small>Alternative node utilization</small><div class="bar alt" style="--fill:57%"><span></span></div></div>
+          <div class="chart-row"><small>Support contact reduction</small><div class="bar" style="--fill:48%"><span></span></div></div>
+        </div>
+      </div>
+      <div class="cta">See the upstream data → <a href="asset-catalog-whitepaper.html">catalog whitepaper</a></div>
     </section>
   </main>
 </body>
