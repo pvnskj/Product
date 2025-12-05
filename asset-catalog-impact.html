@@ -2,297 +2,160 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Asset Catalog – National Impact Analysis</title>
+  <title>Asset Catalog – Impact Visual</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5f5f7;
-      color: #141414;
-      line-height: 1.65;
+    :root {
+      --bg: #05060b;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --accent: #6ddcff;
+      --accent-2: #a0f668;
+      --text: #f5f7fb;
+      --muted: #9ca3af;
     }
-    header {
-      padding: 2.5rem 10vw 1.5rem;
-      background: #ffffff;
-      border-bottom: 1px solid #e0e0e5;
-    }
-    header h1 {
-      margin: 0 0 0.75rem;
-      font-size: 1.9rem;
-      font-weight: 630;
-    }
-    header p {
-      margin: 0;
-      max-width: 60rem;
-      color: #555;
-      font-size: 0.96rem;
-    }
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2rem 10vw 3rem;
-    }
-    section {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 1.75rem 1.75rem 1.5rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid #e0e0e5;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.03);
-    }
-    h2 {
-      margin-top: 0;
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-    }
-    h3 {
-      font-size: 1.05rem;
-      margin-bottom: 0.4rem;
-      margin-top: 1.2rem;
-    }
-    p {
-      margin: 0 0 0.9rem;
-      font-size: 0.95rem;
-    }
-    .pill {
-      display: inline-block;
-      padding: 0.15rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid #e0e0e5;
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #555;
-      margin-bottom: 0.6rem;
-    }
-    .back-link {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      text-decoration: none;
-      color: #0b5fff;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; background: radial-gradient(circle at 30% 20%, rgba(109,220,255,0.12), transparent 30%), radial-gradient(circle at 70% 80%, rgba(160,246,104,0.12), transparent 30%), #05060b; color: var(--text); line-height: 1.6; }
+    a { color: inherit; }
+    header { padding: 2.5rem 1.5rem 1.5rem; max-width: 1100px; margin: 0 auto; display: flex; gap: 1.5rem; align-items: center; justify-content: space-between; }
+    .title { max-width: 760px; }
+    h1 { font-size: clamp(2rem, 3vw, 2.7rem); margin-bottom: 0.5rem; }
+    p.lead { color: var(--muted); max-width: 680px; }
+    .pill { display: inline-flex; padding: 0.3rem 0.75rem; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); letter-spacing: 0.1em; font-size: 0.8rem; text-transform: uppercase; }
+    main { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 3rem; display: grid; gap: 1.5rem; }
+    section { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.4rem; box-shadow: 0 10px 60px rgba(0,0,0,0.4); }
+    h2 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+    .stat { font-size: 1.4rem; font-weight: 700; color: var(--accent); margin-bottom: 0.15rem; }
+    .muted { color: var(--muted); }
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+    .node { padding: 1rem; border-radius: 12px; border: 1px dashed var(--border); background: rgba(255,255,255,0.03); position: relative; }
+    .node::after { content: "→"; position: absolute; right: -0.7rem; top: 50%; transform: translateY(-50%); color: var(--muted); }
+    .node:last-child::after { display: none; }
+    .columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    ul { padding-left: 1.1rem; color: var(--muted); }
+    li { margin-bottom: 0.35rem; }
+    .cta { text-align: center; color: var(--muted); padding-top: 0.6rem; }
+    .cta a { color: var(--accent); font-weight: 600; }
+    @media (max-width: 960px) { header { flex-direction: column; align-items: flex-start; } .flow { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <header>
-    <h1>Asset Catalog – National Impact Analysis</h1>
-    <p>
-      How standardized asset governance strengthens everyday life in the United States.
-    </p>
+    <div class="title">
+      <div class="pill">Impact reel</div>
+      <h1>Asset Catalog – National impact, visualized</h1>
+      <p class="lead">A graphic walkthrough of how standardized asset governance speeds services, lowers outages, and keeps citizen experiences predictable.</p>
+    </div>
+    <div>
+      <a class="pill" href="asset-catalog-whitepaper.html">Read the whitepaper</a>
+    </div>
   </header>
 
   <main>
     <section>
-      <div class="pill">Societal Impact</div>
-      <h2>Asset Catalog Use Cases</h2>
+      <h2>Societal outcomes at a glance</h2>
+      <div class="grid">
+        <div>
+          <div class="stat">↻ Faster restorations</div>
+          <p class="muted">Network repairs and service appointments accelerate when materials, approvals, and BOMs are synchronized.</p>
+        </div>
+        <div>
+          <div class="stat">☑ Trustworthy data</div>
+          <p class="muted">Deduped, validated parts data eliminates mis-picks, wrong-bill shipments, and scheduling rework.</p>
+        </div>
+        <div>
+          <div class="stat">📦 Better availability</div>
+          <p class="muted">Households experience fewer cancellations because commitments match real stock and compatible substitutes.</p>
+        </div>
+        <div>
+          <div class="stat">🛰 AI-ready</div>
+          <p class="muted">Lineage and quality labels keep models stable for forecasting, routing, and proactive maintenance.</p>
+        </div>
+      </div>
+    </section>
 
-      <h3>How Standardized Asset Governance Strengthens Everyday Life in the United States</h3>
-      <p><em>A societal-impact narrative based on the Asset Catalog Management Framework</em></p>
+    <section>
+      <h2>Dataflow diagram – from definition to delivery</h2>
+      <div class="flow">
+        <div class="node">
+          <strong>Define</strong>
+          <p class="muted">Standard templates capture attributes, safety flags, and compatibility markers.</p>
+        </div>
+        <div class="node">
+          <strong>Approve</strong>
+          <p class="muted">Role-based governance validates specs, supplier certs, and lifecycle readiness.</p>
+        </div>
+        <div class="node">
+          <strong>Distribute</strong>
+          <p class="muted">APIs push gold records to planning, warehouse, finance, and partner portals.</p>
+        </div>
+        <div class="node">
+          <strong>Monitor</strong>
+          <p class="muted">Dashboards track usage, substitutions, and incidents for rapid iteration.</p>
+        </div>
+      </div>
+    </section>
 
-      <p><strong>Introduction: Invisible Systems, Visible Benefits</strong></p>
-      <p>
-        Much of what enables modern life in the United States happens behind the scenes. Families rely on broadband
-        networks, dependable electricity, well-maintained infrastructure, timely healthcare services, and accessible
-        consumer goods. While these public-facing experiences seem simple, each one depends on thousands of internal
-        operations functioning correctly and consistently.
-      </p>
-      <p>
-        A major factor in these operations is the accuracy and governance of the parts and materials that keep systems
-        running. When foundational data is incomplete, duplicated, or inconsistent across internal platforms, the
-        effects reach citizens quickly: delayed service appointments, longer outages, postponed medical treatments,
-        unexpected shortages, and higher operating costs that ultimately influence pricing.
-      </p>
-      <p>
-        The Asset Catalog Management Framework addresses these challenges by providing a structured, reliable method for
-        defining, approving, validating, and synchronizing critical asset data across the systems that depend on it.
-        Although the framework operates within organizations, the benefits surface externally—improving reliability,
-        speed, safety, and affordability across daily life in ways that citizens experience directly.
-      </p>
+    <section>
+      <h2>Everyday-life storyboards</h2>
+      <div class="columns">
+        <div>
+          <h3>Reliable digital life</h3>
+          <ul>
+            <li>Service appointments succeed the first time because crews receive compatible, verified parts.</li>
+            <li>Self-service scheduling respects inventory and technician capabilities.</li>
+            <li>Outage windows shrink as field teams pull from a clean, substitution-aware catalog.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Healthcare and safety</h3>
+          <ul>
+            <li>Hospitals swap approved equivalents without revalidating sterilization or safety requirements.</li>
+            <li>Preventative maintenance stays on cadence with precise BOMs and location-level stock signals.</li>
+            <li>Emergency kits are replenished with tamper-proof audit trails.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Community infrastructure</h3>
+          <ul>
+            <li>Smart-city devices share common IDs so utilities, transit, and builders coordinate upgrades.</li>
+            <li>Procurement teams avoid duplicates and expired standards, reducing costs and delays.</li>
+            <li>Citizens benefit from faster approvals for permits, installs, and repairs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-      <p><strong>1. A More Reliable Digital Experience for Households</strong></p>
-      <p>
-        Broadband and wireless connectivity have become essential for work, education, telehealth, and everyday
-        communication. Yet something as simple as mismatched equipment data inside telecom systems can disrupt the
-        installation of home internet—resulting in technicians arriving with incompatible devices, failed activations,
-        or repeated visits to resolve avoidable errors.
-      </p>
-      <p>
-        By ensuring that every piece of equipment—from home routers to fiber distribution units—is accurately defined,
-        validated, and recognized across engineering, provisioning, field operations, and billing systems, the Asset
-        Catalog Framework makes service delivery more predictable.
-      </p>
-      <p>
-        When internal data aligns, installations occur on time, households get online faster, and technicians can
-        complete their jobs without delays. Rural deployment efforts—often strained by logistical challenges—also
-        benefit, as standardized asset governance removes ambiguity about which components are required for each
-        location. In this way, a back-office data framework directly improves digital access for families across the
-        country.
-      </p>
-
-      <p><strong>2. Faster and Safer Recovery During Utility Outages</strong></p>
-      <p>
-        Electric utilities rely on thousands of specialized components to maintain and restore service. During storms or
-        equipment failures, field teams must quickly identify which replacement parts are compatible and available. When
-        asset data is inconsistent or outdated, crews may arrive with incorrect components, extending outages and
-        increasing safety risks.
-      </p>
-      <p>
-        Standardized asset governance ensures that specifications, alternates, and compatibility information are
-        accurate and synchronized across dispatch, procurement, engineering, and inventory systems. As a result,
-        restoration teams spend less time troubleshooting data inconsistencies and more time resolving the outage
-        itself.
-      </p>
-      <p>
-        For the public, this means shorter downtime for homes, schools, and businesses, as well as more predictable
-        emergency response. Accurate, validated specifications also reduce risks to field crews and to the communities
-        they serve. A reliable grid depends on reliable data; the framework helps provide both.
-      </p>
-
-      <p><strong>3. Greater Reliability in Healthcare Equipment</strong></p>
-      <p>
-        Hospitals and clinics manage a wide range of devices—from imaging machines to ventilators to diagnostic
-        equipment—each of which requires precise components for maintenance and repair. When part definitions are
-        unclear or inconsistent, biomedical teams must spend additional time locating correct components or verifying
-        specifications manually. This can slow down critical procedures, extend equipment downtime, and create
-        regulatory complications.
-      </p>
-      <p>
-        The Asset Catalog Framework ensures that medical components are consistently classified, approved, and traceable
-        across internal systems. Repairs become faster and safer, diagnostic and treatment equipment remains available
-        for use, and patient care continues without unnecessary interruption.
-      </p>
-      <p>
-        While the public may never see the internal data that supports medical operations, they feel the effects when
-        equipment works reliably and treatment is not delayed.
-      </p>
-
-      <p><strong>4. More Predictable Manufacturing and Stable Consumer Pricing</strong></p>
-      <p>
-        Manufacturers rely on accurate asset data to manage production, forecast inventory, and coordinate their supply
-        chains. When part records contain duplicates or inconsistencies, production lines stall, procurement orders
-        fail, and materials are wasted. These inefficiencies often translate into product delays and cost fluctuations
-        that affect consumers.
-      </p>
-      <p>
-        Standardized asset governance brings clarity across procurement, engineering, logistics, and production teams.
-        When everyone operates from a shared, validated source of truth, manufacturers avoid unnecessary rework, reduce
-        material waste, and maintain consistent production schedules.
-      </p>
-      <p>
-        Citizens benefit in ways that are tangible but often unnoticed: products are available when needed, supply
-        disruptions are minimized, and unnecessary cost burdens do not ripple into pricing.
-      </p>
-
-      <p><strong>5. Improved Public Infrastructure Delivery</strong></p>
-      <p>
-        Infrastructure projects—transportation systems, municipal services, public facilities—depend on accurate
-        specifications for the materials and components they use. A misplaced part classification or outdated
-        specification can halt a streetlight repair, prolong a transit system fix, or delay a major construction
-        project.
-      </p>
-      <p>
-        By ensuring that engineering teams, procurement departments, and field crews work from a consistent and
-        validated catalog, the framework reduces friction in public works projects. Repairs progress more quickly,
-        materials are sourced accurately, and interruptions to public services are minimized.
-      </p>
-      <p>
-        Citizens experience the benefits as shorter construction timelines, fewer service disruptions, and safer, more
-        reliable infrastructure.
-      </p>
-
-      <p><strong>6. Return on Investment (ROI):</strong></p>
-      <p><strong>Why Standardized Asset Governance Solves Long-Standing Pain Points</strong></p>
-      <p>
-        Organizations implementing standardized asset governance gain measurable improvements in efficiency, accuracy,
-        and service reliability. The return on investment is multi-dimensional, affecting not only internal operations
-        but the communities those organizations serve.
-      </p>
-      <p>
-        The greatest ROI comes from reducing friction—removing the unseen obstacles that cause delays or generate
-        unnecessary work. When internal data is consistent:
-      </p>
-      <p>
-        Operational speed increases. Teams spend less time resolving mismatches and more time delivering services.
-      </p>
-      <p>
-        Resources are used more effectively. Waste, rework, and duplicate procurement decrease significantly.
-      </p>
-      <p>
-        Errors are prevented before they reach the public. Automated guardrails ensure that internal systems align,
-        reducing service failures downstream.
-      </p>
-      <p>
-        Service dependability increases. When organizations function smoothly internally, citizens experience more
-        reliable outcomes externally.
-      </p>
-      <p>
-        These improvements create a compounding effect: better data leads to better operations, which leads to better
-        service delivery and better public satisfaction.
-      </p>
-      <p>
-        The ROI is demonstrated not just in cost savings but in improved community experiences, reduced disruption, and
-        greater operational resilience—all outcomes that directly improve quality of life.
-      </p>
-
-      <p><strong>7. Foundations for AI and Automation</strong></p>
-      <p>
-        As industries adopt AI-enabled systems, the importance of structured, validated asset data increases
-        significantly. AI models depend on high-quality inputs; without them, predictions fail, automations misfire, and
-        digital transformations stall.
-      </p>
-      <p>
-        Standardized asset governance forms the essential foundation for AI in several ways:
-      </p>
-      <p>
-        <strong>Predictive maintenance</strong><br>
-        AI can only predict equipment failures or maintenance needs when underlying asset specifications are clean,
-        consistent, and historically reliable.
-      </p>
-      <p>
-        <strong>Automated procurement and inventory management</strong><br>
-        Automation requires clear relationships between parts, alternates, vendors, and specifications. Without
-        structured data, organizations cannot trust automated purchasing or replenishment.
-      </p>
-      <p>
-        <strong>Digital twins, simulation models, and planning systems</strong><br>
-        These advanced tools require precise, interconnected asset metadata. Ambiguity in part definitions undermines
-        their usefulness.
-      </p>
-      <p>
-        <strong>Intelligent network and grid optimization</strong><br>
-        Telecom and utility operators increasingly rely on AI to optimize routing, load balancing, and network
-        performance. Accurate component data is foundational for these systems to function correctly.
-      </p>
-      <p>
-        By enforcing data quality at the source, the Asset Catalog Framework enables organizations to adopt AI
-        confidently and responsibly. The broader public benefits from more resilient networks, smarter infrastructure,
-        and faster, data-driven service delivery.
-      </p>
-
-      <p><strong>Conclusion</strong></p>
-      <p>
-        Although asset governance operates deep inside organizational systems, its influence extends into everyday life.
-        It determines how quickly a family gets internet installed, how long a community waits during a power outage,
-        how reliably medical equipment functions, how smoothly public infrastructure is maintained, and how consistently
-        products are available on store shelves.
-      </p>
-      <p>
-        The Asset Catalog Management Framework strengthens these foundational processes, enabling organizations to
-        operate with greater precision, efficiency, and accountability. As industries evolve toward more automated and
-        AI-enabled environments, the importance of consistent and trustworthy asset data will only increase.
-      </p>
-      <p>
-        Reliable internal systems create reliable public outcomes. This framework helps ensure that the systems
-        Americans depend on—digital, physical, and civic—operate with the consistency and quality they deserve.
-      </p>
-
-      <a class="back-link" href="index.html">&larr; Back to portfolio</a>
+    <section>
+      <h2>Process checkpoints</h2>
+      <div class="columns">
+        <div>
+          <h3>Data trust</h3>
+          <ul>
+            <li>Multi-source dedupe and lineage tagging keep a single truth across ERPs and partner feeds.</li>
+            <li>Change windows and alerting prevent silent drift that causes downstream outages.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Operations</h3>
+          <ul>
+            <li>Guided authoring enforces naming, schema, and safety metadata every time.</li>
+            <li>SLAs tie catalog completeness to fulfillment, billing, and support workflows.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Experience</h3>
+          <ul>
+            <li>Dynamic substitutions keep promises even during supply shocks.</li>
+            <li>Transparent lineage builds confidence for regulators, auditors, and customers.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cta">Continue to the detailed framework → <a href="asset-catalog-whitepaper.html">whitepaper</a></div>
     </section>
   </main>
 </body>

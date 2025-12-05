@@ -2,1086 +2,303 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Venkata Parimi – Systems & Lifecycle Frameworks Portfolio</title>
+  <title>Venkata Parimi – Systems Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <style>
     :root {
-      --bg: #f5f7fb;
-      --bg-alt: #ffffff;
-      --card-bg: #ffffff;
-      --border: #e2e8f0;
-      --accent: #2563eb;
-      --accent-soft: rgba(37,99,235,0.12);
-      --accent-strong: rgba(37,99,235,0.2);
-      --text: #0f172a;
-      --muted: #475569;
-      --muted-soft: #64748b;
-      --highlight: #16a34a;
+      --bg: #05060b;
+      --bg-alt: #0c0e19;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --accent: #6ddcff;
+      --accent-2: #7c3aed;
+      --accent-3: #a0f668;
+      --text: #e5e7ef;
+      --muted: #9ca3af;
+      --glow: 0 15px 80px rgba(109,220,255,0.2), 0 0 0 1px rgba(255,255,255,0.04);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #f8fafc 0, #eef2ff 45%, #e2e8f0 100%);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(109,220,255,0.08), transparent 26%),
+                  radial-gradient(circle at 80% 10%, rgba(124,58,237,0.12), transparent 30%),
+                  radial-gradient(circle at 30% 75%, rgba(160,246,104,0.12), transparent 30%),
+                  var(--bg);
       color: var(--text);
       line-height: 1.65;
-      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    /* Top Navigation */
     .nav-shell {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(20px);
-      background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.85), transparent);
-      border-bottom: 1px solid rgba(148,163,184,0.25);
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(5,6,11,0.9), rgba(5,6,11,0.65));
+      border-bottom: 1px solid var(--border);
     }
-
     nav {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0.6rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
+      max-width: 1200px; margin: 0 auto; padding: 0.75rem 1.25rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .orb {
+      width: 38px; height: 38px; border-radius: 999px;
+      background: radial-gradient(circle at 35% 30%, rgba(109,220,255,0.9), transparent 55%),
+                  radial-gradient(circle at 70% 60%, rgba(124,58,237,0.9), transparent 45%),
+                  #0b1020;
+      border: 1px solid var(--border);
+      box-shadow: var(--glow);
+    }
+    .brand h1 { font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; }
+    .nav-links { display: flex; gap: 0.8rem; color: var(--muted); font-size: 0.92rem; }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .logo-orb {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(56,189,248,0.85) 0, transparent 60%),
-        radial-gradient(circle at 70% 80%, rgba(34,197,94,0.7) 0, transparent 55%),
-        #020617;
-      border: 1px solid rgba(148,163,184,0.35);
-      box-shadow:
-        0 0 0 1px rgba(15,23,42,0.9),
-        0 12px 35px rgba(15,23,42,0.9);
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-text span:first-child {
-      font-size: 0.92rem;
-      font-weight: 600;
-    }
-
-    .brand-text span:last-child {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--muted);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.1rem;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .nav-links a {
-      padding: 0.3rem 0.2rem;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -0.2rem;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--highlight));
-      border-radius: 999px;
-      transition: width 0.18s ease-out;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    @media (max-width: 720px) {
-      .nav-links {
-        display: none;
-      }
-    }
-
-    /* Layout containers */
-    .page {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 1.25rem 3rem;
-    }
-
-    section {
-      margin-top: 2.8rem;
-    }
+    main { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.25rem 3.5rem; position: relative; }
 
     /* Hero */
     .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
-      gap: 2.5rem;
-      padding-top: 2.4rem;
-      align-items: center;
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2.25rem; align-items: center;
+      padding: 2rem; border: 1px solid var(--border); border-radius: 20px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: var(--glow);
+      position: relative; overflow: hidden;
     }
-
-    @media (max-width: 960px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.2rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: radial-gradient(circle at top left, rgba(37,99,235,0.14), rgba(255,255,255,0.6));
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 0.7rem;
-    }
-
-    .hero-title {
-      font-size: clamp(2.15rem, 3.1vw, 2.7rem);
-      font-weight: 650;
-      line-height: 1.15;
-      margin-bottom: 0.65rem;
-    }
-
-    .hero-title span {
-      background: linear-gradient(135deg, var(--accent), var(--highlight));
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-sub {
-      font-size: 0.98rem;
-      color: var(--muted);
-      max-width: 34rem;
-      margin-bottom: 1.3rem;
-    }
-
-    .hero-metrics {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .metric {
-      min-width: 120px;
-    }
-
-    .metric strong {
-      display: block;
-      font-size: 1.1rem;
-    }
-
-    .metric span {
-      font-size: 0.78rem;
-      color: var(--muted-soft);
-    }
-
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-
-    .btn-primary, .btn-ghost {
-      border-radius: 999px;
-      padding: 0.55rem 1.1rem;
-      font-size: 0.86rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      cursor: pointer;
-      border: 1px solid transparent;
-      background: none;
-      color: inherit;
-    }
-
-    .btn-primary {
-      background: radial-gradient(circle at top left, rgba(37,99,235,0.8), rgba(37,99,235,0.65));
-      border-color: rgba(37,99,235,0.7);
-      box-shadow: 0 14px 35px rgba(37,99,235,0.35);
-      color: #ffffff;
-    }
-
-    .btn-primary:hover {
-      filter: brightness(1.08);
-    }
-
-    .btn-ghost {
-      border-color: rgba(148,163,184,0.6);
-      background: var(--bg-alt);
-      box-shadow: 0 6px 18px rgba(15,23,42,0.08);
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--accent);
-    }
-
-    /* Hero right – animated panel */
-    .hero-orbit {
-      position: relative;
-      min-height: 260px;
-      border-radius: 20px;
-      padding: 1.2rem;
-      background:
-        radial-gradient(circle at top left, rgba(37,99,235,0.18), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(16,185,129,0.16), transparent 60%),
-        linear-gradient(135deg, #ffffff, #f1f5f9);
-      border: 1px solid rgba(148,163,184,0.4);
-      box-shadow: 0 20px 42px rgba(15,23,42,0.12);
-      overflow: hidden;
-    }
-
-    .hero-orbit-inner {
-      position: absolute;
-      inset: 0;
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(109,220,255,0.16), transparent 45%);
       pointer-events: none;
     }
-
-    .orbit-ring {
-      position: absolute;
-      border-radius: 999px;
-      border: 1px dashed rgba(148,163,184,0.4);
-      animation: spin 26s linear infinite;
+    .hero-left { position: relative; z-index: 1; }
+    .kicker { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.2rem 0.7rem;
+      border: 1px solid var(--border); border-radius: 999px; color: var(--muted);
+      font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem;
+      background: rgba(255,255,255,0.02);
     }
+    .hero h2 { font-size: clamp(2rem, 3vw, 2.7rem); margin-bottom: 0.8rem; line-height: 1.1; }
+    .hero h2 span { color: var(--accent); }
+    .hero p { color: var(--muted); max-width: 36rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.1rem 0 1.6rem; }
+    .tag { padding: 0.35rem 0.8rem; border-radius: 10px; background: rgba(109,220,255,0.1); border: 1px solid var(--border); font-size: 0.88rem; color: #c2e8ff; }
+    .cta-row { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+    .btn { padding: 0.65rem 1.1rem; border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 0.95rem; }
+    .btn.primary { background: linear-gradient(120deg, #6ddcff, #7c3aed); color: #0b0f1c; box-shadow: 0 10px 50px rgba(109,220,255,0.3); }
+    .btn.ghost { border-color: var(--border); color: var(--text); background: rgba(255,255,255,0.03); }
 
-    .orbit-ring:nth-child(1) {
-      width: 220px; height: 220px;
-      top: 12%; left: 8%;
-    }
+    .hero-visual { position: relative; height: 360px; }
+    #heroScene { width: 100%; height: 100%; border-radius: 18px; overflow: hidden; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06), rgba(7,10,20,0.8)); border: 1px solid var(--border); box-shadow: var(--glow); }
+    .parallax { position: absolute; inset: 0; pointer-events: none; }
 
-    .orbit-ring:nth-child(2) {
-      width: 280px; height: 280px;
-      top: 26%; left: 25%;
-      animation-direction: reverse;
-      animation-duration: 34s;
-    }
+    /* Infographic sections */
+    .section-title { display: flex; align-items: center; gap: 0.5rem; margin: 3rem 0 1rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.85rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1rem; box-shadow: var(--glow); }
+    .card h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+    .card p { color: var(--muted); font-size: 0.95rem; }
+    .stat { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
 
-    .orbit-badge {
-      position: absolute;
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      backdrop-filter: blur(20px);
-      background: rgba(255,255,255,0.9);
-      border: 1px solid rgba(148,163,184,0.45);
-      box-shadow: 0 18px 38px rgba(15,23,42,0.18);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
+    .flow { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .flow .node { background: linear-gradient(145deg, rgba(124,58,237,0.14), rgba(255,255,255,0.03)); border: 1px solid var(--border); padding: 1rem; border-radius: 12px; position: relative; }
+    .flow .node::after { content: "→"; position: absolute; right: -0.9rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: 700; }
+    .flow .node:last-child::after { display: none; }
 
-    .orbit-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
+    .mini { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin-top: 0.6rem; }
+    .mini div { padding: 0.75rem; border-radius: 10px; background: rgba(255,255,255,0.03); border: 1px dashed var(--border); color: var(--muted); font-size: 0.93rem; }
 
-    .orbit-badge:nth-child(3) { top: 12%; right: 15%; }
-    .orbit-badge:nth-child(4) { bottom: 18%; left: 14%; }
-    .orbit-badge:nth-child(5) { bottom: 8%; right: 24%; }
-
-    .hero-orbit-footer {
-      position: absolute;
-      left: 1.2rem;
-      right: 1.2rem;
-      bottom: 1rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      pointer-events: none;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Section headers */
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .section-header h2 {
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-
-    .section-header p {
-      font-size: 0.86rem;
-      color: var(--muted);
-      max-width: 32rem;
-    }
-
-    /* Impact strip */
-    .impact-strip {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 1rem;
-    }
-
-    .impact-card {
-      border-radius: 14px;
-      background: radial-gradient(circle at top left, rgba(37,99,235,0.12), #ffffff 65%);
-      border: 1px solid rgba(148,163,184,0.45);
-      padding: 0.9rem 1rem;
-      font-size: 0.83rem;
-      box-shadow: 0 10px 24px rgba(15,23,42,0.08);
-    }
-
-    .impact-card strong {
-      display: block;
-      margin-bottom: 0.28rem;
-      color: var(--text);
-    }
-
-    .impact-card span {
-      color: var(--muted);
-    }
-
-    /* Projects layout */
-    .projects-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 2.4fr);
-      gap: 1.75rem;
-    }
-
-    @media (max-width: 960px) {
-      .projects-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .filter-pill {
-      border-radius: 999px;
-      padding: 0.25rem 0.8rem;
-      font-size: 0.78rem;
-      border: 1px solid rgba(148,163,184,0.55);
-      color: var(--muted);
-      background: #ffffff;
-      box-shadow: 0 8px 18px rgba(15,23,42,0.06);
-      cursor: pointer;
-    }
-
-    .filter-pill.active {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      color: var(--text);
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.85rem;
-    }
-
-    @media (max-width: 720px) {
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .project-card {
-      position: relative;
-      border-radius: 14px;
-      padding: 0.9rem 0.95rem;
-      background: linear-gradient(135deg, #ffffff, #f8fafc);
-      border: 1px solid var(--border);
-      box-shadow: 0 18px 38px rgba(15,23,42,0.12);
-      cursor: pointer;
-      overflow: hidden;
-      transition:
-        transform 0.15s ease-out,
-        box-shadow 0.15s ease-out,
-        border-color 0.15s ease-out,
-        background 0.15s ease-out;
-    }
-
-    .project-card::before {
-      content: "";
-      position: absolute;
-      inset: -50%;
-      background: radial-gradient(circle at top, rgba(37,99,235,0.18), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.25s ease-out;
-    }
-
-    .project-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(37,99,235,0.55);
-      background: linear-gradient(135deg, #ffffff, #eef2ff);
-      box-shadow: 0 24px 58px rgba(15,23,42,0.16);
-    }
-
-    .project-card:hover::before {
-      opacity: 1;
-    }
-
-    .project-card.active {
-      border-color: var(--accent);
-      box-shadow: 0 24px 64px rgba(15,23,42,0.2);
-    }
-
-    .project-tag {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted-soft);
-      margin-bottom: 0.3rem;
-    }
-
-    .project-title {
-      font-size: 0.98rem;
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-
-    .project-sub {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.45rem;
-    }
-
-    .project-impact-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      border-radius: 999px;
-      padding: 0.12rem 0.5rem;
-      font-size: 0.7rem;
-      border: 1px solid rgba(34,197,94,0.7);
-      color: #bbf7d0;
-      background: rgba(22,101,52,0.38);
-    }
-
-    .placeholder {
-      opacity: 0.7;
-      border-style: dashed;
-    }
-
-    /* Project detail panel */
-    .project-detail {
-      border-radius: 16px;
-      padding: 1.1rem 1.1rem 1rem;
-      background: radial-gradient(circle at top left, rgba(37,99,235,0.14), #ffffff 70%),
-                  #ffffff;
-      border: 1px solid rgba(148,163,184,0.45);
-      box-shadow: 0 18px 50px rgba(15,23,42,0.12);
-      min-height: 240px;
-    }
-
-    .project-detail-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted-soft);
-      margin-bottom: 0.3rem;
-    }
-
-    .project-detail h3 {
-      font-size: 1.08rem;
-      margin-bottom: 0.35rem;
-    }
-
-    .project-detail p {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
-
-    .project-detail ul {
-      font-size: 0.83rem;
-      color: var(--muted);
-      padding-left: 1.1rem;
-      margin-bottom: 0.65rem;
-    }
-
-    .project-detail li {
-      margin-bottom: 0.25rem;
-    }
-
-    .project-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.4rem;
-    }
-
-    .project-links a {
-      font-size: 0.78rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      color: var(--accent);
-      background: #ffffff;
-      box-shadow: 0 12px 24px rgba(15,23,42,0.08);
-    }
-
-    .project-links a:hover {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-    }
-
-    /* Footer / contact */
-    .footer {
-      margin-top: 3rem;
-      padding: 1.5rem 0 0.5rem;
-      border-top: 1px solid rgba(148,163,184,0.25);
-      font-size: 0.8rem;
-      color: var(--muted-soft);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.45s ease-out, transform 0.45s ease-out;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    footer { margin: 3rem 0 0; color: var(--muted); font-size: 0.9rem; text-align: center; padding-bottom: 2rem; }
+    @media (max-width: 960px) { .hero { grid-template-columns: 1fr; } .flow { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <div class="nav-shell">
     <nav>
-      <div class="nav-left">
-        <div class="logo-orb"></div>
-        <div class="brand-text">
-          <span>Venkata Parimi</span>
-          <span>Senior Technical Product Owner</span>
-        </div>
+      <div class="brand">
+        <div class="orb"></div>
+        <h1>Systems & Lifecycle Frameworks</h1>
       </div>
       <div class="nav-links">
-        <a href="#top" class="nav-link active">Home</a>
-        <a href="#impact" class="nav-link">Impact</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#impact">Impact</a>
+        <a href="#process">Process</a>
       </div>
     </nav>
   </div>
 
-  <main class="page" id="top">
-    <!-- HERO -->
-    <section class="hero reveal">
-      <div>
-        <div class="hero-kicker">
-          <span>Systems · Data · National-scale impact</span>
+  <main>
+    <section class="hero">
+      <div class="hero-left">
+        <div class="kicker">Product operations · data trust · automation</div>
+        <h2>Interactive portfolio of <span>asset, inventory, inspection</span> systems with live-ready visuals.</h2>
+        <p>See how lifecycle governance frameworks translate into resilient services, fast fulfillment, and reliable inspections—all visualized as dynamic, animated stories.</p>
+        <div class="tags">
+          <div class="tag">Data Trust Fabric</div>
+          <div class="tag">AI-ready Catalogs</div>
+          <div class="tag">Closed-loop SLOs</div>
+          <div class="tag">3D Interaction</div>
         </div>
-        <h1 class="hero-title">
-          Building tools, systems, and processes that
-          <span>unlock operational capacity</span> for the U.S. economy.
-        </h1>
-        <p class="hero-sub">
-          Portfolio of frameworks and products led by Venkata Parimi, focused on
-          de-duplicating work, strengthening data integrity, and turning complex
-          product lifecycles into scalable, automated platforms that support job creation,
-          service reliability, and growth.
-        </p>
-
-        <div class="hero-metrics">
-          <div class="metric">
-            <strong>3 core frameworks</strong>
-            <span>System Design and Architecture across Supply Chain Management, Banking, FinTech and Telecom.</span>
-          </div>
-          <div class="metric">
-            <strong>Enterprise scale</strong>
-            <span>Designed for telecom, utilities, infrastructure, and manufacturing ecosystems.</span>
-          </div>
-          <div class="metric">
-            <strong>Human impact</strong>
-            <span>Reducing bottlenecks so engineers, technicians, and planners can do higher-value work.</span>
-          </div>
-        </div>
-
-        <div class="hero-cta">
-          <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-            View projects
-          </button>
-          <button class="btn-ghost" onclick="document.getElementById('impact').scrollIntoView({behavior:'smooth'})">
-            How this helps the US economy
-          </button>
+        <div class="cta-row">
+          <a class="btn primary" href="#portfolio">Explore infographics</a>
+          <a class="btn ghost" href="inventory-impact.html">Jump to live impact</a>
         </div>
       </div>
-
-      <div class="hero-orbit reveal">
-        <div class="hero-orbit-inner">
-          <div class="orbit-ring"></div>
-          <div class="orbit-ring"></div>
-
-          <div class="orbit-badge">
-            <span class="orbit-dot"></span>
-            <span>Catalog governance</span>
-          </div>
-          <div class="orbit-badge">
-            <span class="orbit-dot"></span>
-            <span>Inspection orchestration</span>
-          </div>
-          <div class="orbit-badge">
-            <span class="orbit-dot"></span>
-            <span>Inventory &amp; custody tracking</span>
-          </div>
-        </div>
-        <div class="hero-orbit-footer">
-          <span>
-            Intelligent Systems
-          </span>
-          <span>
-            Outcome: fewer failures, less rework, more capacity for innovation and job growth.
-          </span>
-        </div>
+      <div class="hero-visual">
+        <canvas id="heroScene"></canvas>
+        <div class="parallax"></div>
       </div>
     </section>
 
-    <!-- IMPACT STRIP -->
-    <section id="impact" class="reveal">
-      <div class="section-header">
-        <h2>Economic & societal impact focus</h2>
-        <p>
-          Each project is built to ease bottlenecks for large workforces and complex supply chains:
-          fewer manual corrections, faster service, and stronger accountability across national-scale
-          infrastructure.
-        </p>
-      </div>
-
-      <div class="impact-strip">
-        <div class="impact-card">
-          <strong>Operational capacity</strong>
-          <span>
-            By standardizing asset and inventory lifecycles, organizations can redeploy teams from
-            data cleanup and exception chasing to higher-value design, engineering, and planning work.
-          </span>
-        </div>
-        <div class="impact-card">
-          <strong>Job quality & safety</strong>
-          <span>
-            Clean, synchronized data means technicians and field crews see the right task, part, and
-            location the first time—fewer repeat visits, safer work, and more predictable schedules.
-          </span>
-        </div>
-        <div class="impact-card">
-          <strong>Economic resilience</strong>
-          <span>
-            Predictable inventories and lifecycle visibility reduce waste, shrinkage, and outages, helping
-            keep projects on budget and services available to citizens and businesses.
-          </span>
-        </div>
-        <div class="impact-card">
-          <strong>Readiness for AI & automation</strong>
-          <span>
-            The frameworks are built to be machine-readable from day one—creating the data backbone that
-            future AI-powered planning, routing, and forecasting tools will depend on.
-          </span>
+    <div class="section-title" id="portfolio">Portfolio snapshots</div>
+    <div class="grid">
+      <div class="card">
+        <div class="stat">Asset Catalog</div>
+        <h3>Single source of truth</h3>
+        <p>Governance playbooks that unify approvals, versioned BOMs, and AI-ready metadata across every channel.</p>
+        <div class="mini">
+          <div>Impact deck → <a href="asset-catalog-impact.html">View</a></div>
+          <div>Whitepaper → <a href="asset-catalog-whitepaper.html">Read</a></div>
         </div>
       </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="reveal">
-      <div class="section-header">
-        <h2>Project portfolio</h2>
-        <p>
-          All projects below are end-to-end architectures owned and driven by Venkata Parimi as a
-          senior technical product owner—each connecting strategy, data, workflow, and integration.
-        </p>
-      </div>
-
-      <div class="projects-layout">
-        <!-- Left: Cards / filters -->
-        <div>
-          <div class="filters">
-            <button class="filter-pill active" data-filter="all">All</button>
-            <button class="filter-pill" data-filter="catalog">Asset catalog</button>
-            <button class="filter-pill" data-filter="inspection">Inspection lifecycle</button>
-            <button class="filter-pill" data-filter="inventory">Inventory &amp; custody</button>
-          </div>
-
-          <div class="projects-grid" id="projectGrid">
-            <!-- Project 1 -->
-            <article
-              class="project-card"
-              data-id="asset-catalog"
-              data-type="catalog"
-            >
-              <div class="project-tag">Framework · Data governance</div>
-              <div class="project-title">Asset Catalog Management</div>
-              <div class="project-sub">
-                Centralized lifecycle for parts and assets, with governance, duplicate prevention,
-                and multi-system synchronization.
-              </div>
-              <div class="project-impact-chip">
-                <span>Impact:</span> less waste, faster onboarding, higher data trust
-              </div>
-            </article>
-
-            <!-- Project 2 -->
-            <article
-              class="project-card"
-              data-id="inspection"
-              data-type="inspection"
-            >
-              <div class="project-tag">Framework · Field operations</div>
-              <div class="project-title">Inspection & Asset Management</div>
-              <div class="project-sub">
-                Multi-tier inspection engine that moves organizations from reactive to proactive and
-                predictive maintenance.
-              </div>
-              <div class="project-impact-chip">
-                <span>Impact:</span> fewer outages, higher uptime, safer work
-              </div>
-            </article>
-
-            <!-- Project 3 -->
-            <article
-              class="project-card"
-              data-id="inventory"
-              data-type="inventory"
-            >
-              <div class="project-tag">Framework · Inventory & finance</div>
-              <div class="project-title">Inventory & Asset Lifecycle</div>
-              <div class="project-sub">
-                End-to-end custody tracking that aligns physical movements with ERP, Fixed Assets,
-                and audit requirements.
-              </div>
-              <div class="project-impact-chip">
-                <span>Impact:</span> reduced shrinkage, cleaner audits, better capital use
-              </div>
-            </article>
-
-            <!-- Placeholder projects 4–10 -->
-            <article class="project-card placeholder" data-id="placeholder-1" data-type="placeholder">
-              <div class="project-tag">Future project</div>
-              <div class="project-title">Project 4 – Placeholder</div>
-              <div class="project-sub">
-                Reserved for an upcoming framework (e.g., network resilience, demand planning, or
-                AI-assisted order orchestration).
-              </div>
-            </article>
-
-            <article class="project-card placeholder" data-id="placeholder-2" data-type="placeholder">
-              <div class="project-tag">Future project</div>
-              <div class="project-title">Project 5 – Placeholder</div>
-              <div class="project-sub">
-                Reserved for a future initiative with similar focus on removing bottlenecks at scale.
-              </div>
-            </article>
-
-            <article class="project-card placeholder" data-id="placeholder-3" data-type="placeholder">
-              <div class="project-tag">Future project</div>
-              <div class="project-title">Project 6 – Placeholder</div>
-              <div class="project-sub">
-                Placeholder for a new system or integration pattern to be added to this portfolio.
-              </div>
-            </article>
-
-            <article class="project-card placeholder" data-id="placeholder-4" data-type="placeholder">
-              <div class="project-tag">Future project</div>
-              <div class="project-title">Project 7 – Placeholder</div>
-              <div class="project-sub">
-                Slot reserved for additional work in national-scale asset or operations optimization.
-              </div>
-            </article>
-
-            <article class="project-card placeholder" data-id="placeholder-5" data-type="placeholder">
-              <div class="project-tag">Future project</div>
-              <div class="project-title">Project 8 – Placeholder</div>
-              <div class="project-sub">Additional framework to be documented and linked here.</div>
-            </article>
-
-            <article class="project-card placeholder" data-id="placeholder-6" data-type="placeholder">
-              <div class="project-tag">Future project</div>
-              <div class="project-title">Project 9 – Placeholder</div>
-              <div class="project-sub">Additional framework to be documented and linked here.</div>
-            </article>
-
-            <article class="project-card placeholder" data-id="placeholder-7" data-type="placeholder">
-              <div class="project-tag">Future project</div>
-              <div class="project-title">Project 10 – Placeholder</div>
-              <div class="project-sub">Additional framework to be documented and linked here.</div>
-            </article>
-          </div>
-        </div>
-
-        <!-- Right: Detail panel -->
-        <aside class="project-detail" id="projectDetail">
-          <div class="project-detail-label">Selected project</div>
-          <h3 id="detailTitle">Asset Catalog Management</h3>
-          <p id="detailSummary">
-            A centralized Asset Catalog lifecycle that replaces spreadsheet-driven part management with a governed,
-            API-integrated system. It standardizes how parts are requested, approved, validated, and synchronized across
-            PCM, Oracle, Agile, and Scale, eliminating duplicate records and aligning engineering, procurement, and
-            finance.
-          </p>
-          <ul id="detailBullets">
-            <li>Prevents phantom inventory and catalog pollution through duplicate and alternate detection.</li>
-            <li>Dynamic approvals based on fields and commodity type, reducing cycle time without losing governance.</li>
-            <li>End-to-end status transitions (Draft → Product Synced) visible to business and technical stakeholders.</li>
-          </ul>
-          <div class="project-links" id="detailLinks">
-            <a href="asset-catalog-whitepaper.html">Read whitepaper</a>
-            <a href="asset-catalog-impact.html">National impact analysis</a>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- CONTACT / FOOTER -->
-    <section id="contact" class="reveal">
-      <div class="section-header">
-        <h2>Contact & collaboration</h2>
-        <p>
-          Open to conversations with organizations modernizing their asset, inventory, and inspection ecosystems—
-          especially where operations, data, and product thinking need to come together.
-        </p>
-      </div>
-      <div class="impact-strip">
-        <div class="impact-card">
-          <strong>How this work scales</strong>
-          <span>
-            Each framework is intentionally modular: it can sit on top of existing Oracle, WMS, MDM, and field tools
-            without ripping out current investments, while still delivering measurable impact.
-          </span>
-        </div>
-        <div class="impact-card">
-          <strong>Ways to engage</strong>
-          <span>
-            Strategy and discovery, product ownership for complex lifecycle platforms, or targeted modernization of
-            critical flows like catalog governance, inspections, or reverse logistics.
-          </span>
+      <div class="card">
+        <div class="stat">Inventory</div>
+        <h3>Predictable availability</h3>
+        <p>Demand sensing, dynamic reservations, and network-aware replenishment to keep promises reliable.</p>
+        <div class="mini">
+          <div>Impact deck → <a href="inventory-impact.html">View</a></div>
+          <div>Whitepaper → <a href="inventory-whitepaper.html">Read</a></div>
         </div>
       </div>
-    </section>
+      <div class="card">
+        <div class="stat">Inspection</div>
+        <h3>Trusted compliance</h3>
+        <p>Digital twins, exception-first routing, and auditor-grade traceability for every asset lifecycle event.</p>
+        <div class="mini">
+          <div>Impact deck → <a href="inspection-impact.html">View</a></div>
+          <div>Whitepaper → <a href="inspection-whitepaper.html">Read</a></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="stat">Order Fulfillment</div>
+        <h3>Zero-friction promise</h3>
+        <p>Commitment engines that blend catalog integrity with inventory signals to ship exactly what was promised.</p>
+        <div class="mini">
+          <div>Whitepaper → <a href="order-fulfillment-whitepaper.html">Read</a></div>
+        </div>
+      </div>
+    </div>
 
-    <footer class="footer">
-      <span>&copy; <span id="year"></span> Venkata Parimi · Systems & Lifecycle Frameworks</span>
-      <span>Designed as a living portfolio—new projects and diagrams will be added as work progresses.</span>
+    <div class="section-title" id="impact">Impact reels</div>
+    <div class="flow">
+      <div class="node">
+        <h3>Discover</h3>
+        <p>3D storytelling with scrolling panels that visualize dependencies between data domains and SLOs.</p>
+      </div>
+      <div class="node">
+        <h3>Quantify</h3>
+        <p>Metric bursts (OTIF, cycle time, quality yield) mapped to process checkpoints and risk mitigations.</p>
+      </div>
+      <div class="node">
+        <h3>Operationalize</h3>
+        <p>Dynamic dataflow diagrams showing how signals route into decisions, automations, and alerts.</p>
+      </div>
+    </div>
+
+    <div class="section-title" id="process">Process maps</div>
+    <div class="grid">
+      <div class="card">
+        <h3>Design sprints</h3>
+        <p>Storyboard every lifecycle—from asset definition through inspection closeout—with motion cues for handoffs.</p>
+      </div>
+      <div class="card">
+        <h3>Data contracts</h3>
+        <p>Schema overlays highlight gold-standard attributes, lineage, and change windows to protect downstream AI.</p>
+      </div>
+      <div class="card">
+        <h3>Runbooks</h3>
+        <p>Exception-first flows animate rollback paths, human-in-the-loop checkpoints, and audit evidence trails.</p>
+      </div>
+    </div>
+
+    <div class="section-title">Dynamic dataflow</div>
+    <div class="card">
+      <div class="mini">
+        <div>Signal intake → cleanse + dedupe + classify</div>
+        <div>Decision graph → SLA-aware routing</div>
+        <div>Action → auto-fulfill, escalate, or simulate</div>
+        <div>Evidence → immutable ledger + insights</div>
+      </div>
+    </div>
+
+    <footer>
+      Built for leaders who want to see the system before they ship it.
     </footer>
   </main>
 
   <script>
-    // Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const canvas = document.getElementById('heroScene');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(55, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+    camera.position.z = 6;
 
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    revealEls.forEach(el => observer.observe(el));
-
-    // Nav active state on scroll
-    const sections = [
-      { id: 'top', link: document.querySelector('.nav-link[href="#top"]') },
-      { id: 'impact', link: document.querySelector('.nav-link[href="#impact"]') },
-      { id: 'projects', link: document.querySelector('.nav-link[href="#projects"]') },
-      { id: 'contact', link: document.querySelector('.nav-link[href="#contact"]') }
-    ];
-
-    function updateNavActive() {
-      const scrollPos = window.scrollY + 120;
-      let currentId = 'top';
-      sections.forEach(sec => {
-        const el = document.getElementById(sec.id);
-        if (el && el.offsetTop <= scrollPos) {
-          currentId = sec.id;
-        }
-      });
-      sections.forEach(sec => {
-        if (sec.link) {
-          sec.link.classList.toggle('active', sec.id === currentId);
-        }
-      });
-    }
-    window.addEventListener('scroll', updateNavActive);
-    updateNavActive();
-
-    // Project detail definitions
-    const projectData = {
-      'asset-catalog': {
-        title: 'Asset Catalog Management',
-        summary:
-          'A centralized Asset Catalog lifecycle that replaces spreadsheet-driven part management with a governed, API-integrated system. ' +
-          'It standardizes how parts are requested, approved, validated, and synchronized across PCM, Oracle, Agile, and Scale—removing duplicate records and aligning key functions.',
-        bullets: [
-          'Prevents phantom inventory and catalog pollution through duplicate/alternate detection at submission time.',
-          'Dynamic approvals based on commodity type and modified fields, reducing cycle time without weakening controls.',
-          'Multi-stage technical orchestration (PCM, Oracle, Agile, Scale) with full status transparency for business and IT.'
-        ],
-        links: [
-          { href: 'asset-catalog-whitepaper.html', label: 'Read whitepaper' },
-          { href: 'asset-catalog-impact.html', label: 'National impact analysis' }
-        ]
-      },
-      'inspection': {
-        title: 'Inspection & Asset Management',
-        summary:
-          'An automated inspection lifecycle that moves organizations from reactive maintenance to proactive and predictive operations. ' +
-          'The system merges planned, proactive, and predictive inspections into optimized field workflows tied to real usage and fault data.',
-        bullets: [
-          'Uses vendor schedules, historical defects, and predictive models to prioritize where and when to inspect.',
-          'Combines multiple inspection types into single, optimized work orders to reduce truck rolls and idle time.',
-          'Feeds inspection outcomes back into planning logic, creating a closed loop that improves failure forecasts over time.'
-        ],
-        links: [
-          { href: 'inspection-whitepaper.html', label: 'Read whitepaper' },
-          { href: 'inspection-impact.html', label: 'Sector & impact analysis' }
-        ]
-      },
-      'inventory': {
-        title: 'Inventory & Asset Lifecycle',
-        summary:
-          'A custody-centric framework that connects ERP, WMS, and Fixed Assets into a single, serial-driven narrative for each physical asset. ' +
-          'It tracks assets from order to deployment and through reverse logistics, while keeping financial integrity intact.',
-        bullets: [
-          'Implements serialization and scan-based custody so every movement is auditable and reconciled with ERP records.',
-          'Solves the “capitalized asset returning to inventory” problem with compliant recovered-part patterns.',
-          'Improves SOX readiness by tying physical lifecycle events directly to financial and Fixed Asset ledgers.'
-        ],
-        links: [
-          { href: 'inventory-whitepaper.html', label: 'Read whitepaper' },
-          { href: 'inventory-impact.html', label: 'National-scale applications' }
-        ]
-      }
+    const resize = () => {
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h; camera.updateProjectionMatrix();
     };
+    resize();
+    window.addEventListener('resize', resize);
 
-    const projectCards = document.querySelectorAll('.project-card');
-    const detailTitle = document.getElementById('detailTitle');
-    const detailSummary = document.getElementById('detailSummary');
-    const detailBullets = document.getElementById('detailBullets');
-    const detailLinks = document.getElementById('detailLinks');
+    const group = new THREE.Group();
+    scene.add(group);
 
-    function setActiveProject(id) {
-      projectCards.forEach(card => {
-        card.classList.toggle('active', card.dataset.id === id);
-      });
+    const sphereGeometry = new THREE.SphereGeometry(2.4, 64, 64);
+    const sphereMaterial = new THREE.MeshPhongMaterial({
+      color: new THREE.Color('#0d1227'),
+      emissive: new THREE.Color('#0d1227'),
+      shininess: 120,
+      specular: new THREE.Color('#6ddcff')
+    });
+    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    group.add(sphere);
 
-      const data = projectData[id];
-      if (!data) {
-        detailTitle.textContent = 'Project coming soon';
-        detailSummary.textContent =
-          'This slot is reserved for a future framework. As additional systems and impact narratives are developed, ' +
-          'they will be added here with the same level of architectural and societal detail.';
-        detailBullets.innerHTML = '';
-        detailLinks.innerHTML = '';
-        return;
-      }
+    const pointsGeometry = new THREE.IcosahedronGeometry(2.6, 2);
+    const wire = new THREE.LineSegments(new THREE.WireframeGeometry(pointsGeometry), new THREE.LineBasicMaterial({ color: '#6ddcff', transparent: true, opacity: 0.25 }));
+    group.add(wire);
 
-      detailTitle.textContent = data.title;
-      detailSummary.textContent = data.summary;
+    const starsGeometry = new THREE.BufferGeometry();
+    const starCount = 400;
+    const positions = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount * 3; i++) { positions[i] = (Math.random() - 0.5) * 30; }
+    starsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const stars = new THREE.Points(starsGeometry, new THREE.PointsMaterial({ color: '#7c3aed', size: 0.05, transparent: true, opacity: 0.8 }));
+    scene.add(stars);
 
-      detailBullets.innerHTML = '';
-      data.bullets.forEach(b => {
-        const li = document.createElement('li');
-        li.textContent = b;
-        detailBullets.appendChild(li);
-      });
+    const light1 = new THREE.PointLight('#6ddcff', 1.2, 50); light1.position.set(5, 5, 8); scene.add(light1);
+    const light2 = new THREE.PointLight('#a0f668', 0.8, 50); light2.position.set(-6, -4, 6); scene.add(light2);
+    scene.add(new THREE.AmbientLight('#ffffff', 0.18));
 
-      detailLinks.innerHTML = '';
-      data.links.forEach(l => {
-        const a = document.createElement('a');
-        a.href = l.href;
-        a.textContent = l.label;
-        detailLinks.appendChild(a);
-      });
-    }
-
-    projectCards.forEach(card => {
-      card.addEventListener('click', () => {
-        setActiveProject(card.dataset.id);
-      });
+    let mouseX = 0, mouseY = 0;
+    canvas.addEventListener('pointermove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = (e.clientX - rect.left) / rect.width - 0.5;
+      mouseY = (e.clientY - rect.top) / rect.height - 0.5;
     });
 
-    // Initialize default project
-    setActiveProject('asset-catalog');
-    document.querySelector('.project-card[data-id="asset-catalog"]').classList.add('active');
-
-    // Filters
-    const filterPills = document.querySelectorAll('.filter-pill');
-    filterPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        filterPills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        const type = pill.dataset.filter;
-        projectCards.forEach(card => {
-          if (type === 'all') {
-            card.style.display = '';
-          } else {
-            const cardType = card.dataset.type;
-            card.style.display =
-              (type === 'catalog' && cardType === 'catalog') ||
-              (type === 'inspection' && cardType === 'inspection') ||
-              (type === 'inventory' && cardType === 'inventory')
-                ? ''
-                : (cardType === 'placeholder' ? '' : 'none');
-          }
-        });
-      });
-    });
+    const animate = () => {
+      requestAnimationFrame(animate);
+      group.rotation.y += 0.0015;
+      group.rotation.x = THREE.MathUtils.lerp(group.rotation.x, mouseY * 0.3, 0.05);
+      group.rotation.z = THREE.MathUtils.lerp(group.rotation.z, mouseX * 0.3, 0.05);
+      wire.rotation.y -= 0.002;
+      renderer.render(scene, camera);
+    };
+    animate();
   </script>
 </body>
 </html>

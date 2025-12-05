@@ -2,509 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Inventory & Asset Lifecycle – Whitepaper</title>
+  <title>Inventory – Visual Whitepaper</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5f5f7;
-      color: #141414;
-      line-height: 1.65;
-    }
-    header {
-      padding: 2.5rem 10vw 1.5rem;
-      background: #ffffff;
-      border-bottom: 1px solid #e0e0e5;
-    }
-    header h1 {
-      margin: 0 0 0.75rem;
-      font-size: 1.9rem;
-      font-weight: 630;
-    }
-    header p {
-      margin: 0;
-      max-width: 60rem;
-      color: #555;
-      font-size: 0.96rem;
-    }
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2rem 10vw 3rem;
-    }
-    section {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 1.75rem 1.75rem 1.5rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid #e0e0e5;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.03);
-    }
-    h2 {
-      margin-top: 0;
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-    }
-    h3 {
-      font-size: 1.05rem;
-      margin-bottom: 0.4rem;
-      margin-top: 1.2rem;
-    }
-    p {
-      margin: 0 0 0.9rem;
-      font-size: 0.95rem;
-    }
-    .pill {
-      display: inline-block;
-      padding: 0.15rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid #e0e0e5;
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #555;
-      margin-bottom: 0.6rem;
-    }
-    .back-link {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      text-decoration: none;
-      color: #0b5fff;
-    }
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin: 1.2rem 0 1.5rem;
-    }
-    .card {
-      background: linear-gradient(135deg, #fdfdff, #f4f6fb);
-      border: 1px solid #e0e0e5;
-      border-radius: 12px;
-      padding: 1rem 1.1rem 1.05rem;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
-    }
-    .card h4 {
-      margin: 0 0 0.4rem;
-      font-size: 0.98rem;
-      font-weight: 650;
-      color: #1c2430;
-    }
-    .metric-value {
-      font-size: 1.7rem;
-      font-weight: 700;
-      color: #0b5fff;
-      margin: 0.1rem 0;
-    }
-    .metric-caption {
-      margin: 0;
-      color: #4b5563;
-      font-size: 0.9rem;
-    }
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-    }
-    .data-table th, .data-table td {
-      border: 1px solid #e0e0e5;
-      padding: 0.55rem 0.65rem;
-      text-align: left;
-    }
-    .data-table th {
-      background: #f3f4f6;
-      font-weight: 650;
-    }
-    .flow-diagram {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      flex-wrap: wrap;
-      margin-top: 0.6rem;
-    }
-    .flow-node {
-      background: #0b5fff10;
-      border: 1px solid #d4ddff;
-      border-radius: 10px;
-      padding: 0.55rem 0.75rem;
-      font-size: 0.9rem;
-      color: #0b2c70;
-      box-shadow: 0 6px 14px rgba(11,95,255,0.08);
-    }
-    .flow-arrow {
-      color: #94a3b8;
-      font-weight: 700;
-    }
-    .sparkline {
-      width: 100%;
-      height: 86px;
-      margin-top: 0.3rem;
-    }
-    .mini-chart {
-      display: flex;
-      gap: 6px;
-      margin-top: 0.5rem;
-    }
-    .mini-bar {
-      flex: 1;
-      min-height: 42px;
-      border-radius: 8px 8px 2px 2px;
-      background: linear-gradient(180deg, #0b5fff, #0b5fffcc);
-      opacity: 0.75;
-    }
-    .mini-bar:nth-child(2) { height: 52px; opacity: 0.82; }
-    .mini-bar:nth-child(3) { height: 64px; opacity: 0.9; }
-    .mini-bar:nth-child(4) { height: 70px; opacity: 0.96; }
-    .mini-bar:nth-child(5) { height: 60px; opacity: 0.88; }
+    :root { --bg:#05060b; --card:rgba(255,255,255,0.04); --border:rgba(255,255,255,0.08); --accent:#7c3aed; --accent-2:#6ddcff; --text:#f5f7fb; --muted:#9ca3af; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; background:radial-gradient(circle at 15% 15%,rgba(124,58,237,0.14),transparent 30%), radial-gradient(circle at 80% 70%,rgba(109,220,255,0.12),transparent 30%), #05060b; color:var(--text); line-height:1.6; }
+    a { color:inherit; }
+    header { padding:2.5rem 1.5rem 1.5rem; max-width:1100px; margin:0 auto; display:flex; gap:1.5rem; align-items:center; justify-content:space-between; }
+    h1 { font-size:clamp(2rem,3vw,2.7rem); margin-bottom:0.4rem; }
+    p.lead { color:var(--muted); max-width:700px; }
+    .pill { display:inline-flex; padding:0.3rem 0.75rem; border-radius:999px; border:1px solid var(--border); color:var(--muted); letter-spacing:0.1em; font-size:0.8rem; text-transform:uppercase; }
+    main { max-width:1100px; margin:0 auto; padding:0 1.5rem 3rem; display:grid; gap:1.5rem; }
+    section { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.4rem; box-shadow:0 10px 60px rgba(0,0,0,0.4); }
+    h2 { font-size:1.2rem; margin-bottom:0.5rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
+    .stat { font-size:1.3rem; font-weight:700; color:var(--accent-2); margin-bottom:0.15rem; }
+    .muted { color:var(--muted); }
+    ul { padding-left:1.1rem; color:var(--muted); }
+    li { margin-bottom:0.35rem; }
+    .flow { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0.8rem; }
+    .node { padding:1rem; border-radius:12px; border:1px dashed var(--border); background:rgba(255,255,255,0.03); }
+    .badge { display:inline-block; padding:0.2rem 0.6rem; border-radius:8px; background:rgba(109,220,255,0.12); color:#c7f1ff; font-size:0.85rem; margin-bottom:0.3rem; }
+    .cta { text-align:center; color:var(--muted); padding-top:0.6rem; }
+    @media (max-width:960px){ header{flex-direction:column; align-items:flex-start;} }
   </style>
 </head>
 <body>
   <header>
-    <h1>Inventory & Asset Lifecycle – Whitepaper</h1>
-    <p>
-      A Framework for Automated, End-to-End Inventory and Asset Lifecycle Management.
-    </p>
+    <div>
+      <div class="pill">Visual whitepaper</div>
+      <h1>Inventory Management Framework</h1>
+      <p class="lead">A graphic-first blueprint for sensing demand, promising accurately, and rebalancing with confidence.</p>
+    </div>
+    <div><a class="pill" href="inventory-impact.html">Impact deck</a></div>
   </header>
 
   <main>
     <section>
-      <div class="pill">Whitepaper</div>
-      <h2>Inventory and Asset Lifecycle</h2>
+      <h2>Blueprint</h2>
+      <div class="grid">
+        <div><div class="stat">Network visibility</div><p class="muted">Unified view of on-hand, in-transit, labor, and capacity with freshness stamps.</p></div>
+        <div><div class="stat">Promise engine</div><p class="muted">Constraint-aware reservations evaluate substitutions, lead times, and cost-to-serve.</p></div>
+        <div><div class="stat">Dynamic supply</div><p class="muted">Automated transfers and buys tuned by risk, margin, and service-level goals.</p></div>
+      </div>
+    </section>
 
-      <h3>A Framework for Automated, End-to-End Inventory and Asset Lifecycle Management</h3>
+    <section>
+      <h2>Operating model</h2>
+      <div class="flow">
+        <div class="node"><span class="badge">Sense</span>Collect telemetry, POS, supplier, and forecast signals; cleanse and dedupe.</div>
+        <div class="node"><span class="badge">Forecast</span>Blend statistical models with events (weather, promos, outages).</div>
+        <div class="node"><span class="badge">Promise</span>Reserve inventory with rule-based substitutions and confidence scoring.</div>
+        <div class="node"><span class="badge">Rebalance</span>Optimize stocking, transfers, and buys with scenario sandboxes.</div>
+        <div class="node"><span class="badge">Assure</span>Monitor SLAs, aging, and anomalies; trigger playbooks.</div>
+      </div>
+    </section>
 
-      <div class="dashboard-grid">
-        <div class="card metric-card">
-          <h4>Stock Accuracy</h4>
-          <div class="metric-value">98.7%</div>
-          <p class="metric-caption">Real-time counts from sensor feeds and transactional reconciliation.</p>
+    <section>
+      <h2>Data contracts</h2>
+      <div class="grid">
+        <div>
+          <h3>Signals</h3>
+          <ul>
+            <li>Availability with source lineage, freshness, and confidence.</li>
+            <li>Lead times with variability bands and supplier reliability.</li>
+            <li>Capacity (labor, dock, carrier) with constraint windows.</li>
+          </ul>
         </div>
-        <div class="card metric-card">
-          <h4>Carrying Cost Reduction</h4>
-          <div class="metric-value">&minus;18%</div>
-          <p class="metric-caption">Right-sized reorder points and dynamic safety stock buffers.</p>
+        <div>
+          <h3>Quality rules</h3>
+          <ul>
+            <li>Anomaly detection on demand spikes and sensor noise.</li>
+            <li>Schema governance for UOM, pack sizes, and channel overrides.</li>
+            <li>Temporal joins to align signals for promise calculations.</li>
+          </ul>
         </div>
-        <div class="card metric-card">
-          <h4>Fulfillment SLA</h4>
-          <div class="metric-value">92%</div>
-          <p class="metric-caption">Orders shipped inside target windows with predictive picking.</p>
-          <div class="mini-chart" aria-hidden="true">
-            <div class="mini-bar" style="height:52px"></div>
-            <div class="mini-bar" style="height:58px"></div>
-            <div class="mini-bar" style="height:68px"></div>
-            <div class="mini-bar" style="height:73px"></div>
-            <div class="mini-bar" style="height:65px"></div>
-          </div>
+        <div>
+          <h3>Audit & lineage</h3>
+          <ul>
+            <li>Decision logs show why a node or substitute was chosen.</li>
+            <li>Playbook evidence stored with user, model version, and thresholds.</li>
+            <li>What-if runs tagged to prevent cross-contamination with prod.</li>
+          </ul>
         </div>
       </div>
+    </section>
 
-      <div class="card">
-        <h4>Inventory Impact Grid</h4>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Driver</th>
-              <th>Effect</th>
-              <th>Owner</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Perpetual inventory sync</td>
-              <td>Eliminates blind spots between WMS and ERP</td>
-              <td>Warehouse Ops</td>
-            </tr>
-            <tr>
-              <td>AI reorder proposals</td>
-              <td>Reduces stockouts during demand spikes</td>
-              <td>Supply Planning</td>
-            </tr>
-            <tr>
-              <td>Exception-based picking</td>
-              <td>Protects SLA with dynamic task reprioritization</td>
-              <td>Fulfillment Leads</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card">
-        <h4>Inventory Flow Overview</h4>
-        <div class="flow-diagram">
-          <div class="flow-node">Demand signal</div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-node">Forecast &amp; reorder</div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-node">Inbound receiving</div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-node">Slotting &amp; picking</div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-node">Shipment confirmation</div>
+    <section>
+      <h2>Playbooks</h2>
+      <div class="grid">
+        <div>
+          <h3>Campaign launch</h3>
+          <ul>
+            <li>Simulate uplift; pre-position stock; protect critical services.</li>
+            <li>Expose delivery confidence and substitutes in the UX.</li>
+          </ul>
         </div>
-        <svg class="sparkline" viewBox="0 0 180 70" role="img" aria-label="Fill rate trend">
-          <polyline
-            fill="none"
-            stroke="#0b5fff"
-            stroke-width="3"
-            points="5,62 40,58 70,50 100,43 130,38 165,34" />
-          <circle cx="5" cy="62" r="3" fill="#0b5fff" />
-          <circle cx="165" cy="34" r="4" fill="#0b5fff" />
-          <text x="8" y="20" font-size="11" fill="#42526e">Fill rate rising as stockouts fall</text>
-        </svg>
+        <div>
+          <h3>Disruption response</h3>
+          <ul>
+            <li>Auto-reroute promises when a node, lane, or supplier fails.</li>
+            <li>Escalate only when risk exceeds margin or service guardrails.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Lifecycle optimization</h3>
+          <ul>
+            <li>Phase out aging SKUs with substitution trees and markdown guidance.</li>
+            <li>Balance carbon and cost by steering to optimal fulfillment nodes.</li>
+          </ul>
+        </div>
       </div>
-
-      <p><strong>Introduction: Overcoming Fragmentation in Modern Supply Chains</strong></p>
-      <p>
-        Modern enterprises face a persistent disconnect between operational systems of record, such as a Warehouse
-        Management System (WMS), and financial systems of record, like an ERP’s Fixed Asset module. This fragmentation,
-        exacerbated by manual processes, inconsistent tracking protocols, and disparate data silos, creates significant
-        compliance exposure and operational opacity. Without a unified view of an asset's lifecycle, organizations are
-        vulnerable to inventory shrinkage, audit failures, and inefficient capital allocation. The purpose of this
-        whitepaper is to present a comprehensive framework for an automated, integrated inventory and asset management
-        system designed to resolve these fundamental challenges. The core value proposition of this framework is the
-        establishment of end-to-end visibility and unimpeachable data integrity, driving operational efficiency from the
-        moment an asset is procured to its final retirement. This document will now explore the underlying architecture
-        that makes this unified approach possible.
-      </p>
-
-      <hr>
-
-      <p><strong>1. The Architectural Philosophy: A Centralized System for Custody and Integration</strong></p>
-      <p>
-        The strategic power of this framework lies in its architectural philosophy. It is not designed as a monolithic
-        Enterprise Resource Planning (ERP) system that attempts to perform all functions, but rather as a central
-        "custody tracking system" that serves as a powerful integration and orchestration layer. This system acts as a
-        central hub, specifically engineered to ingest, consolidate, and synchronize data from the multiple specialized
-        enterprise platforms that an organization relies upon.
-      </p>
-      <p>
-        The system's primary role is to create a single, cohesive narrative for every asset by integrating data from
-        various sources of truth across the enterprise. These integrated systems include:
-      </p>
-      <p>
-        ERP System: The authoritative source for Purchase Orders (POs), overarching financial data, and the final
-        capitalization status of assets.
-      </p>
-      <p>
-        Warehouse Management System (WMS): The source for all physical receipt data, kitting activities, and warehouse
-        movements.
-      </p>
-      <p>
-        Fixed Assets (FA) Module: The official destination for capitalized asset data, managed within the ERP but
-        architecturally distinct from the inventory module.
-      </p>
-      <p>
-        Planning &amp; Forecasting Systems: Platforms responsible for inventory lifecycle management, demand planning,
-        and usage tracking.
-      </p>
-      <p>
-        Receiving &amp; Validation Systems: A designated receiving system or "warranty database" that serves as the
-        ingestion point for capturing critical identity data like serial numbers and asset condition upon physical
-        receipt.
-      </p>
-      <p>
-        The strategic benefit of this integrated "system of systems" approach is profound. It ensures that operational
-        events, such as the physical scan of an asset at a warehouse, are automatically reconciled with financial
-        records in the ERP in near real-time. This synchronization between physical reality and financial accounting is
-        critical for satisfying Sarbanes-Oxley (SOX) audit requirements, creating an auditable and transparent asset
-        management environment. The foundational element that enables this entire integrated architecture is the
-        universal application of serialization.
-      </p>
-
-      <hr>
-
-      <p><strong>2. The Core Principle: Serialization as the Single Source of Truth</strong></p>
-      <p>
-        Serialization is the foundational principle of the entire framework. The assignment of a unique identifier to
-        every critical asset serves as the immutable anchor for all subsequent tracking, validation, and auditing
-        activities throughout its lifecycle. This principle directly addresses the core compliance gap identified in
-        manual processes: the lack of a verifiable, auditable link between a physical asset's lifecycle and its
-        financial reporting.
-      </p>
-      <p>
-        Recognizing the operational challenges of a full-scale rollout, the system is designed to support a phased
-        implementation strategy. Serialization can be enabled gradually by part type or market. To maintain 100%
-        tracking from day one for designated assets, the system automatically generates unique "dummy" serials as
-        placeholders. These placeholders can be updated with the actual serial number at a later scan point, ensuring
-        that a complete chain of custody is maintained without interruption.
-      </p>
-      <p>
-        The framework's integrity is reinforced by a series of robust validation processes built around this core
-        principle.
-      </p>
-
-      <p><strong>Key Serialization Controls and Their Impact</strong></p>
-      <p>
-        Control Mechanism / Strategic Impact
-      </p>
-      <p>
-        ASN Cross-Validation<br>
-        Identifies vendor shipping discrepancies at the point of entry by comparing physically scanned serials against
-        the vendor's Advance Ship Notice (ASN), preventing inaccurate data from polluting the ecosystem.
-      </p>
-      <p>
-        Physical Scan as Source of Truth<br>
-        Corrects vendor shipping errors or ASN inaccuracies at the point of entry by empowering the organization to
-        designate the physical scan as the record of truth, ensuring the custody log reflects physical reality from day
-        one.
-      </p>
-      <p>
-        Format Validation at Every Scan Point<br>
-        Prevents data conflicts and maintains high data quality by enforcing serial number format validation (e.g.,
-        using regular expressions) at every scan point in the logistics network.
-      </p>
-      <p>
-        Parent-Child Hierarchy Validation<br>
-        Ensures the integrity of kitted products by validating that all subcomponent serials match the master Bill of
-        Materials (BOM) for complex assemblies, creating a complete and auditable assembly lineage.
-      </p>
-      <p>
-        This rigorous application of serialization provides the data-rich foundation upon which all other asset
-        management workflows are built, starting with the forward movement of new assets into the organization.
-      </p>
-
-      <hr>
-
-      <p><strong>3. Forward Logistics Workflow: From Procurement to Deployment</strong></p>
-      <p>
-        The forward logistics workflow is the critical first chapter in an asset’s lifecycle, where its digital identity
-        and auditable history are formally established. This automated, event-driven process ensures that from the
-        moment an asset is ordered, its journey is meticulously tracked, validated, and recorded, creating a reliable
-        chain of custody that extends from the vendor to the final deployment site.
-      </p>
-      <p>
-        The journey of a new asset through the forward logistics network is marked by key stages, each triggering an
-        automatic update to its custody record and status:
-      </p>
-      <p>
-        Order Ingestion: The lifecycle begins when a Purchase Order (PO) is generated in the ERP system. The custody
-        system automatically ingests this data and creates a custody record for each line item with an Ordered status.
-      </p>
-      <p>
-        Vendor Acceptance &amp; Shipment: As the vendor accepts the order and later dispatches the goods, data feeds
-        from the ERP update the asset's status to Accepted and then Vendor Shipped, providing crucial inbound visibility
-        before the asset physically arrives.
-      </p>
-      <p>
-        Hub Receipt &amp; Ownership Transfer: Upon physical receipt at a central hub, a scan updates the status to Hub
-        Received. This is a critical financial milestone where ownership is formally transferred to the parent
-        enterprise, and the asset is flagged as Uncapitalized.
-      </p>
-      <p>
-        Validation and Condition Check: At the hub, serial numbers are physically scanned and validated against the
-        vendor's Advance Ship Notice (ASN). The asset's physical condition (e.g., Available, Damaged) is recorded
-        against its unique serial number, creating an immediate quality record.
-      </p>
-      <p>
-        Movement to Field: As the asset moves from the hub through Forward Stocking Locations (FSLs) and is released to
-        field personnel, each handoff is recorded via a mandatory scan. This updates the status sequentially to FSL
-        Received, FSL Shipped, and finally Field Received.
-      </p>
-      <p>
-        Site Arrival: A final scan performed by field personnel at the deployment site updates the status to Site
-        Received. This confirms the asset has reached its final destination and is ready for installation, completing
-        the forward journey.
-      </p>
-      <p>
-        This automated workflow starkly contrasts with the risks inherent in manual systems, where inconsistent data
-        entry, reconciliation delays between physical receipt and financial booking, and a lack of serial-level
-        validation create significant exposure to inventory shrinkage, audit failures, and inefficient capital
-        allocation. It mitigates the risk of financial misstatements and compliance failures by creating an immutable,
-        real-time link between physical assets and financial records.
-      </p>
-
-      <hr>
-
-      <p><strong>4. Reverse Logistics and Asset State Management</strong></p>
-      <p>
-        The strategic challenges of reverse logistics are often more complex than those of forward logistics,
-        particularly when dealing with capitalized assets. This workflow is critical not only for managing returns,
-        repairs, and asset retirement but also for maintaining strict financial compliance. An integrated framework must
-        gracefully handle the operational movement of assets while adhering to rigid accounting rules.
-      </p>
-      <p>
-        For uncapitalized returns, the process is initiated via a fault report that captures a specific reason code tied
-        directly to the asset's unique serial number. As the asset moves from the field back through a stocking location
-        or central hub, mandatory scans at each handoff ensure its chain of custody is preserved, providing full
-        visibility into the reverse journey.
-      </p>
-      <p>
-        Handling the return of previously capitalized assets requires a specialized workflow to navigate a significant
-        architectural challenge. Capitalized assets reside in the ERP's Fixed Assets (FA) module, which is
-        architecturally distinct and does not communicate bidirectionally with the inventory module that the custody
-        system interacts with. Attempting to move an asset from the FA ledger back into the inventory ledger would
-        violate fundamental accounting controls. The framework solves this with an elegant, compliant solution:
-      </p>
-      <p>
-        When a capitalized asset is designated for return, the system generates a "recovered" part number (often with a
-        "-R" suffix) and a corresponding new serial number.
-      </p>
-      <p>
-        This new, recovered part is then brought back into the inventory system at zero cost. This allows the physical
-        asset to be tracked, moved, and managed operationally within the custody system without violating financial
-        accounting principles by re-introducing a capitalized asset into an inventory sub-ledger.
-      </p>
-      <p>
-        Crucially, the system maintains an indelible link between the original capitalized asset and its new
-        "recovered" identity. This preserves a complete, auditable history, ensuring that the asset’s full lifecycle—from
-        initial purchase through capitalization, return, and final disposition—remains intact and traceable.
-      </p>
-      <p>
-        These carefully designed workflows demonstrate how an integrated system can manage complex operational realities
-        while simultaneously enforcing financial integrity. This synergy is what unlocks the framework's most
-        significant strategic benefits.
-      </p>
-
-      <hr>
-
-      <p><strong>5. Strategic Benefits of an Integrated Framework</strong></p>
-      <p>
-        By shifting asset management from a reactive, manual discipline to a proactive and automated strategic
-        function, this integrated framework unlocks four pillars of business value. By seamlessly integrating
-        operational workflows with financial systems through a centralized custody model, it moves asset management from
-        a tactical necessity to a source of competitive advantage.
-      </p>
-      <p>
-        Enhanced Data Integrity and Compliance The framework establishes a single, verifiable source of truth for every
-        asset. Automated serial number validation, mandatory scans at every custody transfer, and immutable, timestamped
-        audit logs create a powerful defense against data drift and error. This direct synchronization of physical asset
-        events with financial records is essential for supporting rigorous financial regulations like Sarbanes-Oxley
-        (SOX), simplifying audits, and minimizing compliance risk.
-      </p>
-      <p>
-        Increased Operational Efficiency Automating previously manual tasks—such as data entry, status updates, and
-        cross-system reconciliation—eliminates significant operational friction. Scan-based workflows reduce data entry
-        errors, minimize delays in processing shipments and returns, and accelerate the entire asset lifecycle. This
-        frees up personnel from low-value administrative tasks, allowing them to focus on more strategic activities like
-        analysis, planning, and process improvement.
-      </p>
-      <p>
-        Complete Lifecycle Visibility End-to-end tracking provides unprecedented, real-time visibility into every
-        asset's location, status, and condition. This comprehensive view enables superior demand planning, proactive
-        maintenance scheduling based on usage data, and a dramatic reduction in asset loss or theft. Managers can make
-        faster, more informed decisions because they are operating with a complete and accurate picture of their
-        physical asset base.
-      </p>
-      <p>
-        Cross-System Synchronization The framework's role as an integration hub ensures that the ERP, WMS, and Fixed
-        Assets modules are in constant alignment. When a part is physically received, the inventory record is updated.
-        When it is capitalized, the financial record is updated. This continuous synchronization eliminates the
-        discrepancies that arise from data lags and manual updates, ensuring that all business decisions are based on
-        accurate, up-to-the-minute information.
-      </p>
-      <p>
-        The principles underlying this framework are not limited to a single organization but have the potential to
-        drive similar efficiencies across broader economic sectors.
-      </p>
-
-      <a class="back-link" href="index.html">&larr; Back to portfolio</a>
+      <div class="cta">See the outcomes → <a href="inventory-impact.html">impact visual</a></div>
     </section>
   </main>
 </body>
