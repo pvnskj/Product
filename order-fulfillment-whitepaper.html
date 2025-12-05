@@ -2,957 +2,123 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Integrated Order &amp; Fulfillment Management – Whitepaper | Venkata Parimi</title>
+  <title>Order Fulfillment – Visual Whitepaper</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Reuse the same light theme as index.html -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <style>
-    :root {
-      --bg: #f3f4f6;
-      --bg-alt: #e5e7eb;
-      --card-bg: #ffffff;
-      --border: #d1d5db;
-      --accent: #0ea5e9;
-      --accent-soft: rgba(14,165,233,0.08);
-      --accent-strong: rgba(14,165,233,0.18);
-      --text: #0f172a;
-      --muted: #6b7280;
-      --muted-soft: #9ca3af;
-      --highlight: #16a34a;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top, #e5f3ff 0, #f9fafb 45%, #f3f4f6 100%);
-      color: var(--text);
-      line-height: 1.65;
-      scroll-behavior: smooth;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* Top Navigation */
-    .nav-shell {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.7), transparent);
-      border-bottom: 1px solid rgba(209,213,219,0.8);
-    }
-
-    nav {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0.6rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .logo-orb {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(14,165,233,0.85) 0, transparent 60%),
-        radial-gradient(circle at 70% 80%, rgba(34,197,94,0.7) 0, transparent 55%),
-        #ffffff;
-      border: 1px solid rgba(148,163,184,0.7);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.9),
-        0 10px 25px rgba(148,163,184,0.65);
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-text span:first-child {
-      font-size: 0.92rem;
-      font-weight: 600;
-    }
-
-    .brand-text span:last-child {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--muted);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.1rem;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .nav-links a {
-      padding: 0.3rem 0.2rem;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -0.2rem;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--highlight));
-      border-radius: 999px;
-      transition: width 0.18s ease-out;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    @media (max-width: 720px) {
-      .nav-links {
-        display: none;
-      }
-    }
-
-    .page {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 1.25rem 3rem;
-    }
-
-    main {
-      margin-top: 2rem;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 1.3fr);
-      gap: 2rem;
-    }
-
-    @media (max-width: 960px) {
-      main {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    /* Hero header for this page */
-    .page-hero {
-      grid-column: 1 / -1;
-      margin-bottom: 0.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .page-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.2rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.8);
-      background: radial-gradient(circle at top left, rgba(14,165,233,0.12), transparent 60%);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      width: fit-content;
-    }
-
-    .page-title {
-      font-size: 1.8rem;
-      font-weight: 650;
-      line-height: 1.2;
-    }
-
-    .page-subtitle {
-      font-size: 0.96rem;
-      color: var(--muted);
-      max-width: 48rem;
-    }
-
-    /* Content area */
-    .content {
-      background: #ffffff;
-      border-radius: 18px;
-      border: 1px solid rgba(209,213,219,1);
-      box-shadow: 0 16px 40px rgba(148,163,184,0.45);
-      padding: 1.4rem 1.6rem;
-      font-size: 0.92rem;
-      color: var(--text);
-    }
-
-    .content h2 {
-      font-size: 1.05rem;
-      margin-top: 1.5rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .content h3 {
-      font-size: 0.98rem;
-      margin-top: 1.2rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .content p {
-      margin-bottom: 0.7rem;
-      color: var(--muted);
-    }
-
-    .content hr {
-      border: none;
-      border-top: 1px solid rgba(209,213,219,0.9);
-      margin: 1.2rem 0;
-    }
-
-    .content table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 0.6rem 0 1rem;
-      font-size: 0.88rem;
-    }
-
-    .content th,
-    .content td {
-      border: 1px solid rgba(209,213,219,1);
-      padding: 0.4rem 0.45rem;
-      text-align: left;
-    }
-
-    .content th {
-      background: #f3f4f6;
-    }
-
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin: 1rem 0 1.25rem;
-    }
-
-    .metric-card {
-      background: #ffffff;
-      border: 1px solid rgba(209,213,219,1);
-      border-radius: 14px;
-      padding: 1rem 1.05rem;
-      box-shadow: 0 12px 28px rgba(148,163,184,0.28);
-    }
-
-    .metric-card h4 {
-      font-size: 0.95rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .metric-value {
-      font-size: 1.65rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.2rem;
-    }
-
-    .metric-caption {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .mini-line {
-      width: 100%;
-      height: 72px;
-      margin-top: 0.35rem;
-    }
-
-    .mini-chart {
-      display: flex;
-      gap: 6px;
-      margin-top: 0.5rem;
-    }
-
-    .mini-bar {
-      flex: 1;
-      min-height: 42px;
-      border-radius: 8px 8px 2px 2px;
-      background: linear-gradient(180deg, var(--accent), rgba(14,165,233,0.65));
-      opacity: 0.78;
-    }
-
-    .impact-card {
-      background: linear-gradient(135deg, #f9fafb, #eef2ff);
-      border: 1px solid rgba(148,163,184,0.55);
-      border-radius: 14px;
-      padding: 1rem;
-      margin: 1rem 0 1.25rem;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 10px 24px rgba(148,163,184,0.25);
-    }
-
-    .impact-card h4 {
-      margin-bottom: 0.45rem;
-      font-size: 0.96rem;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      position: sticky;
-      top: 5rem;
-      align-self: flex-start;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .sidebar-card {
-      border-radius: 14px;
-      background: #ffffff;
-      border: 1px solid rgba(209,213,219,1);
-      padding: 0.9rem 1rem;
-      font-size: 0.82rem;
-      box-shadow: 0 10px 26px rgba(148,163,184,0.35);
-    }
-
-    .sidebar-card h4 {
-      font-size: 0.88rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .sidebar-card p {
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-
-    .toc-list {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 0.3rem;
-    }
-
-    .toc-list li {
-      margin-bottom: 0.25rem;
-    }
-
-    .toc-list a {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .toc-list a:hover {
-      color: var(--accent);
-    }
-
-    .btn-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.8);
-      font-size: 0.8rem;
-      color: var(--accent);
-      background: #ffffff;
-      margin-top: 0.2rem;
-    }
-
-    .btn-link:hover {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-    }
-
-    /* Simple “infographic” strip for data flows */
-    .flow-diagram {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 0.6rem;
-      margin: 1rem 0 1.3rem;
-      font-size: 0.78rem;
-    }
-
-    @media (max-width: 900px) {
-      .flow-diagram {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    .flow-node {
-      border-radius: 10px;
-      border: 1px solid rgba(209,213,219,1);
-      background: #f9fafb;
-      padding: 0.55rem 0.6rem;
-      position: relative;
-    }
-
-    .flow-node strong {
-      display: block;
-      margin-bottom: 0.2rem;
-      font-size: 0.8rem;
-    }
-
-    .flow-node span {
-      color: var(--muted);
-    }
-
-    .flow-node-hub {
-      border-color: var(--accent);
-      background: rgba(14,165,233,0.06);
-    }
-
-    footer {
-      margin-top: 2.5rem;
-      padding: 1.2rem 0 0.8rem;
-      border-top: 1px solid rgba(209,213,219,1);
-      font-size: 0.8rem;
-      color: var(--muted-soft);
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
+    :root { --bg:#05060b; --card:rgba(255,255,255,0.04); --border:rgba(255,255,255,0.08); --accent:#6ddcff; --accent-2:#7c3aed; --text:#f5f7fb; --muted:#9ca3af; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; background:radial-gradient(circle at 15% 20%,rgba(109,220,255,0.14),transparent 30%), radial-gradient(circle at 80% 70%,rgba(124,58,237,0.12),transparent 30%), #05060b; color:var(--text); line-height:1.6; }
+    a { color:inherit; }
+    header { padding:2.5rem 1.5rem 1.5rem; max-width:1100px; margin:0 auto; display:flex; gap:1.5rem; align-items:center; justify-content:space-between; }
+    h1 { font-size:clamp(2rem,3vw,2.7rem); margin-bottom:0.4rem; }
+    p.lead { color:var(--muted); max-width:700px; }
+    .pill { display:inline-flex; padding:0.3rem 0.75rem; border-radius:999px; border:1px solid var(--border); color:var(--muted); letter-spacing:0.1em; font-size:0.8rem; text-transform:uppercase; }
+    main { max-width:1100px; margin:0 auto; padding:0 1.5rem 3rem; display:grid; gap:1.5rem; }
+    section { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.4rem; box-shadow:0 10px 60px rgba(0,0,0,0.4); }
+    h2 { font-size:1.2rem; margin-bottom:0.5rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
+    .stat { font-size:1.3rem; font-weight:700; color:var(--accent); margin-bottom:0.15rem; }
+    .muted { color:var(--muted); }
+    ul { padding-left:1.1rem; color:var(--muted); }
+    li { margin-bottom:0.35rem; }
+    .flow { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0.8rem; }
+    .node { padding:1rem; border-radius:12px; border:1px dashed var(--border); background:rgba(255,255,255,0.03); }
+    .badge { display:inline-block; padding:0.2rem 0.6rem; border-radius:8px; background:rgba(109,220,255,0.12); color:#c7f1ff; font-size:0.85rem; margin-bottom:0.3rem; }
+    .cta { text-align:center; color:var(--muted); padding-top:0.6rem; }
+    @media (max-width:960px){ header{flex-direction:column; align-items:flex-start;} }
   </style>
 </head>
 <body>
-  <div class="nav-shell">
-    <nav>
-      <div class="nav-left">
-        <div class="logo-orb"></div>
-        <div class="brand-text">
-          <span>Venkata Parimi</span>
-          <span>Senior Technical Product Owner</span>
-        </div>
+  <header>
+    <div>
+      <div class="pill">Visual whitepaper</div>
+      <h1>Order Fulfillment Commitment Framework</h1>
+      <p class="lead">How catalog integrity, inventory truth, and orchestration combine to ship exactly what was promised.</p>
+    </div>
+    <div><a class="pill" href="index.html">Home</a></div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Blueprint</h2>
+      <div class="grid">
+        <div><div class="stat">Promise clarity</div><p class="muted">Every offer checked against inventory, capacity, and substitution logic before confirming.</p></div>
+        <div><div class="stat">Coordinated execution</div><p class="muted">Order orchestration syncs pick/pack/ship with service appointments and billing.</p></div>
+        <div><div class="stat">Evidence trail</div><p class="muted">Events, photos, and signatures anchor every step for customers and auditors.</p></div>
       </div>
-      <div class="nav-links">
-        <a href="index.html#top">Home</a>
-        <a href="index.html#impact">Impact</a>
-        <a href="index.html#projects" class="active">Projects</a>
-        <a href="index.html#contact">Contact</a>
+    </section>
+
+    <section>
+      <h2>Operating model</h2>
+      <div class="flow">
+        <div class="node"><span class="badge">Qualify</span>Validate item eligibility, substitutions, and restrictions per channel and region.</div>
+        <div class="node"><span class="badge">Promise</span>Reserve inventory and capacity with ETA confidence scoring.</div>
+        <div class="node"><span class="badge">Orchestrate</span>Route to optimal node; align labor, carrier, and service windows.</div>
+        <div class="node"><span class="badge">Verify</span>Scan, photo, and seal proof before handoff; update customer in real time.</div>
+        <div class="node"><span class="badge">Settle</span>Close financials and support tickets with the same source of truth.</div>
       </div>
-    </nav>
-  </div>
+    </section>
 
-  <div class="page">
-    <header class="page-hero">
-      <div class="page-kicker">Project 4 · Order &amp; Fulfillment Framework</div>
-      <h1 class="page-title">A Framework for an Integrated Order and Fulfillment Management System</h1>
-      <p class="page-subtitle">
-        This whitepaper describes a hub-and-spoke order management architecture that unifies BOM creation,
-        stock transfers, replenishment, returns, backlog management, and discrepancy handling—turning a
-        fragmented, spreadsheet-driven process into a governed, auditable lifecycle.
-      </p>
-    </header>
-
-    <main>
-      <article class="content">
-        <!-- Simple data-flow "infographic" -->
-        <section aria-label="High-level data flow">
-          <div class="flow-diagram">
-            <div class="flow-node-hub flow-node">
-              <strong>Central Order Management</strong>
-              <span>Hub for guided initiation, orchestration, logs, and overall lifecycle state.</span>
-            </div>
-            <div class="flow-node">
-              <strong>WMS</strong>
-              <span>Pick, pack, kitting, serial capture, ship confirm, and physical status.</span>
-            </div>
-            <div class="flow-node">
-              <strong>TMS</strong>
-              <span>Carrier events, in-transit visibility, delivery confirmation.</span>
-            </div>
-            <div class="flow-node">
-              <strong>ERP / FA</strong>
-              <span>Inter-org transfers, financial posting, write-offs.</span>
-            </div>
-            <div class="flow-node">
-              <strong>Planning / Forecasting</strong>
-              <span>Demand signals, backlog cadence, replenishment alignment.</span>
-            </div>
-          </div>
-        </section>
-
-        <div class="metric-grid">
-          <div class="metric-card">
-            <h4>On-Time Ship Confirm</h4>
-            <div class="metric-value">96%</div>
-            <p class="metric-caption">Orders leaving the dock inside promised windows after hub orchestration.</p>
-            <svg class="mini-line" viewBox="0 0 180 72" role="img" aria-label="On-time trend">
-              <polyline fill="none" stroke="var(--accent)" stroke-width="3" points="8,60 40,54 70,46 100,38 140,32 172,28" />
-              <circle cx="8" cy="60" r="3" fill="var(--accent)" />
-              <circle cx="172" cy="28" r="4" fill="var(--accent)" />
-            </svg>
-          </div>
-          <div class="metric-card">
-            <h4>Backlog Burn Rate</h4>
-            <div class="metric-value">+28%</div>
-            <p class="metric-caption">Faster queue reduction using forecast-aligned release cadences.</p>
-            <svg class="mini-line" viewBox="0 0 180 72" role="img" aria-label="Backlog cleared">
-              <polyline fill="none" stroke="#16a34a" stroke-width="3" points="8,46 40,44 72,40 104,34 140,30 172,26" />
-              <circle cx="8" cy="46" r="3" fill="#16a34a" />
-              <circle cx="172" cy="26" r="4" fill="#16a34a" />
-            </svg>
-          </div>
-          <div class="metric-card">
-            <h4>Exception Automation</h4>
-            <div class="metric-value">72%</div>
-            <p class="metric-caption">Discrepancies auto-routed to root-cause queues with no manual triage.</p>
-            <div class="mini-chart" aria-hidden="true">
-              <div class="mini-bar" style="height:48px"></div>
-              <div class="mini-bar" style="height:60px"></div>
-              <div class="mini-bar" style="height:68px"></div>
-              <div class="mini-bar" style="height:74px"></div>
-              <div class="mini-bar" style="height:66px"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="impact-card">
-          <h4>Workflow Snapshot</h4>
-          <table>
-            <thead>
-              <tr>
-                <th>Flow</th>
-                <th>Outcome</th>
-                <th>System Anchor</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Guided initiation</td>
-                <td>Eliminates miscoded order types and rework</td>
-                <td>Order Hub</td>
-              </tr>
-              <tr>
-                <td>Backlog cadence</td>
-                <td>Aligns releases to forecast without starving projects</td>
-                <td>Planning</td>
-              </tr>
-              <tr>
-                <td>Discrepancy triage</td>
-                <td>Accelerates credits and replacements with clearer visibility</td>
-                <td>ERP / WMS</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Your full text below, structured with headings but not omitted -->
-
-        <h2 id="intro">1.0 Introduction: Addressing Modern Supply Chain Complexities</h2>
-        <p>
-          In today's complex and fast-paced logistical environments, the strategic importance of a robust, integrated,
-          and intelligent order management system cannot be overstated. Many organizations find their supply chain
-          operations constrained by a reliance on fragmented systems, manual spreadsheets, and error-prone processes.
-          This operational model inevitably leads to significant challenges, including a lack of real-time inventory
-          visibility, inconsistent fulfillment logic, frequent order errors, and an inability to track backlogged
-          requests automatically. The result is a reactive and inefficient supply chain that struggles with data
-          inaccuracy, increased operational costs, and diminished control.
-        </p>
-        <p>
-          This document presents a comprehensive blueprint for a unified and automated framework designed to overcome
-          these fundamental challenges. By centralizing order management logic, deeply integrating with peripheral
-          logistics systems, and automating core workflows, this framework provides a pathway to significant improvements
-          in operational efficiency, data integrity, and end-to-end control. It transforms the order lifecycle from a
-          series of disjointed manual tasks into a streamlined, transparent, and intelligent process that supports
-          scalable and resilient business growth.
-        </p>
-
-        <hr>
-
-        <h2 id="architecture">2.0 The Unified System Architecture: A Hub-and-Spoke Integration Model</h2>
-        <p>
-          The foundation of this framework is a deeply integrated system architecture that functions as a central
-          nervous system for all order and fulfillment activities. The strategic imperative behind this "hub-and-spoke"
-          model is the elimination of data silos to enable real-time visibility and process orchestration across the
-          entire supply chain. By connecting disparate, specialized systems into a cohesive whole, this architecture
-          ensures that data entered once is propagated correctly and that status updates from physical operations are
-          reflected instantly within the central management platform.
-        </p>
-        <p>The key components of this integrated architecture include:</p>
-        <p><strong>The Central Order Management Platform:</strong> This is the core "hub" of the architecture. It is the single system of engagement for users, housing all order management logic, user interface elements, process orchestration, and auditable logs. It serves as the single source of truth for the entire order lifecycle, from initiation to final reconciliation.</p>
-        <p><strong>Warehouse Management System (WMS):</strong> This system manages all physical warehouse operations, including inventory control, kitting, and packing. It integrates with the central platform to receive order details and, in turn, provides near real-time status updates back to the platform, such as "Pick in Scale," "Packing Phase," and the critical "Ship Confirm" event. It is also the source for initial serial number scans during the kitting process.</p>
-        <p><strong>Transportation Management System (TMS):</strong> Responsible for all shipping and logistics activities, the TMS manages carrier information, freight claims, and shipment tracking. It provides the central platform with key in-transit status updates, including "Distribution Order tendered," "Carrier picks up order," and "Carrier delivers product," giving users end-to-end visibility of an order's physical journey.</p>
-        <p><strong>Enterprise Resource Planning (ERP) System:</strong> This system serves as the primary financial and accounting backbone. It integrates with the central platform to process critical financial transactions, most notably inter-organizational transfers upon shipment and receipt, as well as asset write-offs resulting from discrepancy handling.</p>
-        <p><strong>Planning and Forecasting System:</strong> This system provides high-level demand and supply planning data. Its integration with the central platform is crucial for the backlog management function, ensuring that the fulfillment of queued orders is aligned with a rolling forecast cadence, thereby optimizing inventory allocation against strategic business priorities.</p>
-        <p>
-          This integrated architecture provides the technological foundation for the intelligent workflows that govern
-          every stage of an order's life.
-        </p>
-
-        <hr>
-
-        <h2 id="initiation">3.0 The Order Initiation Lifecycle: Guided and Automated Pathways</h2>
-        <p>
-          A primary source of error and inefficiency in traditional order processes is the manual selection of order
-          types and fulfillment paths. This framework directly addresses this vulnerability by mandating a standardized
-          and automated initiation process that reduces user error, ensures process compliance, and accelerates the
-          initial stages of fulfillment.
-        </p>
-        <p>
-          The framework mandates a Guided Menu as the sole interface for all order initiation, which functions as a
-          dynamic Q&amp;A session. Instead of requiring users to know the correct order type in advance, the system
-          presents a series of relevant, context-sensitive questions to gather the necessary information.
-        </p>
-        <p>
-          Based on the user's answers, the central platform combines this input with a series of automated backend logic
-          checks to determine the correct order type and fulfillment path. These logic checks are critical for ensuring
-          accuracy and can include evaluating:
-        </p>
-        <p>
-          Project milestones (e.g., whether a key construction milestone has been actualized).<br>
-          Real-time inventory levels at various locations.<br>
-          The type of location requesting materials (e.g., a standard site vs. a spares-holding location).<br>
-          Whether additional parts are needed for an existing project.
-        </p>
-        <p>
-          This intelligent routing logic automatically directs the user to one of several primary order pathways, each
-          tailored to a specific business need:
-        </p>
-        <p>
-          Forward Logistics: Bill of Materials (BOM) for New Builds and Modifications<br>
-          Inventory Management: Stock Transfer Orders (STO)<br>
-          Inventory Replenishment: Spares Stock Transfer Orders (Spares STO)<br>
-          Reverse Logistics: Equipment Return Orders
-        </p>
-        <p>
-          By automating this initial decision-making process, the system ensures that every order begins its lifecycle on
-          the correct path, eliminating rework and downstream complications. The following sections will examine each of
-          these core workflows in detail.
-        </p>
-
-        <hr>
-
-        <h2 id="workflows">4.0 Core Order Process Workflows</h2>
-        <p>
-          While the initiation process is standardized through a guided interface, the system employs distinct,
-          specialized workflows tailored to the unique requirements of different order types. This approach ensures that
-          every request—from new part procurement and site modifications to inter-warehouse transfers and equipment
-          returns—is handled with the appropriate logic, validation, and approvals.
-        </p>
-
-        <h3 id="forward-logistics">4.1 Forward Logistics: New Part and Modification Orders</h3>
-        <p>
-          This workflow is designed to manage the creation of complex Bills of Materials (BOMs) for new site builds and
-          modifications, embedding validation logic directly into the creation process to ensure accuracy from the
-          outset.
-        </p>
-        <p>
-          The system first uses project milestone data to differentiate between a standard Site Kit BOM (for new builds),
-          a Modification Site BOM (for existing sites), and a Supplemental BOM (for ordering additional parts for
-          either). This automated routing prevents users from selecting an incorrect BOM type.
-        </p>
-        <p>
-          A key feature of this workflow is the in-system validation process, which operates in two distinct modes:
-        </p>
-        <p>
-          <strong>Real-Time BOM Validator:</strong> For standard and modification BOMs, this dynamic tool runs in the
-          background as users enter parts. It provides immediate, inline feedback by performing a series of checks,
-          including for duplicate parts against existing orders, validation against site configuration history,
-          enforcement of restricted item rules, and a real-time check of inventory in the WMS and the asset management
-          system for both Forward Stocking Locations and on-site inventory.
-        </p>
-        <p>
-          <strong>Supplemental BOM Validation:</strong> This workflow utilizes a different but equally comprehensive
-          validation pathway tailored to the specific context of supplemental orders. As users enter parts, the system
-          automatically runs checks against the central platform's restricted part rules, performs real-time inventory
-          lookups across Forward Stocking Locations, on-site inventory, and the central WMS Hub, and scans the
-          allocation log to prevent duplicate orders.
-        </p>
-        <p>
-          To prevent fulfillment delays due to stockouts, the system includes a taxonomy-driven alternate part suggestion
-          feature. When a specified part is unavailable, the system uses its asset catalog taxonomy to identify and
-          present functionally equivalent alternative parts, allowing the user to make an informed substitution directly
-          within the order form.
-        </p>
-        <p>
-          Finally, the approved workflow ensures proper oversight. The system presents all validation results (or a
-          user-provided exception reason for any failures) to the designated Construction Manager (CM) for approval.
-          Upon approval of a standard BOM, the system automatically updates a key project milestone (MA190). Critically,
-          an explicit business rule prevents this milestone from being updated upon the approval of a Supplemental BOM,
-          ensuring project timelines are not inadvertently altered.
-        </p>
-
-        <h3 id="inventory-mgmt">4.2 Inventory Management: Stock Transfer and Replenishment Orders</h3>
-        <p>
-          The system utilizes two distinct but related workflows for moving materials between locations: Stock Transfer
-          Orders (STO) for fulfilling specific, immediate needs, and Spares Stock Transfer Orders (Spares STO) for
-          proactive inventory replenishment. The system applies different fulfillment logic to each, optimizing for their
-          unique purpose.
-        </p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th>Stock Transfer Order (STO)</th>
-              <th>Spares Stock Transfer Order (Spares STO)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Primary Purpose</td>
-              <td>Fulfill a specific material need at a location.</td>
-              <td>Replenish inventory at a Forward Stocking Location (FSL) to a minimum level.</td>
-            </tr>
-            <tr>
-              <td>Initiation Method</td>
-              <td>Primarily user-driven, based on guided questions.</td>
-              <td>Can be user-driven or automatically triggered by the system when stock falls below a set threshold.</td>
-            </tr>
-            <tr>
-              <td>Inventory Search Logic</td>
-              <td>Sequentially checks nearest FSLs first, then Hubs, for like-for-like and alternate parts.</td>
-              <td>Checks only Hub inventory.</td>
-            </tr>
-            <tr>
-              <td>Fulfillment Rule</td>
-              <td>No partial fulfillment; the source location must have all requested parts and quantities.</td>
-              <td>The source Hub location must have all parts and quantities.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3 id="reverse-logistics">4.3 Reverse Logistics: Equipment Return Orders</h3>
-        <p>
-          The system provides a structured workflow for managing the return of equipment from the field. Once the guided
-          Q&amp;A process identifies an equipment return, the system evaluates inventory data, site milestones, and fault
-          reason codes to automatically determine one of two distinct processing paths, ensuring returns are handled
-          correctly based on their context.
-        </p>
-        <p>
-          <strong>Logistics Tracking Path:</strong> This is the standard path for non-faulty returns. The user is
-          navigated to a screen to confirm the materials and validate their serial numbers. Upon successful validation,
-          the request moves directly into the fulfillment pool to be processed for return shipment.
-        </p>
-        <p>
-          <strong>Fault Report Path:</strong> This path is triggered for materials identified as faulty. The user is
-          directed to a specialized form to provide detailed information about the fault. This path contains two further
-          sub-flows: one for when a replacement material is needed (which triggers the system's inventory search logic to
-          find a suitable replacement), and a second for a material-return-only scenario where no replacement is
-          required.
-        </p>
-
-        <h3 id="backlog">4.4 Intelligent Backlog Management</h3>
-        <p>
-          To handle requests that cannot be filled immediately, the system utilizes an intelligent Backlog Order Pool.
-          This serves as a central queue for any order request that is deferred, either due to inventory unavailability
-          or because it involves a specific, non-standard inventory class (e.g., "Inventory Class D").
-        </p>
-        <p>The backlog operates on a clear set of fulfillment rules:</p>
-        <p>
-          Fulfillment is sourced exclusively from Hub inventory to ensure a consistent and reliable supply source.<br>
-          An automated job processes queued requests based on a strict First-In, First-Out (FIFO) principle, ensuring
-          fairness in fulfillment.<br>
-          Authorized users have the ability to flag specific requests as high-priority, which overrides the FIFO sequence
-          to address urgent operational needs.
-        </p>
-        <p>
-          This process is integrated with the organization's planning and forecasting system. This ensures that the
-          automated job processes backlog orders in alignment with a rolling forecast cadence, systematically clearing
-          the queue as new inventory becomes available. Once inventory is confirmed, the automated job moves the request
-          from the backlog into the Order Allocation Log and then into the main fulfillment pool for immediate
-          processing.
-        </p>
-
-        <hr>
-
-        <h2 id="fulfillment">5.0 The Unified Fulfillment and Receiving Lifecycle</h2>
-        <p>
-          A key strategic benefit of this framework is the unification of all downstream processes, which de-risks the
-          physical supply chain by enforcing a single, auditable standard of execution. Once any order type—whether a
-          BOM, STO, or Equipment Return—is approved and its inventory is allocated, it enters a standardized fulfillment
-          and receiving lifecycle. This consistency ensures predictable execution, operational control, and complete,
-          end-to-end visibility for all stakeholders, regardless of the order's origin.
-        </p>
-
-        <p><strong>Pre-Shipment</strong><br>
-        From the moment an order enters the Order In Pool, users gain near real-time visibility into its progress through
-        integrations with the WMS and TMS. Statuses from the warehouse, such as "Pick in Scale" and "Packing Phase," and
-        from the carrier, such as "Distribution Order tendered" and "Carrier picks up order," are displayed directly
-        within the central platform, providing a single, consolidated view of the fulfillment journey.
-        </p>
-
-        <p><strong>Serialization and Chain of Custody</strong><br>
-        The system provides robust capabilities for tracking serialized assets throughout the supply chain. For complex
-        assemblies, it maintains a "Parent-Child Linkage," allowing for the discrete tracking of every serialized
-        sub-component (e.g., a specific power supply unit or fan tray) within the parent unit (e.g., a finished goods
-        cabinet). Serial numbers are captured during the kitting process in the WMS, become visible in the central
-        platform as soon as the truck is loaded, and are validated at every subsequent scan point, establishing an
-        unbreakable chain of custody.
-        </p>
-
-        <p><strong>Receiving and Reconciliation</strong><br>
-        Upon shipment, the central platform automatically creates an expected receive document at the destination
-        location. The "Happy Path" occurs when a physical scan of all received items perfectly matches the shipping
-        manifest. In this scenario, the system closes the loop by automatically generating a shipment receipt and
-        sending an inter-organizational receipt to the ERP system, updating financial and inventory records without
-        manual intervention.
-        </p>
-
-        <p><strong>Discrepancy Handling</strong><br>
-        The system includes automated workflows to manage the inevitable exceptions that occur during receiving, ensuring
-        that issues are identified and resolved systematically.
-        </p>
-        <p>
-          <strong>Partial Receipt:</strong> If the scanned items do not match the manifest, the system compares shipped
-          versus scanned serials. For any missing items that cannot be located, the system automatically cancels the
-          recorded movement of those serials, notifies the original shipping location to initiate a potential freight
-          claim or asset write-off, and creates a new, corrected order containing only the items that were successfully
-          received.
-        </p>
-        <p>
-          <strong>Extra Items:</strong> If a scan reveals items that were not on the manifest, the system flags them as
-          extra and prompts the user for confirmation. If the discrepancy is confirmed, an "Order Discrepancy" flag is
-          created on the order for investigation and resolution, while the correctly received items are processed.
-        </p>
-        <p>
-          This unified lifecycle provides a predictable, auditable, and highly visible framework for managing the
-          physical movement of goods, from warehouse shelf to final destination.
-        </p>
-
-        <hr>
-
-        <h2 id="benefits">6.0 Strategic Business Benefits</h2>
-        <p>
-          The culmination of these integrated and automated capabilities translates directly into tangible business
-          value. By moving away from manual, disconnected processes to a unified, intelligent framework, an organization
-          can realize significant strategic advantages across its entire supply chain operation.
-        </p>
-
-        <p><strong>Enhanced Operational Efficiency</strong><br>
-          The system dramatically reduces manual effort and optimizes core processes. Features such as the guided menus
-          for order initiation, automated routing logic, intelligent backlog management, and a streamlined fulfillment
-          and receiving workflow eliminate tedious data entry, prevent rework, and accelerate the entire order-to-cash
-          cycle. This allows personnel to focus on value-added activities and exception management rather than routine
-          processing.
-        </p>
-
-        <p><strong>Improved Data Integrity and Accuracy</strong><br>
-          By replacing spreadsheets and manual validation with systemic controls, the framework fundamentally improves
-          the quality and reliability of supply chain data. The real-time BOM Validator, automated inventory checks at
-          every stage, and mandatory serial number validation at shipping and receiving work in concert to eliminate a
-          wide range of common errors. This high-integrity data provides a reliable foundation for operational
-          execution, financial reporting, and strategic planning.
-        </p>
-
-        <p><strong>Total Visibility and Control</strong><br>
-          The hub-and-spoke architecture provides a single, unified view of the entire order lifecycle. Stakeholders no
-          longer need to consult multiple systems to understand an order's status. The integrated WMS and TMS status
-          tracking, fully auditable logs for all system actions, and clear visibility into on-hand inventory, backlogs,
-          and in-transit shipments provide an unprecedented level of real-time control and insight, enabling proactive
-          management and faster decision-making.
-        </p>
-
-        <hr>
-
-        <h2 id="sectors">7.0 Broader Applications in Key US Sectors</h2>
-        <p>
-          The principles underlying this framework—rules-based automation, deep system integration, and end-to-end asset
-          traceability—have transformative potential far beyond its initial application. The core concepts of guided
-          data entry to reduce errors, real-time inventory visibility, robust chain-of-custody for serialized assets,
-          and integrated discrepancy resolution are applicable to any industry where the precise and efficient movement
-          of physical goods is critical.
-        </p>
-
-        <p><strong>High-Tech Manufacturing</strong><br>
-          In the assembly of complex electronics, the principles of parent-child serialization and automated validation
-          could be applied to streamline production. This would ensure every component, from a single microchip to a
-          finished server rack, is tracked from the warehouse shelf, through the assembly line, and into the final
-          product. Such a system would dramatically reduce the risk of using incorrect components, simplify quality
-          control, and make targeted product recalls faster and more precise.
-        </p>
-
-        <p><strong>Healthcare and Pharmaceutical Logistics</strong><br>
-          For managing the distribution of sensitive medicines and medical devices, end-to-end serialized tracking is
-          paramount. This framework's principles could be used to manage the cold chain for temperature-sensitive
-          biologics, providing an unbroken, auditable record from the manufacturing facility to the clinic. This level
-          of traceability would ensure regulatory compliance, help prevent counterfeiting, and provide absolute
-          certainty that patients are receiving safe and effective treatments.
-        </p>
-
-        <p><strong>Critical Infrastructure Management</strong><br>
-          The maintenance and repair of public utilities like the energy grid or water systems depend on getting the
-          right parts to the right place at the right time. The guided workflows and intelligent backlog management
-          described here could be applied to manage maintenance parts logistics. This would ensure that when a field
-          engineer needs a specific transformer or valve, the system automatically guides them through the request,
-          finds the part in the nearest depot, tracks it to the job site, and manages the return of the old unit, thereby
-          minimizing critical infrastructure downtime.
-        </p>
-
-        <hr>
-
-        <h2 id="conclusion">8.0 Conclusion</h2>
-        <p>
-          The operational friction caused by fragmented systems and manual, error-prone order management processes
-          represents a significant barrier to growth and efficiency. These legacy approaches create data silos, obscure
-          visibility, and introduce unnecessary risk into the supply chain.
-        </p>
-        <p>
-          This framework outlines a definitive solution: a unified, integrated, and automated system that serves as a
-          central hub for all order and fulfillment activities. By leveraging guided workflows, real-time data from
-          connected WMS, TMS, and ERP systems, and intelligent logic for validation and exception handling, it transforms
-          the order lifecycle into a seamless, transparent, and highly efficient process.
-        </p>
-        <p>
-          The ultimate value proposition of adopting such a framework is the achievement of a state of operational
-          excellence. This is characterized by the speed, accuracy, and complete visibility required to compete in the
-          modern economy. It equips an organization with a resilient and scalable supply chain, providing the control
-          and agility needed to drive sustainable business growth.
-        </p>
-      </article>
-
-      <aside class="sidebar">
-        <div class="sidebar-card">
-          <h4>Quick navigation</h4>
-          <ul class="toc-list">
-            <li><a href="#intro">1. Introduction</a></li>
-            <li><a href="#architecture">2. Unified system architecture</a></li>
-            <li><a href="#initiation">3. Order initiation lifecycle</a></li>
-            <li><a href="#workflows">4. Core workflows</a></li>
-            <li><a href="#fulfillment">5. Fulfillment &amp; receiving</a></li>
-            <li><a href="#benefits">6. Strategic benefits</a></li>
-            <li><a href="#sectors">7. Sector applications</a></li>
-            <li><a href="#conclusion">8. Conclusion</a></li>
+    <section>
+      <h2>Data contracts</h2>
+      <div class="grid">
+        <div>
+          <h3>Order inputs</h3>
+          <ul>
+            <li>Catalog IDs with substitution trees and compliance flags.</li>
+            <li>Availability + freshness; capacity by node and carrier.</li>
+            <li>Customer constraints (delivery window, access, service needs).</li>
           </ul>
         </div>
-
-        <div class="sidebar-card">
-          <h4>Related views</h4>
-          <p>Explore how this framework maps to broader national and sector-level impact.</p>
-          <a class="btn-link" href="order-fulfillment-impact.html">
-            View impact analysis
-          </a>
+        <div>
+          <h3>Execution signals</h3>
+          <ul>
+            <li>Pick/pack scans with location, timestamp, and handler.</li>
+            <li>Photo + seal verification tied to shipment IDs.</li>
+            <li>Exception codes mapped to playbooks and customer messaging.</li>
+          </ul>
         </div>
-
-        <div class="sidebar-card">
-          <h4>Back to portfolio</h4>
-          <p>Return to the main portfolio to see how this project sits alongside catalog, inspection, and inventory work.</p>
-          <a class="btn-link" href="index.html#projects">
-            Back to projects
-          </a>
+        <div>
+          <h3>Assurance</h3>
+          <ul>
+            <li>Decision logs on why a promise was accepted, rerouted, or split.</li>
+            <li>Customer comms synchronized with operational state.</li>
+            <li>Settlement rules with tax, credits, and SLA adherence.</li>
+          </ul>
         </div>
-      </aside>
-    </main>
+      </div>
+    </section>
 
-    <footer>
-      <span>&copy; <span id="year"></span> Venkata Parimi · Systems &amp; Lifecycle Frameworks</span>
-      <span>Project 4 &mdash; Integrated Order &amp; Fulfillment Management System</span>
-    </footer>
-  </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <section>
+      <h2>Playbooks</h2>
+      <div class="grid">
+        <div>
+          <h3>High-value orders</h3>
+          <ul>
+            <li>Two-person verification, photos, and route locks before pickup.</li>
+            <li>Real-time customer ETA sharing with secure proof of delivery.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Split shipments</h3>
+          <ul>
+            <li>Optimize across nodes while keeping delivery windows aligned.</li>
+            <li>Notify customer which items ship together and why.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Service + product</h3>
+          <ul>
+            <li>Bundle installations with hardware; verify certifications and tools.</li>
+            <li>Trigger billing only after service proof and asset activation.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cta">Return to the interactive home → <a href="index.html">portfolio</a></div>
+    </section>
+  </main>
 </body>
 </html>

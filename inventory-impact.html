@@ -2,141 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Inventory & Asset Lifecycle – National Impact Analysis</title>
+  <title>Inventory – Impact Visual</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5f5f7;
-      color: #141414;
-      line-height: 1.65;
-    }
-    header {
-      padding: 2.5rem 10vw 1.5rem;
-      background: #ffffff;
-      border-bottom: 1px solid #e0e0e5;
-    }
-    header h1 {
-      margin: 0 0 0.75rem;
-      font-size: 1.9rem;
-      font-weight: 630;
-    }
-    header p {
-      margin: 0;
-      max-width: 60rem;
-      color: #555;
-      font-size: 0.96rem;
-    }
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2rem 10vw 3rem;
-    }
-    section {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 1.75rem 1.75rem 1.5rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid #e0e0e5;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.03);
-    }
-    h2 {
-      margin-top: 0;
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-    }
-    h3 {
-      font-size: 1.05rem;
-      margin-bottom: 0.4rem;
-      margin-top: 1.2rem;
-    }
-    p {
-      margin: 0 0 0.9rem;
-      font-size: 0.95rem;
-    }
-    .pill {
-      display: inline-block;
-      padding: 0.15rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid #e0e0e5;
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #555;
-      margin-bottom: 0.6rem;
-    }
-    .back-link {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      text-decoration: none;
-      color: #0b5fff;
-    }
+    :root { --bg:#05060b; --card:rgba(255,255,255,0.04); --border:rgba(255,255,255,0.08); --accent:#7c3aed; --accent-2:#6ddcff; --text:#f5f7fb; --muted:#9ca3af; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; background:radial-gradient(circle at 80% 10%,rgba(124,58,237,0.16),transparent 30%), radial-gradient(circle at 20% 80%,rgba(109,220,255,0.12),transparent 30%), #05060b; color:var(--text); line-height:1.6; }
+    a { color:inherit; }
+    header { padding:2.5rem 1.5rem 1.5rem; max-width:1100px; margin:0 auto; display:flex; gap:1.5rem; align-items:center; justify-content:space-between; }
+    h1 { font-size:clamp(2rem,3vw,2.7rem); margin-bottom:0.4rem; }
+    p.lead { color:var(--muted); max-width:680px; }
+    .pill { display:inline-flex; padding:0.3rem 0.75rem; border-radius:999px; border:1px solid var(--border); color:var(--muted); letter-spacing:0.1em; font-size:0.8rem; text-transform:uppercase; }
+    main { max-width:1100px; margin:0 auto; padding:0 1.5rem 3rem; display:grid; gap:1.5rem; }
+    section { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.4rem; box-shadow:0 10px 60px rgba(0,0,0,0.4); }
+    h2 { font-size:1.2rem; margin-bottom:0.5rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
+    .stat { font-size:1.4rem; font-weight:700; color:var(--accent-2); margin-bottom:0.15rem; }
+    .muted { color:var(--muted); }
+    .flow { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0.8rem; margin-top:1rem; }
+    .node { padding:1rem; border-radius:12px; border:1px dashed var(--border); background:rgba(255,255,255,0.03); position:relative; }
+    .node::after { content:"→"; position:absolute; right:-0.7rem; top:50%; transform:translateY(-50%); color:var(--muted); }
+    .node:last-child::after { display:none; }
+    .columns { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; }
+    ul { padding-left:1.1rem; color:var(--muted); }
+    li { margin-bottom:0.35rem; }
+    .cta { text-align:center; color:var(--muted); padding-top:0.6rem; }
+    .cta a { color:var(--accent-2); font-weight:600; }
+    @media (max-width:960px){ header{flex-direction:column; align-items:flex-start;} .flow{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
   <header>
-    <h1>Inventory & Asset Lifecycle – National Impact Analysis</h1>
-    <p>
-      Broader applications across national sectors and a blueprint for the future of asset management.
-    </p>
+    <div>
+      <div class="pill">Impact reel</div>
+      <h1>Inventory systems – Promise keeping at scale</h1>
+      <p class="lead">Infographic view of how sensing, reservations, and network-aware replenishment make every commitment credible.</p>
+    </div>
+    <div><a class="pill" href="inventory-whitepaper.html">Read the whitepaper</a></div>
   </header>
 
   <main>
     <section>
-      <div class="pill">Societal & Sector Impact</div>
+      <h2>Outcome board</h2>
+      <div class="grid">
+        <div><div class="stat">OTIF ↑</div><p class="muted">On-time, in-full promises hold because availability is calculated with constraints, substitutes, and lead times.</p></div>
+        <div><div class="stat">Fewer stockouts</div><p class="muted">Signal-driven rebalancing keeps fast movers near demand while protecting critical spares.</p></div>
+        <div><div class="stat">Margin control</div><p class="muted">Optimized sourcing uses cost-to-serve plus substitution rules to avoid expensive expedites.</p></div>
+        <div><div class="stat">Delightful UX</div><p class="muted">Customer portals show truthful options, ETA confidence, and transparent substitutions.</p></div>
+      </div>
+    </section>
 
-      <h2>6. Broader Applications: Enhancing National Sector Efficiency</h2>
-      <p>
-        The core principles of this framework—robust serialization, an auditable chain of custody, and the seamless
-        integration of field operations with central logistics—have transformative applications beyond a single
-        enterprise. The system's proven ability to track high volumes of serialized assets, manage complex parent-child
-        assemblies, and reconcile physical movements with financial records can be adapted to enhance efficiency,
-        accountability, and security in major national sectors.
-      </p>
-      <p>
-        National Infrastructure Projects For large-scale projects like the modernization of energy grids,
-        transportation networks, or communication infrastructure, this framework could track high-value and critical
-        components from the point of manufacture to final installation. By ensuring every transformer, switch, or
-        specialized module is serialized and tracked, project managers can guarantee project integrity, prevent the
-        introduction of counterfeit parts, and maintain an accurate inventory for maintenance and future upgrades.
-      </p>
-      <p>
-        Defense and Aerospace Logistics The framework is ideally suited to provide a secure, auditable chain of custody
-        for sensitive, regulated, or mission-critical military and aerospace equipment. It could track assets as they
-        move between manufacturing facilities, central depots, forward operating bases, and operational theaters. This
-        level of granular visibility would enhance mission readiness, simplify logistics, and ensure accountability for
-        high-value national security assets.
-      </p>
-      <p>
-        Pharmaceutical and Medical Device Supply Chains In a sector where regulatory compliance and patient safety are
-        paramount, this framework could be used to track high-value medical devices or pharmaceutical batches by serial
-        or lot number. This would provide an unimpeachable record from the factory to the healthcare provider,
-        dramatically enhancing the speed and precision of product recalls, preventing counterfeits from entering the
-        supply chain, and ensuring compliance with stringent health regulations.
-      </p>
-      <p>
-        These examples illustrate the broad applicability of a systematic approach to asset management, highlighting its
-        potential to become a foundational tool for modernizing critical sectors.
-      </p>
+    <section>
+      <h2>Dynamic dataflow</h2>
+      <div class="flow">
+        <div class="node"><strong>Sensing</strong><p class="muted">Telemetry, POS, and supplier feeds align in a quality gate with dedupe + anomaly detection.</p></div>
+        <div class="node"><strong>Predict</strong><p class="muted">Forecasts tuned by weather, campaigns, and seasonality produce risk-weighted demand.</p></div>
+        <div class="node"><strong>Reserve</strong><p class="muted">Promise engine matches orders to the best node with substitution and capacity checks.</p></div>
+        <div class="node"><strong>Rebalance</strong><p class="muted">Autonomous transfers and buys trigger with guardrails and audit-ready evidence.</p></div>
+      </div>
+    </section>
 
-      <h2>7. Conclusion: A Blueprint for the Future of Asset Management</h2>
-      <p>
-        This whitepaper has outlined a framework built on three core tenets: a centralized custody architecture that
-        integrates disparate enterprise systems, the foundational principle of serialization as the single source of
-        truth, and a series of automated, event-driven workflows that cover the full asset lifecycle. By adhering to
-        this model, an organization can achieve profound strategic outcomes, including enhanced data integrity, superior
-        operational efficiency, and rigorous, auditable compliance. This framework is more than a technical solution; it
-        is an essential blueprint for any modern enterprise seeking to gain definitive control over its physical assets
-        in an increasingly complex and interconnected world.
-      </p>
+    <section>
+      <h2>Scenario boards</h2>
+      <div class="columns">
+        <div>
+          <h3>Retail network</h3>
+          <ul>
+            <li>Dark stores replenish based on micro-region velocity and aging thresholds.</li>
+            <li>Click-and-collect respects labor, dock, and route constraints before confirming pickup.</li>
+            <li>Substitutions are pre-approved by category to keep the customer promise intact.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Field operations</h3>
+          <ul>
+            <li>Technicians receive kitted parts staged by appointment priority and travel plans.</li>
+            <li>Returns and scraps update availability immediately with photo evidence.</li>
+            <li>Critical spares protected with alerts when forecasts threaten safety stock.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Supply chain control</h3>
+          <ul>
+            <li>Network re-slotting follows service-level heatmaps and cost-to-serve envelopes.</li>
+            <li>Partners integrate via contracts that validate item IDs, UOMs, and lead-time windows.</li>
+            <li>Event playbooks simulate service impact before executing transfers.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-      <a class="back-link" href="index.html">&larr; Back to portfolio</a>
+    <section>
+      <h2>Controls and trust</h2>
+      <div class="columns">
+        <div>
+          <h3>Data quality</h3>
+          <ul>
+            <li>Lineage and freshness indicators accompany every availability decision.</li>
+            <li>Outlier detection quarantines noisy telemetry before it affects forecasts.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Resilience</h3>
+          <ul>
+            <li>Fallback logic reroutes promises during node outages while protecting margins.</li>
+            <li>Scenario sandboxes let planners test shocks without touching production.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Experience</h3>
+          <ul>
+            <li>Confidence badges show ETA accuracy and substitution rules to customers.</li>
+            <li>Alerts surface only when action is needed, not just when thresholds flicker.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cta">Go deeper in the framework → <a href="inventory-whitepaper.html">whitepaper</a></div>
     </section>
   </main>
 </body>

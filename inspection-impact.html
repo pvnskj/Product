@@ -2,179 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Inspection Management – National Impact Analysis</title>
+  <title>Inspection – Impact Visual</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5f5f7;
-      color: #141414;
-      line-height: 1.65;
-    }
-    header {
-      padding: 2.5rem 10vw 1.5rem;
-      background: #ffffff;
-      border-bottom: 1px solid #e0e0e5;
-    }
-    header h1 {
-      margin: 0 0 0.75rem;
-      font-size: 1.9rem;
-      font-weight: 630;
-    }
-    header p {
-      margin: 0;
-      max-width: 60rem;
-      color: #555;
-      font-size: 0.96rem;
-    }
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2rem 10vw 3rem;
-    }
-    section {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 1.75rem 1.75rem 1.5rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid #e0e0e5;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.03);
-    }
-    h2 {
-      margin-top: 0;
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-    }
-    h3 {
-      font-size: 1.05rem;
-      margin-bottom: 0.4rem;
-      margin-top: 1.2rem;
-    }
-    p {
-      margin: 0 0 0.9rem;
-      font-size: 0.95rem;
-    }
-    .pill {
-      display: inline-block;
-      padding: 0.15rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid #e0e0e5;
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #555;
-      margin-bottom: 0.6rem;
-    }
-    .back-link {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      text-decoration: none;
-      color: #0b5fff;
-    }
+    :root { --bg:#05060b; --card:rgba(255,255,255,0.04); --border:rgba(255,255,255,0.08); --accent:#a0f668; --text:#f5f7fb; --muted:#9ca3af; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; background:radial-gradient(circle at 25% 25%,rgba(160,246,104,0.12),transparent 30%), radial-gradient(circle at 80% 70%,rgba(109,220,255,0.14),transparent 30%), #05060b; color:var(--text); line-height:1.6; }
+    a { color:inherit; }
+    header { padding:2.5rem 1.5rem 1.5rem; max-width:1100px; margin:0 auto; display:flex; gap:1.5rem; align-items:center; justify-content:space-between; }
+    h1 { font-size:clamp(2rem,3vw,2.7rem); margin-bottom:0.4rem; }
+    p.lead { color:var(--muted); max-width:680px; }
+    .pill { display:inline-flex; padding:0.3rem 0.75rem; border-radius:999px; border:1px solid var(--border); color:var(--muted); letter-spacing:0.1em; font-size:0.8rem; text-transform:uppercase; }
+    main { max-width:1100px; margin:0 auto; padding:0 1.5rem 3rem; display:grid; gap:1.5rem; }
+    section { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.4rem; box-shadow:0 10px 60px rgba(0,0,0,0.4); }
+    h2 { font-size:1.2rem; margin-bottom:0.5rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
+    .stat { font-size:1.4rem; font-weight:700; color:var(--accent); margin-bottom:0.15rem; }
+    .muted { color:var(--muted); }
+    .flow { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0.8rem; margin-top:1rem; }
+    .node { padding:1rem; border-radius:12px; border:1px dashed var(--border); background:rgba(255,255,255,0.03); position:relative; }
+    .node::after { content:"→"; position:absolute; right:-0.7rem; top:50%; transform:translateY(-50%); color:var(--muted); }
+    .node:last-child::after { display:none; }
+    .columns { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; }
+    ul { padding-left:1.1rem; color:var(--muted); }
+    li { margin-bottom:0.35rem; }
+    .cta { text-align:center; color:var(--muted); padding-top:0.6rem; }
+    .cta a { color:var(--accent); font-weight:600; }
+    @media (max-width:960px){ header{flex-direction:column; align-items:flex-start;} .flow{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
   <header>
-    <h1>Inspection Management – National Impact Analysis</h1>
-    <p>
-      Strategic use cases, ROI, and sector-level impact of an automated inspection and asset lifecycle framework.
-    </p>
+    <div>
+      <div class="pill">Impact reel</div>
+      <h1>Inspection systems – Evidence you can trust</h1>
+      <p class="lead">Infographic view of digital inspections, exception-first routing, and audit-ready trails that protect safety and compliance.</p>
+    </div>
+    <div><a class="pill" href="inspection-whitepaper.html">Read the whitepaper</a></div>
   </header>
 
   <main>
     <section>
-      <div class="pill">Societal & Sector Impact</div>
-      <h2>6.0 Strategic Use Cases Across U.S. Sectors</h2>
+      <h2>Outcome board</h2>
+      <div class="grid">
+        <div><div class="stat">✔ First-pass quality</div><p class="muted">Right inspections happen automatically with guided checks and clear criteria.</p></div>
+        <div><div class="stat">⏱ Faster cycles</div><p class="muted">Technicians receive prioritized queues and kitted parts so work completes on time.</p></div>
+        <div><div class="stat">🧭 Clear traceability</div><p class="muted">Immutable evidence links every asset event to approvals, photos, and rules.</p></div>
+        <div><div class="stat">🚦 Risk visibility</div><p class="muted">Dashboards light up risky regions or vendors before incidents happen.</p></div>
+      </div>
+    </section>
 
-      <p>
-        Telecommunications
-      </p>
-      <p>
-        Reduces unscheduled truck rolls, enhances SLA compliance, and lowers Mean Time to Repair (MTTR). Improves
-        network reliability and lowers operational expenditure.
-      </p>
+    <section>
+      <h2>Inspection dataflow</h2>
+      <div class="flow">
+        <div class="node"><strong>Trigger</strong><p class="muted">Telemetry, schedules, and regulatory cadences fire work orders with full context.</p></div>
+        <div class="node"><strong>Prepare</strong><p class="muted">Assignment logic pairs people, tools, and BOMs; pre-checklists prevent site delays.</p></div>
+        <div class="node"><strong>Execute</strong><p class="muted">Guided workflows capture readings, photos, and AI-detected anomalies.</p></div>
+        <div class="node"><strong>Close & learn</strong><p class="muted">Evidence, exceptions, and follow-ups roll into models and compliance reports.</p></div>
+      </div>
+    </section>
 
-      <p>
-        Energy &amp; Utilities
-      </p>
-      <p>
-        Supports grid reliability, predictive failure detection, and compliance with regulatory standards. Minimizes
-        outage duration and improves public safety.
-      </p>
+    <section>
+      <h2>Scenario boards</h2>
+      <div class="columns">
+        <div>
+          <h3>Critical infrastructure</h3>
+          <ul>
+            <li>Inspections coordinate with grid or utility outages to minimize downtime.</li>
+            <li>Parts and tools staged with chain-of-custody and calibration proof.</li>
+            <li>Fallback plans show detours when access or permits change last minute.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Manufacturing</h3>
+          <ul>
+            <li>Digital twins map defects to upstream batches for rapid containment.</li>
+            <li>Visual cues and AR overlays ensure every torque, seal, and test is done.</li>
+            <li>Nonconformances route instantly to disposition with automated holds.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Regulatory audits</h3>
+          <ul>
+            <li>Evidence bundles export with signatures, GPS, and timestamps.</li>
+            <li>Policy changes publish to checklists instantly with backward traceability.</li>
+            <li>Variance trends surface coaching needs and systemic design fixes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-      <p>
-        Public Infrastructure &amp; Transportation
-      </p>
-      <p>
-        Optimizes maintenance of bridges, traffic systems, and transit equipment. Extends asset life and ensures
-        reliable delivery of public services.
-      </p>
-
-      <p>
-        Healthcare &amp; Life Sciences
-      </p>
-      <p>
-        Improves equipment availability, reduces downtime, and enhances regulatory traceability for critical medical
-        devices.
-      </p>
-
-      <p>
-        Federal, State, and Local Government
-      </p>
-      <p>
-        Supports asset readiness, capital planning, and efficient allocation of field resources.
-      </p>
-
-      <h2>7.0 Strategic ROI: Business Impact and Operational Value</h2>
-      <p>
-        Organizations adopting this architecture achieve measurable improvements:
-      </p>
-      <p>
-        Reduced operational overhead through consolidated field visits
-      </p>
-      <p>
-        Extended asset life via predictive interventions
-      </p>
-      <p>
-        Improved data accuracy leading to fewer errors and rework
-      </p>
-      <p>
-        Higher workforce efficiency through automation
-      </p>
-      <p>
-        Faster issue resolution improving customer and community satisfaction
-      </p>
-      <p>
-        Lower compliance risk through audit-ready traceability
-      </p>
-      <p>
-        Greater capital planning accuracy via better lifecycle insights
-      </p>
-      <p>
-        These outcomes directly enhance service reliability across industries that millions of U.S. citizens depend on.
-      </p>
-
-      <h2>8.0 Conclusion: A Modern, Predictive Operational Model</h2>
-      <p>
-        This architecture represents a strategic shift in asset lifecycle management—from reactive maintenance and
-        fragmented data practices to a unified, intelligent, predictive ecosystem. By integrating authoritative data,
-        advanced scheduling logic, automated field workflows, and seamless enterprise synchronization, organizations gain
-        a durable operational advantage.
-      </p>
-      <p>
-        The benefits extend beyond internal efficiency. Improved uptime, better reliability, and responsive maintenance
-        ultimately strengthen the national infrastructure Americans depend on every day. As industries continue moving
-        toward automation and AI-driven operations, this architecture provides the foundational intelligence, data
-        integrity, and operational precision required for that evolution.
-      </p>
-
-      <a class="back-link" href="index.html">&larr; Back to portfolio</a>
+    <section>
+      <h2>Controls and trust</h2>
+      <div class="columns">
+        <div>
+          <h3>Data quality</h3>
+          <ul>
+            <li>Media and sensor readings validated on-device to avoid corrupt evidence.</li>
+            <li>Every change stamped with user, location, and rule version.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Resilience</h3>
+          <ul>
+            <li>Offline-friendly workflows sync when coverage returns, with conflict resolution.</li>
+            <li>Escalations follow severity ladders with clear owners and SLAs.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Experience</h3>
+          <ul>
+            <li>Technicians see only the steps and assets relevant to their role and certifications.</li>
+            <li>Stakeholders track live status, blockers, and proof without chasing updates.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cta">See the architecture → <a href="inspection-whitepaper.html">whitepaper</a></div>
     </section>
   </main>
 </body>
