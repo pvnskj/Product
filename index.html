@@ -91,6 +91,13 @@
     .btn.primary { background: linear-gradient(120deg, #60a5fa, #8b5cf6); color: #0b1224; box-shadow: 0 10px 50px rgba(96,165,250,0.35); }
     .btn.ghost { border-color: var(--border); color: var(--text); background: rgba(255,255,255,0.9); }
 
+    .cta-tiles { margin-top: 1.1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.65rem; }
+    .cta-tile { display: block; padding: 0.9rem 1rem; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.92); box-shadow: 0 10px 30px rgba(12,24,44,0.06); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .cta-tile:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(59,130,246,0.12); }
+    .cta-tile .eyebrow { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.25rem; display: block; }
+    .cta-tile strong { display: block; font-size: 1.05rem; margin-bottom: 0.2rem; color: var(--text); }
+    .cta-tile span { color: var(--muted); font-size: 0.93rem; }
+
     .hero-visual { position: relative; height: 380px; }
     #heroScene { width: 100%; height: 100%; border-radius: 18px; overflow: hidden; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.85), rgba(224,231,255,0.5)); border: 1px solid var(--border); box-shadow: var(--glow); }
     .parallax { position: absolute; inset: 0; pointer-events: none; }
@@ -126,6 +133,7 @@
     .mini { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin-top: 0.6rem; }
     .mini div { padding: 0.75rem; border-radius: 10px; background: rgba(255,255,255,0.9); border: 1px dashed var(--border); color: var(--muted); font-size: 0.93rem; transition: transform 0.3s ease, border-color 0.3s ease; }
     .mini div:hover { transform: translateY(-3px); border-color: #cbd5e1; }
+    .mini .cta-tile { border-style: solid; }
 
     .infographics { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 0.5rem; }
     .canvas-wrap { background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; box-shadow: 0 10px 30px rgba(12,24,44,0.04); }
@@ -158,18 +166,40 @@
   <main>
     <section class="hero">
       <div class="hero-left">
-        <div class="kicker">Product operations · data trust · automation</div>
-        <h2>Systems portfolio for <span>asset, inventory, inspection</span>—built to demo fast.</h2>
-        <p>Every visual maps to the product story: KPI ladders for impact reels, dataflows that mirror runbooks, and a 3D scene that labels the exact services driving each outcome.</p>
+        <div class="kicker">Product operations · Programs shipped · KPIs moved</div>
+        <h2>Systems portfolio I owned for <span>asset, inventory, inspection</span>—built to demo fast.</h2>
+        <p>These visuals are my operating record: the promise desk that lifted OTIF, the sensing rails that cut cycle time, and the audit layer that let legal sleep at night.</p>
         <div class="tags">
-          <div class="tag">Data trust fabric</div>
-          <div class="tag">Impact reel KPIs</div>
-          <div class="tag">Closed-loop automations</div>
-          <div class="tag">3D signal map</div>
+          <div class="tag">Promise desk rollout (12pt OTIF lift)</div>
+          <div class="tag">Network sensing (22% faster cycle)</div>
+          <div class="tag">Exception automation (4x fewer manual escalations)</div>
+          <div class="tag">Audit-ready ledger for regulators</div>
         </div>
         <div class="cta-row">
           <a class="btn primary" href="#portfolio">Explore infographics</a>
-          <a class="btn ghost" href="inventory-impact.html">Jump to live impact</a>
+          <a class="btn ghost" href="#cta-grid">Jump to the decks</a>
+        </div>
+        <div class="cta-tiles" id="cta-grid">
+          <a class="cta-tile" href="asset-catalog-impact.html">
+            <span class="eyebrow">Asset catalog</span>
+            <strong>Launched source of truth</strong>
+            <span>Cut duplicate SKUs by 38% and pushed BOM governance into every channel.</span>
+          </a>
+          <a class="cta-tile" href="inventory-impact.html">
+            <span class="eyebrow">Inventory</span>
+            <strong>Promise desk + sensing</strong>
+            <span>Reduced OTIF slippage by 12% and shaved 22% off cycle time with routed automations.</span>
+          </a>
+          <a class="cta-tile" href="inspection-impact.html">
+            <span class="eyebrow">Inspection</span>
+            <strong>Exception-first inspections</strong>
+            <span>4x fewer escalations after closing the loop between policies, alerts, and field QA.</span>
+          </a>
+          <a class="cta-tile" href="order-fulfillment-whitepaper.html">
+            <span class="eyebrow">Order fulfillment</span>
+            <strong>Zero-friction promises</strong>
+            <span>Unified catalog + inventory signals so orders left on time with clean audit trails.</span>
+          </a>
         </div>
       </div>
       <div class="hero-visual">
@@ -180,9 +210,9 @@
           <div class="bubble"></div>
         </div>
         <div class="hero-legend" aria-hidden="true">
-          <div class="legend-item">Impact reels <span>OTIF + cycle KPIs mapped to flows</span></div>
-          <div class="legend-item">Data fabric <span>catalog + sensor signals stitched</span></div>
-          <div class="legend-item">Automation lanes <span>policy, routing, ledger hooks</span></div>
+          <div class="legend-item">OTIF promise desk <span>12pt lift after program launch</span></div>
+          <div class="legend-item">Signal mesh <span>inventory + inspection sensors aligned</span></div>
+          <div class="legend-item">Closed-loop ops <span>playbooks routed to ledger + alerts</span></div>
         </div>
       </div>
     </section>
@@ -191,7 +221,7 @@
     <div class="infographics">
       <div class="canvas-wrap reveal">
         <div class="chart-title">Impact reel ladder</div>
-        <div class="inline-stat"><strong class="stat">98%</strong><span>promise-keeping on reserved orders</span></div>
+        <div class="inline-stat"><strong class="stat">12pt lift</strong><span>in OTIF after launching the promise desk</span></div>
         <svg viewBox="0 0 260 160" width="100%" height="160" aria-hidden="true">
           <defs>
             <linearGradient id="ladderGrad" x1="0" x2="1" y1="0" y2="0">
@@ -213,23 +243,23 @@
             <line x1="40" y1="56" x2="214" y2="56" stroke="#10b981" />
           </g>
           <g fill="#0f172a" font-family="Inter" font-size="11" font-weight="700" text-anchor="start">
-            <text x="210" y="59">OTIF</text>
-            <text x="210" y="91">Cycle</text>
-            <text x="210" y="123">Quality</text>
+            <text x="210" y="59">OTIF lift</text>
+            <text x="210" y="91">Cycle delta</text>
+            <text x="210" y="123">Quality yield</text>
           </g>
           <g fill="#475569" font-family="Inter" font-size="10">
-            <text x="44" y="45">Catalog guardrails</text>
-            <text x="124" y="55">Inventory signals</text>
-            <text x="44" y="77">Automation runway</text>
-            <text x="124" y="87">Exception routing</text>
-            <text x="44" y="109">Ledger proof</text>
-            <text x="124" y="119">Customer promise</text>
+            <text x="44" y="45">Promise desk cadences</text>
+            <text x="124" y="55">Sensing + demand sync</text>
+            <text x="44" y="77">Auto-routes for misses</text>
+            <text x="124" y="87">Field + ops playbooks</text>
+            <text x="44" y="109">Ledgered KPIs</text>
+            <text x="124" y="119">Customer promise proof</text>
           </g>
         </svg>
       </div>
       <div class="canvas-wrap reveal">
         <div class="chart-title">Process twin dataflow</div>
-        <div class="inline-stat"><strong class="stat">22% faster</strong><span>cycle time with closed-loop automations</span></div>
+        <div class="inline-stat"><strong class="stat">22% faster</strong><span>cycle time after routing signals to actions</span></div>
         <svg viewBox="0 0 320 180" width="100%" height="180" aria-hidden="true">
           <defs>
             <linearGradient id="streamGrad" x1="0" x2="1" y1="0" y2="0">
@@ -252,8 +282,8 @@
           <path d="M214 78 Q214 140 248 140" stroke="#8b5cf6" stroke-width="8" fill="none" stroke-linecap="round" />
           <path d="M178 134 Q210 150 230 150" stroke="url(#ledgerGrad)" stroke-width="10" fill="none" stroke-linecap="round" />
           <g fill="#0f172a" font-family="Inter" font-size="11" font-weight="700">
-            <text x="40" y="64">Signals</text>
-            <text x="152" y="60">Decision graph</text>
+            <text x="40" y="64">Network sensing</text>
+            <text x="152" y="60">Promise desk</text>
             <text x="262" y="78">Actions</text>
             <text x="92" y="140">Policy layer</text>
             <text x="226" y="144">Ledger + alerts</text>
@@ -269,7 +299,7 @@
       </div>
       <div class="canvas-wrap reveal">
         <div class="chart-title">Process storyboard</div>
-        <div class="inline-stat"><strong class="stat">3 hops</strong><span>from signal to decision to ledger</span></div>
+        <div class="inline-stat"><strong class="stat">3 hops</strong><span>from signal to routed action to ledger receipt</span></div>
         <svg viewBox="0 0 320 180" width="100%" height="180" aria-hidden="true">
           <rect x="24" y="30" width="86" height="56" rx="14" fill="#f8fafc" stroke="#cbd5e1" />
           <rect x="128" y="56" width="86" height="56" rx="14" fill="#eff6ff" stroke="#bfdbfe" />
@@ -279,9 +309,9 @@
           <path d="M214 80 Q240 70 240 58" stroke="#10b981" stroke-width="8" fill="none" stroke-linecap="round" />
           <path d="M160 112 Q170 140 182 142" stroke="#8b5cf6" stroke-width="8" fill="none" stroke-linecap="round" />
           <g fill="#0f172a" font-family="Inter" font-size="11" font-weight="700">
-            <text x="34" y="60">Sense</text>
-            <text x="146" y="88">Decide</text>
-            <text x="244" y="66">Act</text>
+            <text x="34" y="60">Sense (network)</text>
+            <text x="146" y="88">Decide (desk)</text>
+            <text x="244" y="66">Act (field)</text>
             <text x="120" y="154">Immutable record</text>
           </g>
           <g fill="#475569" font-family="Inter" font-size="10">
@@ -301,8 +331,16 @@
         <h3>Single source of truth</h3>
         <p>Governance playbooks that unify approvals, versioned BOMs, and AI-ready metadata across every channel.</p>
         <div class="mini">
-          <div>Impact deck → <a href="asset-catalog-impact.html">View</a></div>
-          <div>Whitepaper → <a href="asset-catalog-whitepaper.html">Read</a></div>
+          <a class="cta-tile" href="asset-catalog-impact.html">
+            <span class="eyebrow">Impact deck</span>
+            <strong>Cut duplicate SKUs by 38%</strong>
+            <span>Program: catalog guardrails + AI-ready metadata.</span>
+          </a>
+          <a class="cta-tile" href="asset-catalog-whitepaper.html">
+            <span class="eyebrow">Whitepaper</span>
+            <strong>Channel-ready definitions</strong>
+            <span>Versioned BOMs, approvals, and classifier hints.</span>
+          </a>
         </div>
       </div>
       <div class="card">
@@ -310,8 +348,16 @@
         <h3>Predictable availability</h3>
         <p>Demand sensing, dynamic reservations, and network-aware replenishment to keep promises reliable.</p>
         <div class="mini">
-          <div>Impact deck → <a href="inventory-impact.html">View</a></div>
-          <div>Whitepaper → <a href="inventory-whitepaper.html">Read</a></div>
+          <a class="cta-tile" href="inventory-impact.html">
+            <span class="eyebrow">Impact deck</span>
+            <strong>OTIF slippage reduced 12%</strong>
+            <span>Promise desk + sensing automations.</span>
+          </a>
+          <a class="cta-tile" href="inventory-whitepaper.html">
+            <span class="eyebrow">Whitepaper</span>
+            <strong>Network-aware reserves</strong>
+            <span>Dynamic reservations and SLA routing.</span>
+          </a>
         </div>
       </div>
       <div class="card">
@@ -319,8 +365,16 @@
         <h3>Trusted compliance</h3>
         <p>Digital twins, exception-first routing, and auditor-grade traceability for every asset lifecycle event.</p>
         <div class="mini">
-          <div>Impact deck → <a href="inspection-impact.html">View</a></div>
-          <div>Whitepaper → <a href="inspection-whitepaper.html">Read</a></div>
+          <a class="cta-tile" href="inspection-impact.html">
+            <span class="eyebrow">Impact deck</span>
+            <strong>4x fewer escalations</strong>
+            <span>Exception-first inspections with routed playbooks.</span>
+          </a>
+          <a class="cta-tile" href="inspection-whitepaper.html">
+            <span class="eyebrow">Whitepaper</span>
+            <strong>Auditor-grade traceability</strong>
+            <span>Digital twins, snapshots, and policy gates.</span>
+          </a>
         </div>
       </div>
       <div class="card">
@@ -328,7 +382,11 @@
         <h3>Zero-friction promise</h3>
         <p>Commitment engines that blend catalog integrity with inventory signals to ship exactly what was promised.</p>
         <div class="mini">
-          <div>Whitepaper → <a href="order-fulfillment-whitepaper.html">Read</a></div>
+          <a class="cta-tile" href="order-fulfillment-whitepaper.html">
+            <span class="eyebrow">Whitepaper</span>
+            <strong>On-time, on-quality</strong>
+            <span>Blend catalog integrity with fulfillment proofs.</span>
+          </a>
         </div>
       </div>
     </div>
