@@ -8,6 +8,7 @@
 <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
 <meta content="no-cache" http-equiv="Pragma"/>
 <meta content="0" http-equiv="Expires"/>
+<link rel="stylesheet" href="theme.css"/>
 <style>
     :root {
       --bg: #f8fbff;
@@ -380,7 +381,20 @@
   </style>
 </head>
 <body>
-<div class="app">
+  <div class="nav-shell">
+    <nav class="top-nav">
+      <div class="brand">
+        <div class="orb"></div>
+        <h1>Systems & Lifecycle Frameworks</h1>
+      </div>
+      <div class="nav-links">
+        <a class="btn ghost" href="index.html">Home</a>
+        <a class="btn primary" href="inspection-impact.html">Impact</a>
+      </div>
+    </nav>
+  </div>
+  <main class="page-shell">
+  <div class="app">
 <aside aria-label="Whitepaper navigation" class="nav">
 <div class="nav-head">
 <div class="badge">Inspection</div>
@@ -567,5 +581,7 @@ const input = document.getElementById('q');
       t = setTimeout(() => { highlight(q); openMatchingSections(); }, 120);
     });
   </script>
+  </div>
+  </main>
 </body>
 </html>
