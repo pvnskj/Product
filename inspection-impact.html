@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Inspection – Impact Visual</title>
+  <title>Inspection – Impact Visual + Business Case</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="theme.css">
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <style>
     :root { --bg:#f6f8fb; --bg-alt:#eef2f7; --card:#ffffff; --panel:rgba(255, 255, 255, 0.9); --panel-solid:#ffffff; --border:rgba(12,24,44,0.12); --border-hover:rgba(59, 130, 246, 0.35); --accent:#3b82f6; --accent-2:#8b5cf6; --accent-3:#10b981; --accent-bg:rgba(59, 130, 246, 0.12); --highlight:rgba(59, 130, 246, 0.18); --text:#0f172a; --muted:#475569; --glow:0 25px 80px rgba(59,130,246,0.15), 0 0 0 1px rgba(12,24,44,0.05); --radius:16px; --sans:"Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
@@ -119,24 +116,106 @@
           <div class="tag">Offline resilience</div>
         </div>
         <div class="cta-row">
-          <a class="btn primary" href="#infographics">View animated infographics</a>
+          <a class="btn primary" href="#metrics">View Business Impact</a>
           <a class="btn ghost" href="inspection-whitepaper.html">Read the whitepaper</a>
         </div>
       </div>
       <div class="hero-visual">
-        <canvas id="inspectionScene" class="scene" aria-label="3D particle background illustrating inspection evidence fabric"></canvas>
+        <canvas id="inspectionScene" class="scene" aria-label="3D particle background"></canvas>
         <div class="parallax">
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
+          <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
         </div>
         <div class="hero-legend" aria-hidden="true">
           <div class="legend-item">Triggering <span>telemetry + cadences</span></div>
-          <div class="legend-item">Execution <span>guided workflows + AI cues</span></div>
-          <div class="legend-item">Traceability <span>ledger, GPS, signatures</span></div>
+          <div class="legend-item">Execution <span>guided workflows + AI</span></div>
+          <div class="legend-item">Traceability <span>ledger + GPS</span></div>
         </div>
       </div>
     </section>
+
+    <div class="summary-grid reveal">
+      <div class="summary-card sc-bad">
+        <div class="sc-title"><span>⚠</span> The Friction</div>
+        <div class="sc-content">
+          Paper forms and "pencil-whipping" create <strong>compliance blindspots</strong>. Reactive data entry leads to <strong>failed audits</strong> and delayed incident response.
+        </div>
+      </div>
+      <div class="summary-card sc-good">
+        <div class="sc-title"><span>⚡</span> The Solution</div>
+        <div class="sc-content">
+          Digital workflows force <strong>evidence capture</strong> (photos, readings). Anomalies auto-route to maintenance, ensuring <strong>instant audit readiness</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title" id="metrics">Executive Business Case</div>
+    <div class="metrics-deck">
+      
+      <div class="m-roi reveal">
+        <div class="roi-head">Projected 3-Year ROI</div>
+        <div class="roi-big">345%</div>
+        <div class="roi-math">
+          <div class="math-row"><span>Implementation</span> <span>$180,000</span></div>
+          <div class="math-row"><span>Risk Avoidance</span> <span>$800,000</span></div>
+          <div class="math-row highlight"><span>Net Value</span> <span>+$620,000</span></div>
+        </div>
+      </div>
+
+      <div class="m-data reveal">
+        <div>
+          <div class="chart-block">
+            <h3>Audit Prep Time <span>Instant</span></h3>
+            <div class="labels-row">
+              <strong>New: 0 Days (Real-time)</strong>
+              <span>Legacy: 2 Weeks</span>
+            </div>
+            <div class="timeline">
+              <div class="timeline-bar" style="--w: 5%"></div>
+              <div class="timeline-gap">Gap: 100% Efficiency</div>
+            </div>
+          </div>
+          
+          <div class="chart-block" style="margin-top: 1.5rem;">
+            <h3>Incident Reaction <span>18x Faster</span></h3>
+            <div class="labels-row">
+              <strong>New: 4 Hours</strong>
+              <span>Legacy: 72 Hours</span>
+            </div>
+            <div class="timeline">
+              <div class="timeline-bar" style="--w: 12%"></div>
+              <div class="timeline-gap">Gap: Days Saved</div>
+            </div>
+          </div>
+
+          <div class="chart-block" style="margin-top: 1.5rem;">
+            <h3>Global Rollout Velocity <span>IoT + ERP + 3rd Party</span></h3>
+            <div class="labels-row">
+              <strong>New: 6 Months</strong>
+              <span>Legacy (Custom Dev): 14 Months</span>
+            </div>
+            <div class="timeline">
+              <div class="timeline-bar" style="--w: 30%"></div>
+              <div class="timeline-gap">Gap: 8 Months Saved</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cost-row">
+          <div class="cost-item">
+            Compliance Fines
+            <div class="cost-val" style="color:var(--success)">-100%</div>
+          </div>
+          <div class="cost-item">
+            Asset Uptime
+            <div class="cost-val">+15%</div>
+          </div>
+          <div class="cost-item">
+            Impl. Savings
+            <div class="cost-val">$280k</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="section-title">Outcome board</div>
     <div class="grid" id="infographics">
