@@ -4,31 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Architecting a Dynamic General Ledger Coding System</title>
+  <link rel="stylesheet" href="theme.css" />
   <style>
     :root {
-      /* LIGHT MODE PALETTE */
-      --bg: #f2f5f8;
-      --panel: rgba(255, 255, 255, 0.75);
+      --bg: #f6f8fb;
+      --panel: rgba(255, 255, 255, 0.9);
       --panel-solid: #ffffff;
-      --text: #1a202c;
-      --muted: #64748b;
-      --border: rgba(0, 0, 0, 0.08);
-      --border-hover: rgba(0, 0, 0, 0.15);
-      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 4px 12px -4px rgba(0, 0, 0, 0.04);
-      --accent: #0284c7; /* Sky Blue 600 */
-      --accent-bg: rgba(14, 165, 233, 0.12);
-      --highlight: rgba(255, 220, 100, 0.4);
+      --text: #0f172a;
+      --muted: #475569;
+      --border: rgba(12, 24, 44, 0.12);
+      --border-hover: rgba(59, 130, 246, 0.35);
+      --shadow: 0 20px 50px rgba(12,24,44,0.06);
+      --accent: #3b82f6;
+      --accent-bg: rgba(59, 130, 246, 0.12);
+      --highlight: rgba(59, 130, 246, 0.18);
       --radius: 16px;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
     html, body {
       height: 100%;
-      background: 
-        radial-gradient(1000px 1000px at 10% 10%, rgba(186, 230, 253, 0.4), transparent 60%),
-        radial-gradient(800px 800px at 90% 20%, rgba(221, 214, 254, 0.3), transparent 50%),
-        radial-gradient(1200px 1000px at 50% 90%, rgba(255, 255, 255, 0.8), transparent 50%),
-        var(--bg);
       color: var(--text);
       font-family: var(--sans);
       margin: 0;
@@ -240,6 +235,19 @@
   </style>
 </head>
 <body>
+  <div class="nav-shell">
+    <nav class="top-nav">
+      <div class="brand">
+        <div class="orb"></div>
+        <h1>Systems & Lifecycle Frameworks</h1>
+      </div>
+      <div class="nav-links">
+        <a class="btn ghost" href="index.html">Home</a>
+        <a class="btn primary" href="gl-coding-impact.html">Impact</a>
+      </div>
+    </nav>
+  </div>
+  <main class="page-shell">
   <div class="shell">
     
     <aside class="toc card" aria-label="Contents">
@@ -612,5 +620,7 @@
     updateOpenMeta();
     syncActiveToc();
   </script>
+  </div>
+  </main>
 </body>
 </html>
