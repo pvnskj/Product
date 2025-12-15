@@ -8,33 +8,33 @@
 <link rel="stylesheet" href="theme.css"/>
 <style>
     :root {
-      --bg: #f8fbff;
-      --card: rgba(255,255,255,0.92);
+      --bg: #f6f8fb;
+      --card: rgba(255, 255, 255, 0.92);
       --card-solid: #ffffff;
-      --border: #e5e7eb;
+      --panel: rgba(255, 255, 255, 0.9);
+      --panel-solid: #ffffff;
+      --border: rgba(12, 24, 44, 0.12);
+      --border-hover: rgba(59, 130, 246, 0.35);
       --text: #0f172a;
-      --muted: #46566d;
-      --accent: #2563eb;
-      --accent2: #0ea5e9;
-      --accent3: #16a34a;
+      --muted: #475569;
+      --accent: #3b82f6;
+      --accent2: #8b5cf6;
+      --accent3: #10b981;
       --shadow: 0 22px 60px rgba(15, 23, 42, 0.10);
       --radius: 20px;
       --radius-sm: 14px;
       --max: 1180px;
+      --sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: var(--sans);
       color: var(--text);
       line-height: 1.65;
-      background:
-        radial-gradient(circle at 12% 14%, rgba(37,99,235,0.14), transparent 30%),
-        radial-gradient(circle at 82% 12%, rgba(14,165,233,0.12), transparent 32%),
-        radial-gradient(circle at 30% 86%, rgba(22,163,74,0.12), transparent 28%),
-        var(--bg);
+      background: var(--bg);
     }
 
     a { color: inherit; text-decoration: none; }
